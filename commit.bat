@@ -1,1 +1,1 @@
-git add . && git commit -m "patch" && git push origin master
+git add . && git commit -m "commit" && git push -u origin master
