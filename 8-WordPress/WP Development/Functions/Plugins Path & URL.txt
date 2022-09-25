@@ -1,0 +1,4 @@
+plugins_url() plugins directory
+plugin_dir_url(__FILE__) current plugin directory url
+plugin_dir_path(__FILE__) current plugin directory path
+plugin_basename(__FILE__)

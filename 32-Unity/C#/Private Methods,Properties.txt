@@ -1,0 +1,2 @@
+private methods and properties can't be access by another classes unless using reflection method
+and this is how unity monobehaviour call or event functions behind the scenes

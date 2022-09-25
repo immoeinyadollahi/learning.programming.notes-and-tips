@@ -1,0 +1,3515 @@
+learn about pivot points
+check if multiple parent exists,how scale and position of child when parents change its scale,changes accordingly,what is the formula
+
+search why we use vector for scale
+
+search for virtual axis and getaxis
+
+search about why object rotate and scales relative its pivot
+
+see youtube videos about local and world space transform
+
+
+
+
+if game object has parent it local axis is based on parent axis plus its own axis,but without parent its just its local axis (same for mulitple ancestors)
+when game object rotate its local axis will rotate as well so scale,rotation,position will be applied based on new axis
+but global axis remain unchanged
+
+fix --------- if game object rotates,object axis will be changed,for object without any parent only scale affected by new axis and position still relative to global axis
+in game object with parent,if parent rotate, parent itself and all children axis will be changed and also all children transform properties will be affected but its new axis (rotation,position,scale)
+also if child rotate,child new axis rotation will be combination of its parent and its new rotation relative to parent,and transform properties of child will be affected by final axis applied to game object
+
+to measure global transform of child game object if and only if game object parent axis remain onChanged (doesn't rotate),game object global transform will be calculated from sum of game object transform with its parent directly,but if parent axis changes,global transform of game object will be caluclated same as above plus new factors like angle of parent new axis (rotated)
+** parent rotation in none of or some or all axes affects child global position,its based on child relative position to parent and it has a formula
+
+think like we have local axis for parent and when parent rotate its axis will rotate and we need to recalcualte child position based on new parent axis (parent local or self axis again means keep rotation factor in mind nothing more)
+
+unlike rotation and position which will be sum of child and its parents,scale properties will be multiply of its scale by its parents 
+
+if parent scale changes (less that or greater that 1 means every scale),child world position will be changed,but child local position (realtive to parent ) still remain unchanged as parent scale was 1
+therefore child local position always calculated based on parent with scale 1 in mind
+
+what is on screen is absolute and fixed transform of game objects
+and local transform of game object relative to their parents are just for convenient
+local transform is only for calculation not visualization on screen
+e.g. when we want to move ui window its better to move its content accordingly so we make them as child of window,and unity clacualte global posiiton of them in every frame and based on parent,they will move to new position
+think of a window with multiple elements inside that,if we want to move window and all of its elements stay unchanged relative to that game object we should use parenting
+means children must recalculate their transform (global transform) each time parent transform changes to show correctly in screen
+
+if for example child has position 0.5 in X axis realtive to parent and parent scale changes 2x, child game object scale will be changed from its origin to 2x  relative to world space (but its values still are 1 relative to parent (local position))
+but not recalcualted positioned yet
+now we should recalculated position to show in world space,so game object position will changed in global space 
+the rule is for calcualting child global position which should sum its position with its parent multiple by its global scale  ((child position + parent position) * parent scale)
+here global scale of game object calcualted from multipy of its scale and its parent
+
+so for getting global position of child game objects,one factor is parent position and also parent scale
+child local position still remain unchanged even if parent scales 1000x because local position of gameobject (game object origin) relative to parent origin calculated with parent scale as factor
+despite this fact that if parent scale is not equal to 1, local position of gameobject seems incorrect but its just theory and for calcualtion accuracy purpose 
+only if parent scale set to 1 local position seems to be correct otherwise in human vision seems to be incorrect not math calcualtions
+so location position depends on scale factor but if you want to get real local position relative to parent origin you should calculate distanct between object global position and parent global position
+
+when multiply scale of child to 2x directly, position in world doesn't change,but when change scale of parent to 2x child position will change
+
+what show in screen is final and aboslute values
+
+searhc why parent scale affect on child position
+
+scale only applied in local axis (even if global axis selected in editor)
+
+so local position of child is relative to parent position with considiring of parent scale factor
+and world position of child will be its position multiply by parent scale plus parent position
+
+there is no concept of growing,its just recalucalting in fast speed and simple illusion
+
+if parent rotate,parent axis will rotate obviously, and because child transform is relative to parent,transform doesn't change localy but from global space,child position and rotation will be changed
+not always child position changes,absed on current child posiiton,this may or may not change
+if parent position changes,only child global position will change,but if parent rotation changes,child all transform properties relative to global space will change (except scale)
+because rotation will change game object axis and that cause to change all properties
+
+** based on current child position relative to parent,rotation or scale in all or some or none of axes may or may not change global posiiton of child
+test for scale if changes to parent scale,may or may not change child position
+
+so if parent position and scale changes,child local transform still remain unchanged realtive to parent
+
+if game object has multiple ancestor,its like css cascade,so computed values for game object transform will be based on its ancestor and realtive to its parents recursively
+
+
+
+
+-------------------------------
+serch why people manully adjust transform.rotation or transform.eularAngles for changing rotation
+
+-------------------------------
+
+search why don't use addForce in update when getting one time input like getMouseButtonDown or getKeydown
+-------------------------------
+
+find in tips,when parent rotation changes,may or may not child position hcange,based on child position
+
+
+
+
+-------------------------------
+serialization
+*********** unity store all scenes with their game objects with game objects components and all fields into the yaml format (can be different extensions)
+			when game started (play mode) unity load all scenes and game objects (with ocmponents) from those yaml files into memory with creating new instances of game object
+
+			unity serialization is what stored on yaml files to sync between editor state and play mode
+
+			** Best **
+			unity stored every assets (Scenes,Prefab,AudioCLip,......) into files as serialized objects and give unique id to each instance to keep refrences between them added in editor
+			and will deserialized them in play mode (starting the game application) and load them into memory with saved references
+			those refrences can be used anytime in them game or may not even used
+			
+			
+			see unity serialization usage part
+
+
+search how saved build game objects with nested features
+
+-------------------------------
+
+** when instantiating game objects,unity must clone game ojbects components too,so unity uses same addComponent (or somthing like that) to adding component manulaly to existing game object 
+	so compoents all lifecycle messages initiated from time component added to game objects
+
+** when unity wnat to clone components it will add new component to game object and fill components fields from original component instance to cloned instance returned from addComponents
+
+
+-------------------------------
+
+Static collider cann't collide with static and kinemtatic collider
+for dynamic rigidbody,collision only happens if dynamic rigidbody is not in sleep state
+but its no correct in test check for that
+https://forum.unity.com/threads/moving-static-collider-vs-kinematic-rigidbody-dubious-official-documentation-and-performance-cost.359649/
+
+
+Kinemtatic rigidbody
+Forces (force meothds or external forces like gravity), collisions or joints will not affect the rigidbody anymore (velocity,position,rotation,...)
+simply put it will not be under control of physics anymore
+however they affect the motion of other rigidbodies through collisions or joints
+The rigidbody will be under full control of animations or script control by changing transform ( animations also use transform)
+so it can be controlled by only transform
+alos velocity
+
+search why not use static body instead of kinemtatic
+
+----------------------------------
+searhc why collider extent changes when collider rotate with game object
+----------------------------------
+Time.deltaTime is interval between start of last frame and start of current from
+----------------------------------
+search about look at
+it will face forward direction of transform to target
+----------------------------------
+
+search difference between translate or rotate between setting transform directly
+
+----------------------------------
+before unity send mesage to any component all game objects and components ,assets,configuration,..... are loaded (from serialized version of objects)  so in messages methods its safe to access all game objects and their comonents (built in or monobehaviour),...
+because one of the first things unity does is to load serialzied files
+
+----------------------------------
+search difference between (in 2d) collider without rigidbody and with rigidbody but static type
+
+
+----------------------------------
+
+
+// use below Important part \\
+Start method foreach monobehaviour component get called before first frame rendering which game object is exist and active and component is attached and is enabled
+active game object in scene and enabled monobehaviour components
+same as awake active game objects in scene load or inactive objects get actived for first time but only for enabled components
+
+Awake method get called either game object is active when scene loads,or if is inactive,then first time gets active
+awake get called on active gameobject for all monobehaviour components even disabled ones
+
+if game object is active and add new component,in next frame first awake of those new components get called then Start ,...
+
+Unity calls Awake and Start only once during the lifetime of the script instance (not necessary at beginning)
+
+when awake method get called,all scene game objects loaded so its safe to query in the scene
+even after instantiateing new game object awake is called in next frame so other new game object added immediatly on instantiating
+instantitaing new game objects will add new game object immediatly into the scene hierarchy so its safe to query after instantiateing
+
+all Awake methods are always called before any Start functions (except dynamiccly added game object or compoent which however there own awake and start get called in order). This allows you to order initialization of scripts
+Where objects are instantiated during gameplay, their Awake function is called after the Start functions of Scene objects have already completed.
+
+** instance of component which is unique every time add new game object or adding this components
+
+
+
+
+** Important **
+** monobehaviour messages are only refer to components not game objects
+	e.g. awake maybe called for one of game object components but not others
+			so components individualy receive messages
+
+
+
+Unity already has a "DidStart" flag on the C++ side since it needs to somehow make sure not to call Start() more than once
+
+so unity store proper flags and private fields on each component (not game objects),flags like didStart,isAwakeCalled
+and in each message phase,loop through in all scene components and check for proper flags in order to send spefici message to component or not
+
+check if from disabled state set enabled to true,it will called immediatly or in next frame (start of frame)
+check if adding new game object in Update send messages immediatly or in nexxxt frame
+check if new insatitated game object components and disabled components,onDisabled called first or awake
+
+search why onEnabled not called on Test scripts
+or destory immediatly and check if awake called first or onDestroy (in next frame or in same frame)
+search how get private field i nreflrection
+
+onEnable on get called if component trree is active when scene load,or any time tree from inactive state goes to active state
+not when new component instance added to game object at runtime (maybe called later by change inactive to active but not at creation like when scene load)
+
+
+
+
+
+
+awake get called if tree game objects are active on scene load (game object of component has activeInHierarchy set to true on scene load) (awake get called even if component is disabled so component enabled state is not important)
+or atleas one of tree game objects are inactive and in next states, all of them become active
+(component game object active in hirerarchy was false and gets true in next states)
+
+Start get called if tree are active/enabled on scene load
+or atleast one of components or parent game objects are disabled/inactive  and in next states,all of them become enable/active
+
+onEnable get called at scene load if component is enabled and tree game objects are active
+or atleast one of components or parent game objects are disabled/inactive and in next states (toggle activating tree objects or toggling enabling component) all of them become enable/active
+
+onDisable reverse as onEnable all tree are active/enabled and in next state one of them get disabled/inactive,
+also get called if in same frame onDestory should run (all game objects of tree are active and one of ondestroy conditions happens) but before ondestrory
+so ondisable get called before ondestroy get called (if should)
+
+onDestory get called if all tree game objects (component can be disabled like awake) are active (compoent game object has activeInHierarchy set to true)
+then
+1. one of tree node get deleted (Destroy) (even component instance itself)
+2. scene get unloaded (load new scene)
+3. in editor exiting play mode
+onDestory methods get called then actual object will be destroyed at end of frame or ...
+search what is destroy in fixed update,is it get called in end of the frame or immediatly
+
+
+
+for game objects instantiated dynamiclly,they should wait for start of next frame and if until that point ,activeInHierarchy set to true,components of game object will receive messages proeprly
+wrong
+
+Tips
+destroying game object will destroy game object in same frame or maybe not
+if it is,we can intantiate game object and because of all components are fully computed fields we can get usefull data from their components
+then destory game object
+so frame can't render game object at all
+
+instnatiting or addCOmponent
+Awake (and OnEnable except using Instantiate and the component is disabled) will be called right away during the instantiation and any code line after Instantiate will be executed after it is finished.
+
+Start however will be delayed until the end of this frame (start of next frame) (or until enabling if the component was disabled in Awake).
+
+This allows you to have enough time to use Instantiate and modify some field values before Start is called and can now base its behavior on the modified field values.
+
+
+
+
+----------------------------------
+
+
+
+
+**********************************
+OnMouseXXX,OnCollisionXXX,OnTriggerXXX,Awake,... messages will be sent to all monobehaviour components of all game object which are activeInHierarchy and component enabled state will be ignored (activeInHierarchy is only condiiton to send these messages)
+in constrast Start,Update,FixedUpdate,... messages will be sent o all monobehaviour isActiveAndEnabled components
+
+
+
+
+
+
+
+----------------------------------
+
+
+Awake vs Start
+
+Important
+The order that Unity calls each GameObject's Awake (even Start) is not deterministic (i think its somehow from top to bottom but it may not be correct all the time)
+Because of this, you should not rely on one GameObject's Awake (even Start) being called before or after another
+(for example, you should not assume that a reference set up by one GameObject's Awake will be usable in another GameObject's Awake or refrence set up by one GameObjects Start will be usable in another GameObject Start). 
+Instead, you should use Awake to set up references between scripts, and use Start, which is called after all Awake calls are finished, to pass any information back and forth.
+
+// Best
+both Awake and Start are two separate part of components initialization (monobehaviour component)
+we should use awake for initializations that don't rely on other components and just for self component and independent of other compoents
+we should use start for initialization that may depend on other components initialized fields (in awake method)(we can however do component itself initialization (independent of other compoent) here e.g. set built components on instance of compoent)
+
+(or even we can use awake for initializations that may use other components fields,methods,... that either don't need initialization at all or initializations are done inside editor not playmode or may just save other components reference in current component fields)
+
+
+but for best practice purposes we use awake only for independent initialization of compoent and use Start to initialization based on other compoents initialized fields,... (in editor or script)
+
+
+** here we refer to monobehaviour components,built in components are loaded before every game objects awake get called
+	because they have specifice execution flow
+	note this in components definition for built in components
+
+** we can however initialize other components within other components but its not good practice (encapsulation)
+
+we can use both awake and start for intializatiing like starting cooroutines or updating ui,but in awake make sure it doesn't depend on other components intiializaed values
+
+
+
+
+
+check if OnDestroy get called in end of them frame or immeiatly after Calling Destory method
+and also check if Destroy set reference to null immediatly or after OnDestroy Message for component
+also check if its early end of them or not because unity say
+
+Actual object destruction (remove memory object and remove references (set to null)) is always delayed until after the current Update loop, but will always be done before rendering.
+
+if its true why Ondestroy places in end of the flowchart
+
+https://forum.unity.com/threads/check-if-gameobject-is-destroyed.102524/
+--------------------------------------------------------
+
+
+http://blog.lidia-martinez.com/fixedupdate-fixedtimestep-maximum-allowed-timestep-unity
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------
+we can take input in Fixed Update
+only if it runs exatcly one per each frame 
+means framerate is equal to physic rate
+
+
+
+
+
+
+
+
+
+using physics in FixedUpdate
+the only key important fact is how much changes (adding force,velocity changes,) apply in each physics cycle
+
+
+if changes are once before each physc cycle
+there is no different use them in update or fixedUpdate
+
+if we want to modify rigidbody in reliable timer
+we should use fixed Update because changes are reliable for each physc cycle
+
+
+its not importat if physcis cycle happens immediatly after fixed update
+we can mimic this in update
+and physic cycle must happend after this frame and only once
+
+
+we dont use Update for physics because it frame dependent means physcis changes applie in Update can be smaller or bigger based on framerate
+
+
+
+
+
+
+
+
+search if adding force multiple times vs once with big force
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+Game Loop Process (Pseudo)
+
+// Measuring DeltaTIme
+var lastTime = time;
+    time = GetTime();
+    var deltaTime = time – lastTime;
+	
+	
+    ProcessInput();
+    UpdateMethods(deltaTime);
+    Render(deltaTime);
+
+
+
+so delta time doens't measure every time get Time.deltaTime field (is not time relative to access deltaTime field)
+but its a constant in every frame that anything untile end of them frame receive same value
+
+
+
+
+DeltaTIme
+First of all, delta is NOT a difference between how much frames took to complete. That is not at all the case. If it where, it would not be useful for physic simulations.
+
+Imagine a floor tiling. If you measure the length of a tile, then the length of another tile, and then take the difference… THAT IS NOT DELTA. Delta is not a deviation.
+
+Instead, delta is closer to a measure of length of the tile, but not quite.
+
+Delta is the measure from the start of a tile to the start of the next.
+
+That is a very good approximation of the length of a tile. And we can - for most purposes - pretend it is a measure of the length of a tile. In reality, that isn't a measure of the length of a tile. Because there is a gap between tiles.
+
+
+for time,delta is not same as duration (length)
+delta means difference between start of previous frame untile start of current frame
+duration means completion time (start of frame until end of the same frame)
+
+
+
+in unity because of speed,both mean same thing and may be have same values (idon't know exctly)
+but we know that delta time measured by difference bettweem start of previous frame and start of current frame
+and this value remain unchanged in entire frame
+
+
+Unity -> The interval in seconds from the last frame to the current one (Read Only).
+			->> simpler	-> difference in seconds from start of last frame to start of current frame
+
+
+ // Make it move 10 meters per second instead of 10 meters per frame...
+
+
+
+
+
+
+
+Time.fixedDeltaTime is not delta time between two fixedUpate or physics cycle
+its same as fixed timestep of project which set to 0.02s
+
+actually fixedDeltaTime is project setting field just like Time.timeScale which placed in editor project setting
+
+
+***	Unity does not adjust fixedDeltaTime based on Time.timeScale when you change timescale
+
+Unlike Update methods, How often Physci Cycle is executed per frame depends on the timeScale (because physcis cycle check for scaled Time.time which derived  from scaled deltaTime)
+
+Therefore, to keep the number of physic cycle (not only FixedUpate) execution per frame constant (realtive to timescale), you must also multiply Time.fixedDeltaTime by timeScale
+
+
+
+
+
+
+
+search for unscaledFixedDeltaTIme
+
+
+
+
+Process of deltaTime 
+
+1. first calucalte deltaTime independednt of any scaling in start of frame (pseudo)
+	var lastTime = time;
+    time = GetTime();
+    var deltaTime = time – lastTime;
+	
+2. set Time class fields
+	Time.deltaTime = deltaTime * Time.timeScale or `cap deltaTime by maximumDeltaTime * Time.timeScale`
+	Time.unscaledDeltaTime = deltaTime
+
+
+
+
+Time.time
+This is the time in seconds since the start of the application (game started not editor application)
+its not abosulte time,its relative time in seconds from time of start of game
+and will be increased with Time.deltaTime (which scales by Time.timeScale and adusted with Time.maximumDeltaTime),at start of each frame
+** if timeScale goes to 0,Time.time stop increasing because Time.delataTime factor will be zero in each frame
+
+
+Time.unscaledTime
+same as Time.time but without (not affected) time scaling and Time.maximumDeltaTime adjustment (increased by raw deltaTime of frame)
+raw deltaTIme means same Time.unscaledDeltaTime
+
+
+both above fields stop when editor pauses
+
+
+check both in Awake if they are undefined
+also for awake tha dynamiclly added components or gameo jbects
+
+
+
+
+Unity uses a two-part timestep, as described in the Gaffer article as “Free the physics”.  In Unity, this means that there are two main update passes: FixedUpdate and Update. 
+
+The FixedUpdate pass steps forward in increments of 0.02 game-time seconds(2)2 The default is 0.02 seconds. You can change the fixed timestep amount by setting Time.fixedDeltaTime — even at runtime!, 
+regardless of rendering or any other performance factors. 
+The key here is that FixedUpdate is reliable. If 0.02 seconds of game time has passed, it is guaranteed that the FixedUpdate has run during that period. 
+Note that this does not guarantee FixedUpdate will be run every 0.02 wall-clock seconds! This is only the case when game-time and wall-time are in sync.
+
+https://web.archive.org/web/20210224113810/https://gafferongames.com/post/fix_your_timestep/
+
+
+Time.deltaTime
+scales with Time.timeScale and adujst with Time.maximumDeltaTime (capped)
+
+
+search what is mean of multipling by time.delat time
+i thnk it means e.g. translate by elapsed time form previous frame not whole value
+
+
+
+
+
+
+
+
+Delta means difference or variation (اختلاف)
+so Time.deltaTime means difference in seconds between time of start of previous frame and time of start of current frame
+
+
+deltaTime converts movements from units per frame to units per second.
+which converts movement speed to a per/second value, keeping it even and consistent when the framerate varies.
+
+
+
+
+Time Scale
+The scale at which time passes.
+
+https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
+
+anything that is Time based will be affected (scaled) (down or up)
+e.g. physci cycle or wait for seconds (not realtimeseconds)
+
+Time.deltaTime will be zero when scale time to 0 (so all movement multipled by deltaTime will be zero)
+or generaly time.deltaTime will scaled based on TimeScale
+real deltaTime will be unscaledDeltaTime
+
+fixed update will not be called any more (physci cycle too) if scale is 0
+
+** there is no way no prevet input maangement automatically whne scale game to zero
+   for each of them we should check if game pause or not or disabled their components completly
+
+update running as usual but deltaTime will be zero (strange right)
+
+
+any time fields (time,deltaTime) are affected (scaled) by time scale (multipled by time.scale)
+but (unscaledTime,unscaledDeltaTime,...) don't use timeScale factor
+
+
+************** changing timeScale doesn't mean run game faster or slower,it is just a time multiplier which affects Time.deltaTime which then it affect Time.time,
+							in result any movement multipled by Time.deltaTime will be greater or smaller in period of time
+							also because of Time.time change,physc cycle will be run more and less per frame or even not
+
+
+
+scaled time means time affect by timeScale or time scaled by timeScale (Time.time or Time.unscaledTime)
+
+
+
+
+
+Time.maximumDeltaTime
+The maximum value of Time.deltaTime in any given frame (deltaTime (scaled) will be capped at maximumDeltaTime value if it goes bigger)
+
+When a very slow frame happens,deltaTIme (scaled with timeScale) will be limited by this value
+Time.deltaTime = clamp(unscaledDeltaTime * timeScale)
+
+
+
+unity increments: 
+Time.time with Time.deltaTime
+Time.unscaledTime with Time.unscaledDeltaTime
+Time.fixedTime with Time.fixedDeltaTime
+Time.fixedUnscaledTime with Time.fixedUnscaledDeltaTime
+
+
+
+using Time.deltaTime inside FixedUpdate return Time.fixedDeltaTime
+using Time.unscaledDeltaTime inside FixedUpdate return Time.fixedUnscaledDeltaTime
+using TIme.time inside of FixedUpdate return Time.fixedTime
+using TIme.unscaledTime inside of FixedUpdate return Time.Time.fixedUnscaledTime
+
+
+
+
+Process when calling physc cycle
+		** store original values in variables
+		
+		Time.deltaTime = Time.fixedDeltaTime;
+		Time.unscaledDeltaTime = Time.fixedDeltaTime;
+		Time.time = Time.fixedTime;
+		
+        ** while loop that run physc cycles goes here **
+		
+		reset those static fields by original values
+	
+
+
+onCollisionXXx,... also in physic cycle so receive fixedDeltaTime instead of deltatITme
+
+
+
+
+
+all Time fields return same value in 1 frame (becuase measured in start of frame and are constant in that frame)
+except  realTimesinceStartup
+
+
+Time.realtimeSinceStartup
+The real time in seconds since the game started
+This is the time in seconds since the start of the application, and is not constant if called multiple times in a frame.
+also doesn't affected by timeScale
+it time elapsed from start playing the game until access this field
+
+
+
+
+
+Time.scale
+doesn't change sped of Update or frame rendering
+its just a multiplier
+
+
+
+
+
+Physics Cycle process (pseudo) (extrnal resource)
+
+	const	fixedDeltaTime (fixed timestep) = 0.02;
+	 const accumulator = 0;
+
+	while (!quit){
+		const deltaTime=startTimeofPreviousFrame - currentFrame;
+		accumulator+=deltaTime;
+        while ( accumulator >= fixedDeltaTime )
+        {
+            accumulator -= fixedDeltaTime;
+            physci_step( fixedDeltaTime);
+        }
+	}
+
+Unity
+uses fixedTime as accumulator which never reduces but compares with TIme.time and if fixedTime is less that Time.time (by at least 1 fixed time step - > means if Time.time is greater than fixedTime by fixedDeltaTime (0.02) (1 or more) )
+then call physcis cycle 
+Unity -> run physics cycle if fixedTime is behind Time.time by at least one fixedDeltaTime (fixed time step)
+
+** Time.time is always bigger than or equal to Time.fixedTime ,it will never get less than fixedTime
+** they are equal,only if Time.fixedTime is exactly less than 1 fixedDeltaTime unit from Time.time,after running physc cycle,they will be eual or in start of application
+** Time.time calcualted by Time.deltaTime (which affected by timeScale) so if Time scale set 0,Time.time will no longer be greater than fixedTime  ** by at least 1 timestep ** therefor physics cycle will not run anymore
+
+
+
+then fixedTime will be increased with fixedDeltaTime
+
+code for physcis cycle ineach frame
+        while ( Time.time - Time.fixedTime >= fixedDeltaTime )
+        {
+			
+            Time.fixedTime += fixedDeltaTime;
+			call FixedUpate() methods;
+            physci_step( fixedDeltaTime);
+        }
+
+
+both above methods work the same but unity uses different approach to acheive that goal
+--------------------------------------------------------
+
+
+
+
+
+
+------------------------
+
+
+
+Scene
+search why when loading new scene why new scene object losing DontDestroyOnLoad of previous scene object reference
+and also check if they lose references to each other
+
+
+
+Physics
+check if collision matrix is only for collison not trigger or not
+check fo rigidbody 2d static type if its has extra proeprties in inspector
+
+	
+	
+Colliders
+1. all colliders sizes are relative to game object transform scale (no need to reset,they will scale automatically)
+
+2. all colliders except box collider 2d,they change their size to fit with sprite render size (not exactly fit) (still relative to gaem object transform) only if attached for first time or reset to default (not auto fit fot sprite render)
+	** workaround for box colliders is to set collider size same as sprite size in scripts
+
+search why changing sprite render sprite collider size will be changed even for box collider wich doesn't fit with sprite size
+also search for mesh collider and review `all colliders` in two section above
+
+
+-------------------------
+
+
+audioSource playoneshot use same configuration of audiosource also with custom voulme 
+check if changing voulme of audio source while playing sound with playOneShot change its volume or its independednt of volume of audio source
+also check if add volumn parameter to playOneShot change audio source volumn too
+
+The Audio Source volume will control the level of any sound playing through that audio source. When you call Play One Shot you can choose to add a volume scale parameter, which will be a percentage (between 0 and 1) of the Audio Source's volume.
+1 means full audio source volumn
+if source volumn changes,these sound will hvae different audio relativet ot source
+test this
+
+for audio source we have 1 main clip which can player with Play method
+also we have many sub clips that can be played dynamiccly with Play one shot which use same configuration as main clip
+
+
+PlayOneShot
+Play One Shot is ideal for sound effects, particularly repeating sounds (for example gunfire) because will not reset previous sound
+
+Play is good for musics
+
+Generally it's best to use Play One Shot for sound effects and other short audio clips and use Play for music and long loops (as Play One Shot can't loop audio)
+play one shot only plays one shot and can't be looped, so all configurations of audio source may not be used by play oone shot clips
+check if mixers can be used with play one shot
+
+-------------------------
+
+DontDestroyOnLoad
+
+check if DontDestroyOnLoad works for ocmponents
+
+
+
+Query in Scene
+GameObject.Find find only active game object with name
+if using `/` it will traverse hierarchy  like path name and stops immediatly when encounter inactive game object
+
+Transform.find even find transform of inactive game objects
+search best way to find objects
+and if transform.find can find nested ones
+difference betwen GameObject.findWithTag or findGaemObjectwithTag
+
+
+search if find inactive game object,then query for nested ones whic hare active
+search if game object.Find start with / start from root objects and if not found,doesn't go nested in hierarchy
+
+active here means activeInHierarchy
+
+transform.find finds inactive game object too because it only works with trnasforms so game object doesn't matter
+also this method doesn't search for name recursively however it will goes down if name is like pathname
+also this method start with / can't find anything
+
+-------------------------
+
+
+
+
+search for scripts as asset check if new object created for every script too
+
+--------------------------------------------------------
+searhc how distinguish bettwen game oject colliders
+
+
+
+search abount getAxis (Mouse Y for example) applied factors like time.deltaTime ,...
+
+
+
+
+
+check if set isKenematic to true then false,it returns to previous value before isKinematic set to true or not
+check if rigidbody type is dynamic and remove it from game object,check if its still dynamic or reset to static when removing
+
+
+
+
+
+
+
+searhc mouseScrolLDelta and getAXis Mouse ScrollWheel difference
+
+
+
+
+
+
+Search and add this to Classes/Scnem manager/static methods
+ in build game i don't know if all scenes that could be loaded must added to build settings, i think all scene must be added to build setting if they want to be loaded
+
+
+
+
+_____________________
+Force - with mass and Time.fixedDeltaTime
+
+Force = Vector3.forward*1.0f * Time.fixedDeltaTime / (rigidbody.mass);   
+
+Impulse - with mass only
+
+Force = Vector3.forward*1.0f / rigidbody.mass;
+
+Acceleration - with Time.fixedDeltaTime only
+
+Force = Vector3.forward*1.0f * Time.fixedDeltaTime;
+
+VelocityChange - not with mass nor with Time.fixedDeltaTime
+
+Force = Vector3.forward*1.0f;
+_____________________
+_____________________
+Ok, so more than a year later I've had the need to come back and attempt to fully understand this problem (as I never really understood what the differences were). After staring at the formulae for a long time and not really getting anywhere, I decided to stare at the page linked by @jchangxu (thanks btw!). After a short while, one phrase jumped out at me: Think of it as 'Force exerted per second'
+
+Instantly I realised I understood the differences. It's actually really simple, but everyone makes it sound so complicated that you assume it's more complicated than it really is. Since no one has yet managed to explain it clearly, here's my attempt from the viewpoint of someone who's only just figured it out.
+
+Incidentally: The official documentation could do with a better explanation since the current explanation in the docs is crappy and doesn't actually tell you anything unless you do the maths yourself, and even then the maths alone doesn't tell you everything about the function.
+
+tl;dr (...or "The Boy That Couldn't Be Bothered")
+ ForceMode.Force == Force per second
+ ForceMode.Impulse == Force per frame
+There's no actual difference in the way Force and Impulse apply the forces, only in how they calculate the amount of force to apply. If you do Force once every FixedUpdate for exactly one second, you will have applied the same amount of total force as doing Impulse on just one frame.
+
+Longer Explanation (for maximum understandings)
+The real difference is that Force treats the force parameter as Newtons and Impulse treats the force parameter as Newton-seconds, but we don't need to understand that to have a good understanding of how to use the function.
+
+Force is calculated as:
+
+ Acceleration = Force * Time ^ 2 / Mass
+Thus if the object has a mass of 2, you apply a force of 40 and the fixed timestep is left at the default of 0.02, it will look like this:
+
+ Acceleration = 40 * (0.02 * 0.02) / 2
+ Acceleration = 40 * 0.0004 / 2
+ Acceleration = 0.016 / 2
+ Acceleration = 0.008
+So the object will gain 0.008 metres per second of velocity. In other words, it will accelerate by 0.008m/s.
+
+Impulse is calculated as:
+
+ Acceleration = Force * Time / Mass
+Thus if the object has a mass of 2, you apply a force of 40 and the fixed timestep is left at the default of 0.02, it will look like this:
+
+ Acceleration = 40 * 0.02 / 2
+ Acceleration = 0.8 / 2
+ Acceleration = 0.4
+So the object will accelerate by 0.4m/s.
+
+Notice that 0.4 is exactly 50 * 0.008 (50 being the default number of timesteps in a second). That's because Force treats your force input as force per second, whereas Impulse treats your force input as force per timestep.
+
+The other two ForceModes, Acceleration and VelocityChange, are even simpler because they leave mass out of the equation.
+
+Acceleration is calculated as:
+
+ Acceleration = Force * Time ^ 2
+Thus, regardless of the object's mass, if you apply a force of 40 and the fixed timestep is left at the default of 0.02, it will look like this:
+
+ Acceleration = 40 * (0.02 * 0.02)
+ Acceleration = 40 * 0.0004 
+ Acceleration = 0.016
+So the object will accelerate by 0.16m/s.
+
+VelocityChange is calculated as:
+
+ Acceleration = Force * Time
+Thus, regardless of the object's mass, if you apply a force of 40 and the fixed timestep is left at the default of 0.02, it will look like this:
+
+ Acceleration = 40 * 0.02
+ Acceleration = 0.8
+So the object will accelerate by 0.8m/s.
+
+And finally, it's worth saying it again, just to be clear: no matter which ForceMode you choose, the force will not be applied on subsequent frames automatically. It will only be applied at the instant you call the function. The difference is simply in how it calculates how much force to apply, not in how it applies the force.
+
+
+
+
+
+
+
+
+
+
+
+Physx
+
+eFORCE 	parameter has unit of mass * distance/ time^2, i.e. a force
+eIMPULSE 	parameter has unit of mass * distance /time
+eVELOCITY_CHANGE 	parameter has unit of distance / time, i.e. the effect is mass independent: a velocity change.
+eACCELERATION 	parameter has unit of distance/ time^2, i.e. an acceleration. It gets treated just like a force except the mass is not divided out before integration.
+
+_____________________
+
+
+
+
+Do not set one of the eulerAngles axis separately (eg. eulerAngles.x = 10; ) since this will lead to drift and undesired rotations. When setting them to a new value set them all at once as shown above. Unity will convert the angles to and from the rotation stored in Transform.rotation.
+
+
+
+When you read the .eulerAngles property, Unity converts the Quaternion's internal representation of the rotation to Euler angles. Because, there is more than one way to represent any given rotation using Euler angles, the values you read back out may be quite different from the values you assigned. This can cause confusion if you are trying to gradually increment the values to produce animation.
+
+Do not set one of the eulerAngles axis separately (eg. eulerAngles.x = 10; ) since this will lead to drift and undesired rotations. When setting them to a new value set them all at once as shown above. Unity will convert the angles to and from the rotation stored in Transform.rotation.
+
+search if it will converted when access its proeprty or when ever rotatio changes
+
+
+***********************
+
+
+its faster and bettr to use eualer angles (search for that which is best)
+
+
+***********************
+
+Puuh, I don't know where to start here ^^. I think you should first understand that a "vector" can be both, a point in space or a direction vector that just defines a direction in space. Direction vectors are usually "normalized" so they have a length of 1. Since points and directions are both represented through a vector, it should be clear that what you actually mean depends on how you use or interpret the vector.
+
+Mathematically a vector does not really have a start point as all vectors start at the origin. Even the most complex vector additions or transformations will always result in a vector that is relative to the origin. Though what the origin is again just depends on your interpretation.
+
+In games we generally have the world space and each object essentially has its own local space. It would probably help to know the basics of linear algebra to better understand what vectors, points and coordinate spaces are. Though in game engines we don't just use plain linear algebra because to represent translation with a matrix we use a homogeneous coordinate system. This might get too technical now if you have already trouble with the basics ^^. If you want to learn more about all this, I highly recommend to watch the 3Blue1Brown series on linear algebra.
+
+Ignoring the background for now, TransformPoint and TransformDirection both convert a vector from the local space of the given object into worldspace. However they interpret the given vector differently. TransformPoint expects a point and treats the given vector as a point. That means if you imagine the local space of the object, a local point is of course relative to the origin of that object and is also defined relatively to the coordinate axes of that object. When you want to transform the local point into a world position, we have to first translate the relative point to the world coordinate system and also add the origin / position of the object to the result to get the point in relation to the world origin.
+
+TransformDirection on the other hand expects a direction vector. A direction does not care about the origin as it does not represent a point in space, but just a direction. So transforming a local space direction into a world space direction does only "rotate" that direction vector relative to the object.
+
+To give a concrete example that is related to your example:
+
+Imagine your object is located at the world space position (5, 2, 1) and is not rotated at all. So an object that is not rotated has the same coordinate axes as the worldspace, just that they are relative to the objects own origin. If you do TransformDirection(Vector3.up) the resulting vector would be exactly the same. That's because the object is not rotated. Keep in mind that Vector3.up is just a constant for (0, 1, 0). Those coordinates when passed to the TransformDirection method are interpreted as a local direction. So the 3 numbers represent the offset along the objects own coordinate axes.
+
+Now what would happen if we had used TransformPoint instead of TransformDirection? For simplicity we ignore the effect of the objects scale for now. When we do TransformPoint(Vector3.up) the resulting vector would be (5,3,1). Now the vector is interpreted as a point inside the local space of the object. So when we want to translate a point from local to world space we need to add the objects own origin in order to get the exact position in the world.
+
+Though currently we are only interested in directions. Now what happens if the object is rotated? Giving examples with some odd rotations is difficult as the numbers get nasty. However the easiest rotation you can think of are 90° rotations. Imagine the same setup as above, but now our object is rotated 90° clockwise. So the objects local coordinate axes have now changed. The green up vector of the object does now point to the right, in the same direction as the world space right vector. Likewise the object red right vector does now point down, so in the opposite direction of the worlds up vector. Now a direction vector (0, 1, 0) interpreted as a local space direction still points along the objects own up vector. However this up vector does no longer point up in the world but to the right. So now doing TransformDirection(Vector3.up) will give you the world space direction vector which is (1,0,0). Keep in mind that we are dealing with directions here, so the origin of the coordinate space does not matter here.
+
+I hope that might help a bit with the understanding. If not I really recommend watching the essence of linear algebra series, at least the first few episodes.
+
+Finally I'd like to add that transform.TransformDirection(Vector3.up) is just a complicated way to describe the same vector that you get from transform.up. So transform.up just return the local coordinate space up axis as a world space direction.
+
+If you have further questions, feel free to ask. Depending on your preknowledge and your current understanding of linear algebra, I've posted a matrix crash course some time ago to explain a bit more in detail how a matrix processes a point / direction / vector and also how the projection matrix works. Though this is not really relevant here. Though the Transform component of an object does actually represent a 4x4 matrix and the TransformPoint method does apply exactly this transformation.
+
+
+
+**********************
+
+Physics Joints
+A joint connects a Rigidbody to another Rigidbody or a fixed point in space
+ 
+ for two rigidbody joints:
+ 
+we have joint ends ته (2 ends) سر
+connected body refer to rigidbody of another joint end not current  joint game object
+not game object with current instantce of component
+
+joints apply forces and constraints to rigidbodies
+
+******************** Joints work are just connectng two things (two rigidbodies or a rigidbody to fixed point) and providing certain constranits, that is **************************
+they use forces to fix temporaly broken constaint
+A constraint is a ‘rule’ which the joint will try to ensure isn’t permanently broken
+
+think of joint as a goverment which dictate some rules (constaint), whenever on of rules breaks,goverment try to fix it overtime
+and when one of the rules breaks exceeded,goverment will break too
+
+so joint provides some constraint like maximum force,...and whenever one of those rules get exceeded from normal,joint try to fix that rule
+and when rule breaks exceeded certain limit,rule will break completly therefore joint will break completly and permanently
+
+https://docs.unity3d.com/Manual/Joints2D.html
+
+we have two types of constraint breaking:
+1. temporaly
+2. permanently
+
+
+Temp Broken constaints
+The physics system expects that constraints do become temporarily broken
+the behavior of joints shines when constaints broke temporaly otherwise its useless at all
+
+When a constraint isn’t broken, the joint doesn’t apply any forces and does little work
+
+when a constraint is broken (temp) joint applies forces to fix the constraint:
+doesn’t always instantaneously fix the constraint (apply forces to fix). Although it usually happens very fast, it can happen over time
+i think fixed joint does instantaneously and there is no motion for it
+
+This time lag can lead to joints ‘stretching’ or seeming ‘soft’. The lag happens because the physics system is trying to apply joint-forces to fix constraints,
+ whilst at the same time other game physics forces are acting to break constraints.
+ In addition to the conflicting forces acting on game objects, some joints are more stable and react faster than others.
+
+
+the joint only uses forces to fix the constraint. These are either a linear (straight line) force or angular (torque) force.
+joints fix cosntraint only with forces
+
+fixing temporarily broken constraint can be simplified with constraining rigidbody
+
+
+
+
+Permanently breaking joints
+permanently breaking doesn't happen automatically by physic engine, you must specify break force and torque (if any) otherwise its infinity which means doesn't break permanently at all
+
+
+
+
+All joints have the ability to stop working completely (that is break) when a force exceeds a specified limit. The limit that causes breaking due to excessive linear force is called the “break force”. The limit that causes breaking due to excessive torque force is called the “break torque”.
+
+If a joint applies linear force, then it has a Break Force option.
+If a joint applies an angular (rotation) force then it has a Break Torque option.
+a joint may have both of them
+Both these limits are pre-set to Infinity: This means that they have no limit.
+
+When a Break Force or Break Torque limit is exceeded, the joint breaks and the component deletes itself from its GameObject.
+
+
+
+
+Types
+there is no joint for ropes,we use some of joint type t oachieve that,like hinge joint
+
+
+
+
+
+
+Unity autoConfigureConnectedAnchor
+
+connectedAnchor property will be calculated automatically
+and we can't change connected anchor anymore unless disabled this proeprty
+
+search for anchor and connectedAnchor difference
+
+
+Hing Joint (لولا)
+
+Distantce Joint
+
+Fixed Joint
+there is no delay or smoothing on fixing temp broken constaint
+
+
+Joint component
+
+autoConfigureConnectedAnchor if set to true
+connectedAnchor will be same as anchor position (if joint taget is rigidbody,connectedAnchor will be local to that rigidbody,otherwise will be abolute point in global space,so anchor will be converted to local space of connected rigidbody or abosulte pointe in space)
+when ever anchor changes
+
+
+connected anchor is relative to conncted rigidbody position or absulte point in space (if no rigidbody conencted)
+anchor is relative to current joint game object rigidboydy component
+
+joint for world space point,connected anchor is global world position
+
+
+
+-------------------------------
+AddForceAtPosition
+Apply a force at a given position in space.
+
+The AddForce function applies a force that acts straight through the rigidbody's centre of mass and so produces only positional movement and no rotation. AddForceAtPosition can apply the force at any position in world space and will typically also apply a torque to the object which will set it rotating. Note that for the purposes of this function, the rigidbody is just a coordinate space of infinite size, so there is no reason why the force needs to be applied within the confines of the object's graphic or colliders.
+
+For realistic effects position should be approximately in the range of the surface of the rigidbody. 
+This is most commonly used for explosions. 
+When applying explosions it is best to apply forces over several frames instead of just one. Note that when position is far away from the center of the rigidbody the applied torque will be unrealistically large.
+
+
+
+rigidbody is just a point  in physic world and doesn't have any shape and surfaces
+so to emualte adding force to surface we can applied force at positions which acts as surface of rigidbodies
+physic engine calucalte various factors like distance of rigidbody and force posiiton and angle ,... which makes force produce torque and rotation on rigidbody
+unlike AddForce which apply  force directly on center of mass which prodoce only directional force,this method also produce rotation on rigidbody
+
+******** this method calcualte position of force relative to center of mass not rigidbody posiiton
+
+
+Box2D ->    Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity.
+
+-------------------------------
+Center Of Mass
+The center of mass relative to the transform's origin.
+
+If you don't set the center of mass from a script it will be calculated automatically from all colliders attached to the rigidbody. After a custom center of mass set, it will no longer be recomputed automatically on modifications such as adding or removing colliders, translating them, scaling etc. To revert back to the automatically computed center of mass, use Rigidbody.ResetCenterOfMass.
+
+Setting the center of mass is often useful when simulating cars to make them more stable. A car with a lower center of mass is less likely to topple over.
+
+Note: centerOfMass is relative to the transform's position and rotation, but will not reflect the transform's scale!
+
+
+when adding force,it applied on center of mass
+
+----------------------------------------
+
+check if GetAxxis multipled by deltattime becuase unity says its frame independednt
+
+check if getaxis raw for joistick is only 1,0,-1 like keyboard
+
+check if getAxis get -1 or 1 excatly for joystick
+
+----------------------------------------
+
+impulse and addForce are gradual/immediate
+
+implsuse is per step
+force is per second
+
+
+
+***** AddForce or AddTorque doesn't change velocities immediately,after next simulation changes will be applied on rigidbody component
+
+
+The effects of the forces applied with this function are accumulated at the time of the call. 
+The physics system applies the effects during the next simulation run (either after FixedUpdate, or when the script explicitly calls the Physics.Simulate method).
+
+means forces vector accumulated not resulting velocity calcualted then accumulated
+parameters like mass or dt applied on simulation so only force vectors get accumulatted
+The effect depends on the simulation step length and the mass of the body.
+
+same for addTorque which accumulate values until next simulation
+
+
+Unity wrong definition
+Because this function has different modes, the physics system only accumulates the resulting velocity change, not the passed force values. 
+
+
+Assuming deltaTime (DT) is equal to the simulation step length (Time.fixedDeltaTime), and mass is equal to the mass of the Rigidbody the force is being applied to
+
+-----------------------------------------------------------------
+
+Instaitite
+If a parent is specified and no position and rotation are specified, the original object's position and rotation (local) are used for the cloned object's local position and rotation,
+or its world position and rotation if the instantiateInWorldSpace parameter is true. 
+If the position and rotation are specified, they are used as the object's position and rotation in world space.
+
+----------------------------------------------------
+Physic material 
+
+Hey, I think I found the answer to your first question. If you assign a physics material to the rigidbody, then all attached colliders of your object will have this physics material. If your object has multiple colliders and you want to assign different physics materials to each of them, then you would assign the physics material directly to the colliders.
+
+also attached colliders means colliders ith attached rigidbody of physic material given rigidbody
+
+in box 2d fixtures can have restitution (bounciness),friction and there is no separate material class
+in physx we have material class which can be assigned to shapes (more than one)
+
+material in physx can have restitution,friction
+
+therefore materials only for colliders,in unity rigidbody materials asssigned to its colliders
+
+
+in 2d collider because there is no material class,friction and bounciness are just properties,by defulat each 2d collider has friction of 0.4 and bounciness 0 in their proeprties,we can change them by adding physic material
+so 2d physic material when assigned just change these proeprties,that is
+but in 3d materials are actuall object which physx engine expect to assign them to colliders
+so unity create physic material from physic material object for physic engine and assign them to collider
+
+in 3d however colliders has friction and other things by default,and when adding material these values will be changed
+
+
+--------------------------
+search about coolliders bounding volume
+
+Colliders extent
+The sizes are in units. A box collider with a size of 2,2,2 will be 2 units x 2 units x 2 units. If you have a scale of 3,3,3 for the object then the collider will be 6 units x 6 units x 6 units.
+
+
+The box size will be scaled by the transform's scale
+means is relative to transform scale
+
+so collider size is not final value and must be calcualted by scale and its a relative value relative to scale
+
+extent is half size of collider bounding volume
+
+-------------------------------
+
+many components like rigidbody ignore changign proeprties if game object is disaled or behaviour is disabled,but ui components can be interacted even if disabled becauuse ui canbe changed and changes applied after actiavting
+
+
+-------------------------------
+
+texture sprite mode single tells unity treat texture as single sprite
+multiple tells unity to treat texture as a container for multiple sprites or a spritesheet 
+
+
+sprite is just a object which represent graphical texture as object
+it only holds texture
+textures creates sprites
+
+
+sprites are not assets,they are just object,serialized version of sprite objects stored on meta file of actuall asset which can be image png,jpeg,...
+references to assets in components or anywhere,don't point to actuall asset file,but refer to assets serialized versions
+means actuall id or guid stored on meta file which will be used to find assets
+
+********* guid is for assets,fileId is for objects
+
+
+when changing import settings of assets,for example for images,sprite editor sprite multiple changes will not be removed when changing texture type or sprite mode,each option values still remain even when using other options
+
+------------------------------
+
+
+meta files associated with each asset contain import settings and placed beside of actuall asset like image,script 
+meta files doesn't hold actuall data like models animations,...
+however,sprite editor created bones,sclices,... are in meta file but its just import settings
+actuall sprite object and its texture created using both meta file and actuall data file
+
+
+
+When you change the import settings on those files, the changes are written into the .meta file (rather than the asset file). That’s why you commit the .meta files to your repository – so that everyone works with the same file settings.
+
+
+
+
+
+
+search waht is import
+is it same as loading initialization
+
+
+meta file actuall name is exatcly points to its resource name,
+when ever unity prject explorer changes or start editor unity check for all resources to have meta file beside them to ensure each asset has definiiton and can be loaded in game
+
+GUID is a unique hash for asset, and file ID is a value relative to the asset. (iguess means its inside of asset file or in import settings)
+
+https://docs.unity3d.com/ScriptReference/AssetDatabase.TryGetGUIDAndLocalFileIdentifier.html
+
+
+
+
+GUID is hash based on filename from root of project iguess
+means if you delete file and recreate it with same name in same location,same GUID will be assign to that meta file
+so if you lost references in scripts,when you reverse moving file to previous location,referecenes will be correct
+
+search what happen is duplicate GUID
+or move guid to new position that doesn't match with file name but still unique and correct
+
+
+hash is based on file name iguess but if moved there is no problem unless duplicate guid found
+if duplicate guid found,unity assign new guid
+
+
+if unity see meta file alone,if its a folder asset,it will create that folder with meta file own name,if is a file,then removes meta file completly
+
+
+
+
+sprites import settings like sprite editor ,bones,slices, all of them placed in meta files beside of each asset
+so when coping those assets to another project,all of those will be available there too
+------------------------------
+
+
+Serializeations Files Tips
+GameObjects and Components,... use `--- !u!1 &xxxxxxxxxxxxxxx` pattern which points to object id which will be referenced from other objects as fileID
+Sprites  use `internalID`  which points to object id which will be referenced from other objects as fileID
+Sprites  use `internalID`  which points to object id which will be referenced from other objects as fileID
+
+
+
+
+e.g. when component points to a sprite it first say guid of its asset,then sprite internalId which is same as fileID
+	so use both guid and fileID to find that object
+
+**** fileID 0 means null i guess
+
+**** when doesn't use guid means in same asset
+
+**** some of guid and fileID are special and points to internal unity assets iguess
+
+
+fileID maybe in actuall asset like scene or prefab
+or in import settings like sprites with images
+
+
+
+******************************* Important **************************
+referecenes use guid and fileID,
+e.g. if a game object has monobehaviour component attached,if you move script without meta file
+unity create new meta file for that script with new guid,so referecenes to that script will be lost,but proeprties remain until fix issue by reverse moving or reassign new script
+
+** properties value remain but actuall script  is lost
+
+
+Unity remove all meta fiels that don't have file associated with
+
+
+
+-----------------------------------------------
+
+we have special folders in unity like Editor folder or resources,....
+
+---------------------------------------------------
+Scriptable Object
+
+ScriptableObjects are, at their core, YAML data files. That makes them primarily data assets, like meshes or textures or animaiton clip, but the kind and amount of data they hold is defined by the developer
+so they are just like other data assets but data defined by developer
+
+you can use built in classes but serialisation and referernces process will be on your self which are very hard to maintain
+
+
+
+
+search difference between them and regular classes
+
+1. Regular classes can't be serialized by unity by reference, two serialized fields pointing to a single instance of a serializable class will serialize into a copy each, and become two different instances when deserialized.
+	Similarly a derived class will only be serialized into the type of the field being serialized and will not deserialize into the derived type.
+
+
+2. You could do the same with a plain class -- that is, a class that doesn't derive from ScriptableObject or MonoBehaviour. But there are advantages to using ScriptableObjects, as @ThermalFusion writes. Namely, Unity can serialize them, save them as asset files in 	your project, and reference those assets in other scripts.
+
+
+
+3. They can be modified via the inspector.
+- They can be handled with the usual unity Instantiate, Enable, Destroy pipeline.
+- They are quite friendly with the Unity serialisation system, and can be serialised via reference.
+
+
+
+
+so:
+1. Unity can serialize them
+2. save them as asset files in your project
+3. reference to those assets in other scripts
+
+
+
+
+
+SerializeField,HideInInspector,and other serialization concepts work for ScriptableObjects too ,e.g.  private fields can be shown inspector like Component
+
+
+
+
+
+search for usecase of scritableobjects as events seams to be so powerful
+
+
+
+
+
+
+
+
+---------------------------------------
+if you delete directroy without meta file,unity will create folder agagin because of existtence meta file,this is only for folder assets meta file
+
+
+----------------------------------
+script match with file name used in 3 place,add selected script button on script field
+
+
+
+
+
+---------------------------------------
+we have two types of save in editor,
+saving changes to loaded scenes
+svaing  changes to assets (import settings,prefab componetns,...) (which patch serialized files like meta,...)
+but some of changes automatically saved like creating folders or ....
+search what changes automatically saved
+
+*** we can ssave both if both changed but using ctrl + s to save both at once
+
+
+
+-----------------------------------------------
+Animation
+animation is only animating components values (not all of them)
+in each frame of animation,which value used on component field
+
+3d softwares animations mostly animate transform component
+
+Animation Clip
+one seqeunce or series or collection of changes on component values
+
+
+record button on animation clip listen to changes on `animatable` components values on selected game object
+either in inspector change,gismoz,editor scripts,...
+
+animation tab,alias for animation clip
+anywhere see only animation,its animation clip
+
+clip means برش تکه
+
+animation clip applied on components of game object,
+but clip can be used for multiple game objects
+means we work with one game object at creation time of animation,later we can use that clip on other game objects that have proper components
+
+
+
+*********************** Important **********************
+animation clip animate component values for selected game objects and all of its decendents
+
+but in editor decendents that don't have animator can be added as proeprty only not those with animator or with ancector with animator
+
+
+animation clip set Curve accept 3 main parameters,relativePath,type,propertyName
+
+relativePath: Path to the game object this curve applies to. The relativePath is formatted similar to a pathname, e.g. "rootspineleftArm". If relativePath is empty it refers to the game object the animation clip is attached to
+Path to the game object this curve applies to. The relativePath is formatted similar to a pathname, e.g. "root/spine/leftArm". If relativePath is empty it refers to the GameObject the Animation/Animator component is attached to.
+can be animator attached game object or any of its decendants
+
+
+relativePath will be used as string because no object reference stored on clip,so we can transfer this clip to other game objects and controllers that have same relativePath for decendants
+
+
+
+search transforming one animation clip to another game object,check if game object deosn't have proper component,what happend to that key frame,igueess it will be removed (maybe more than one)
+
+
+
+****************** Note ***************
+Unfortunately it is not possible to get existing curves at runtime so you always have to set one from scratch.
+
+we can't access animation clip curves in runtime (no public property on clip,maybe they are protected or private),but we can use AnimationUtility in editor to get curves,so can't get curves in runtime
+
+
+
+
+
+
+animation clip loop time
+this indicates if loop animation when animation finished on state after playing
+
+
+*********** wrong ***************
+Animation Controller
+its animation clip controller
+
+*********** correct ***************
+its name is Animator Controller
+which is controller for animator component
+
+
+
+
+Animator Component
+its an interface or api for working with animator controller,because we generaly don't work with controllers directly because of complecity
+so we use animator component methods to interact with controller
+we can however work with controller though scripts but mostly we work with it visually in editor animator window to create states,parameters,transiitons,...
+
+
+
+we have animator window which used for controlling  selected animator controller object (layers,parameter)
+doesn't require selected game object
+despite name of window which is animator,its for animator controller object not animator
+
+
+we have aniamtion window which used to edit/create animation clips on animator controller on selected game object animator component or only edit animaiton clip object
+means animation window,only shows clips on controller that connected to selected game object animator component
+iguess animation tab listen to select game object event on editor,then checks if game object or any of its ancestors  has animator component,also animator has controller also controller contains at least one clip
+if doesn't have one of these things,show message on animation tab to create proepr objects (animator component,controller,at least one clip)
+
+if game object itself doesn't have animator,search for animator component upwards until root
+
+******************************** Imporatant *********************
+animation window is for two things:
+1. selected animation clip which used to edit animation clip object visually (without selecting game object)
+2. edit/create animation clips for selected game object animator controller on animator component (game object can be either scene object or prefab)
+
+difference is for selected game object we can preview animation,play/pause,record changes,switch between clips on controller,add property
+
+without selecting game object we can however remove proeprties or change their values previously modified on a selected game object
+but not adding new peorpty
+
+*** add proeprty is not dependent on game object technically,because we can add property through scripts but in editor we can't do it on animation clip without selecting game object
+the reason is component on gmae object must be animated so only selected game object can animate their components
+
+***************************
+selected object for animation tab is Selection.activeGameObject which is what shown in inspector
+may be different for prefab but generaly it uses Selection class
+same for another part of editor
+
+
+
+
+we have animator component used for animate game object components
+we have animator controller which used to control animation clips (added to animator component)
+we have animation clip which is sequence of changes on components values 
+
+
+animation clip -----> animator controller (controller for short) -------> animator compoent 
+so in order to animation clip works it must connected to a controller,which then it is connected to animator compoent,hence,animation clip can modify game object animatable components values
+
+
+
+
+************* animation component is legacy and should not be used,use animator component 
+so only animatation system is animator component on game object
+
+
+toggle scene preview mode on animation tab,will 
+
+
+Animator Contorller
+
+	i guess in all controller layers,state machines,... at a time only one state can be active
+
+	if animator controller has any animation state,at any time only one state can be active and one state must be active
+	but if doesn't have any state,nothing happen,but if has,one must be active always
+	
+	default state is default active state when game started (i don't whne is its time)
+
+		transiitons:
+				these are only output transitions not input
+				Unity -> The transitions that are going out of the state.
+				simply put,each state,holds their outgoing transiitons not ingoing
+		
+				each transition has destinationState which when one of its condiitons evaluates to true,transitions from current state to destinationState
+				
+				************** IMportant ******************
+				iguess when instruct animator component to change parameters,unity get current active state,then check for all outgoing transitions on that state,first trasition that satisfies given condition from thier conditions list will be executed (or happen)
+				also i assume at any time game object can only be at one state
+
+				we have source and destiniation (target) states for transition
+				
+				transitions happen from active state to target state
+				
+				in two ways a tranisiton happens from a active state:
+				1. setting parameters (with or without exit time)
+				2. auto tranisiton (without condition) with exit time
+				
+				in both cases (when setting parameter or auto) unity check for both active state transitions and also any state transitions
+				i guess active state tranisitons checked first then any state tranisitons
+				
+	
+				*** entery to default state orange transition is not actual tranisiton its just a orange like tranisiton but not actuall transiiton
+
+
+				*** any state transitions ,was better to say any active state transitions becasue transitions happend from activate states
+
+
+				Fields
+				Has Exit Time
+				exit time in normalized time from current states
+				**** anywhere see in animation,normalized time means relative to
+				exit time is relative to current state total duration (below description)
+				
+				means this transition doesn't have to wait for current state to get finished to go to target state,so transition happens immeatly without any wait time to finish current state
+
+				transition must have at least one condiiton or has exit time set to true,otherwise transition will be ignored,because it will be useless and previous state change become unneccessary,so unity doesn't accept this and ignore this tranisiton
+				if transition doesn't have any condition,it must have has exit time,so when state get finished,transition happens automatically from current state to target state
+				so unity when state get finished check for auto transitions of state if it has any,then run one of them or first
+				
+				
+				search what if multiple tranisiton satified by condiiton at same time in same state
+				or tranisiton with automatic transition,which one run in same state if there are multiple ones
+				
+				Settings
+				settings visual timeline is just for convenient and just modify actuall values above 
+
+
+				settings parameters like bool,float,int remain even if no transition happens at that time
+				and when ever specific state get activated and statisfy conditions,transition happens
+
+		
+		
+		changes in one state doesn't get restart automatically,it must be reset either by current state or next state
+		e.g. when a state change sprite color when tranisiton to next state,color doesn't get restarted unless in next state change it or in current state restart it to previous value
+		so better to create new state to restart it
+		or reset changes in current state
+		
+		each keyframe changes in components doesn't get reset ro removed atuomatically,and changes are permanently
+		other states should reset those changes
+		
+		Animation Loop
+		if state motion finished unity first check for auto tranisitons from current active state if there is no auto transiiton then repeat motion again and so on
+		
+		State Machines
+		we have nodes like entry,exit,anyState,regular state nodes every one has position in the machine
+		each machine can have only one default state (The state that the state machine will be in when it starts.)
+		eahc machine can have sub state machines
+		each machine has anyStateTransitions list and entryTransitionsList
+		
+		state mahcines and states can have behaviours to listen for events
+		
+		States
+		states can have motions which can be animationClip,blendtree
+		
+		
+		total state motion duration calculated by motion duration scaled with state speed multiplied by optional multiplier
+		scale is division here not multiply
+		so final speed is depend to both speed field and multiplier (if any)
+		**************************
+		speed multiplied by multipler (if any) and animation clip durection divided by final speed
+		**************************
+		we can however chang espeed of motion throuh animator controller object from script but finding specific state is very hard and also it is only for editor so instead of change speed of state directly unity offers multiplier as parameter to change speed of state
+		
+		speed is scaler and animation duration scaled with that
+		
+		
+		Parameters
+		parameters used in multiple places,like transition conditions,some of state settings
+		
+		
+		
+		
+		in runtime we only can control animator component and aniomation clips
+		also for aniomation clips we can't modify keyframes at runtime too
+		so there are these restrictions
+--------------------------------
+
+
+search if we should seprate logic from animation like ui or not
+maybe animation is part of logic
+
+
+--------------------------------
+character base pose
+base pose doesn't not actually rendered on screen
+it s just for convenient for calculations
+but base pose not use practically in games
+
+--------------------------------
+
+transition settings has bug which you should first reset transition object,then use ctrl +z to get right config
+
+
+--------------------------------
+
+
+animation frames i guess is framerate independednt because speed should be changed 
+
+
+keyframes are based on seconds so they are frame independednt
+so animation clip e.g. frame of 30 doesn't mean based on framerate count
+
+,animations iguess are always in 60 fps or can be modified
+
+
+
+
+--------------------------------
+
+
+scaling in unity can means two things:
+1. multiply
+2. division
+
+Multiply
+time.deltaTIme scaled by multiply with timeScale
+applyed gravity force calculated by gravity acceleration (project settings)multiplied by mass of rigidbody scaled with gravity scale of rigidbody which acts as multiplier not divider
+
+
+Division
+WaitForSecond scaled by division with timescale unless timescale is 0 (because value can't be divided by 0)
+animator state motion duration scaled by division with speed of state multiplied by multiplier (if any)
+
+
+
+when ever see multiplier means only multiply but scaling means either multiply or divide
+
+
+--------------------------------
+
+proejct settings gravity is gravity acceleration not actuall force because force depend on mass
+
+
+
+
+--------------------------------
+
+Sprite animations
+animation sprites doesn't allow use tengent linear or ....
+
+
+
+
+--------------------------------
+
+Unity Editor Selection
+multiple object from all hierarchy scenes,assets,... can be selected
+
+tabs.windows,... uses selection for changing ui like inspector
+
+
+
+--------------------------------
+utility classes i guess only works in editor like PrefabUtility or AnimaationUitylity
+i guess they work in runtime but not right result
+
+
+
+---------------------
+
+both Scene and game objects have referece to each other
+scene has refereces to its root game objects
+in private property but we can get them with GetRootGameObjects method
+
+
+scene is container for game objects not transforms
+
+---------------------
+check for auto save asset
+
+---------------------------
+
+WaitUntil and WaitWhile is opposite of eachother
+
+WaitWhile is تا زمانی که true هست صبر بکن
+like while loop
+
+WaitUntil is تا زمانی که true بشود صبر بکن
+
+
+simply just care about true value
+
+---------------------
+coroutines stored on each monobehaviour component in private variable
+so we just add or remove from that list with coroutine methods
+
+
+
+Coroutine is also a YieldInstruction
+
+so simply
+MonoBehaviour holds coroutines
+coroutines hold IEnumerator called routine
+
+when monobehaviour get destroyed all of its coroutines and IEnumerators get destroyed too
+
+IEnumerator is c# class so unity can't store custom data on it,so it create Coroutine class for holding custom data which it contains a IEnumerator referece
+and monobehaviours holds lists of corutines not ienumartors
+
+
+StopCourintine if accpet string methodName i don't know it removes all of courtines with ienumartors with that method name or only first founded method name
+
+---------------------------
+
+rect tool gizmo,changes scale for non rect transform game objects,but hcange width/height for rect transform objects
+
+---------------------------
+
+
+
+search if when new scene get loaded previous objects that used in next scene loaded again or used by previous ones
+i guess because when you change one of their objects like sprite properties,they get loaded again to prevent conflict between scenes object,
+but iguess actuall resources like audio file or images in filesystem,reused for next scene instead of loading again
+
+
+unity Resources.UnloadUnusedAssets which is used on single mode autoamatically unloads unused assets,i don't know it means unloading objects like sprites,audip clips,animation clips,... or actuall assets like audio file,images,...
+
+-------------------------------------------
+changing assets proeprties even in run time through scripts will acts like when editor or editor scripts
+-------------------------------------------
+
+
+
+
+
+
+Load Scene (sync)
+When using SceneManager.LoadScene, the scene loads in the next frame, that is it does not load immediately. This semi-asynchronous behavior can cause frame stuttering and can be confusing because load does not complete immediately.
+
+loading is set to complete in the next rendered frame,
+
+
+or loads the Scene directly with loading taking place during the next frame:
+
+While the Scene loads, the game will freeze. because no frame will be rendered anymore
+
+
+
+**** Music and audio will continue to play but no frame rendered
+
+
+Load Scene Async
+Loads the Scene asynchronously in the background.
+
+Load Scene Async loads the Scene in the background and is spread over multiple frames. (let frames get rendered like usuall)
+
+loading takes place as a background operation
+
+In general, it is recommended to use the Async method since it is much more efficient spreading the loading over several frames instead of one, it works perfectly in a Player Build, however in the Editor itself it might stutter and freeze because the Editor does not support background operations very well.
+
+
+
+unity async behaviours uses multi-threading,but scene activation happens in main-thread 
+unlike js async event loop,this async features is different becasue it uses multi threading
+
+
+main thread is for all game and frames interations
+so main thread is just like javascirpt single thread which means every thing is synchronous
+its a single thread
+so game iterations `while` loop happens in main thread
+
+
+
+
+
+
+
+
+Sync
+Because loading is set to complete in the next rendered frame, calling SceneManager.LoadScene forces all previous AsyncOperations to complete, even if AsyncOperation.allowSceneActivation is set to false. To avoid this, use LoadSceneAsync instead.
+
+
+
+
+both Sync and Async
+If a single mode scene is loaded, Unity calls Resources.UnloadUnusedAssets automatically.
+
+
+
+When allowSceneActivation is set to false, Unity stops progress at 0.9, and maintains.isDone at false. When AsyncOperation.allowSceneActivation is set to true, isDone can complete. While isDone is false, the AsyncOperation queue is stalled. For example, if a LoadSceneAsync.allowSceneActivation is set to false, and another AsyncOperation (e.g. SceneManager.UnloadSceneAsync ) initializes, Unity does not call the second operation until the first AsyncOperation.allowSceneActivation is set to true.
+
+
+
+
+
+check if scripable object can be cloned with instantiate
+
+
+
+
+asssets database is for editor
+for runtime use resources or asset bundle or other methods
+
+https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html
+
+
+editor classes may be used in play mode inside editor but not avaialable in build mode assemblies
+so we have two runtime,editor runtime (play mode),build runtime
+anithing within UnityEditor namespace will not be in build compiled code
+
+we can however use runtime classes like Resources for both editor scripts and editor runtime (play mode) also in build runtime
+so instead of assetDatabase for editor we can use Resources class ,but resources must placed in resources folder
+
+
+Asset database is only for editor
+
+
+we have 4 ways to load assets in both runtime and editor but designed specificly for runtime and have own specific conditions:
+resources folders,asset bundle,addressables(successor of asset bundle),as part of scene objects
+
+
+Unity supports Resource Folders in the project to allow content to be supplied in the main game file yet not be loaded until requested. You can also create Asset Bundles. These are files completely separate from the main game file which contain assets to be accessed by the game on demand from a file or URL.
+
+
+
+
+1. Resources Folder
+
+loading
+		Load
+		load asset with given path which points to one asset which is file not folder
+        // Summary:
+        //     Loads an asset stored at path in a Resources folder using an optional systemTypeInstance
+        //     filter.
+        //
+        // Parameters:
+        //   path:
+        //     Path to the target resource to load.
+        //
+        //   systemTypeInstance:
+        //     Type filter for objects returned.
+        //
+        // Returns:
+        //     The requested asset returned as an Object.
+        public static Object Load(string path, Type systemTypeInstance);
+		
+		LoadAll
+		load all assests with filter type in folder (path points to folder not file)
+		
+        public static T[] LoadAll<T>(string path) where T : Object;
+        //
+        // Summary:
+        //     Loads all assets in a folder or file at path in a Resources folder.
+        //
+        // Parameters:
+        //   path:
+        //     Pathname of the target folder. When using the empty string (i.e., ""), the function
+        //     will load the entire contents of the Resources folder.
+        //
+        //   systemTypeInstance:
+        //     Type filter for objects returned.
+
+
+
+2. Asset Bundle
+
+3. Addressables
+
+
+4. as part of Scene Loading
+
+In some situations, it is useful to make an asset available to a project without loading it in as part of a scene
+because assets refereces in scene components or assets refereces in assets that used in scene components (like prefabs that use other assets,or animation clips that used other objects) i.e recursive or nested assets dependecy
+all of them will be loaded when that scene get loaded automatically
+
+
+
+
+
+Difference from Scene References Loading and other Methods
+resources folders and asset bundle and addressables are for dynamic & manually loading assets in runtime, 
+scene objects references to assest which specified on editor is static and automatic load by unity in runtime
+
+
+*** don't get confused with runtime in unity docs,all methods are used in runtime
+no assets loaded at build time
+
+***************** first 3 methods are dynamic and manually by scripts fetched and loaded into memory
+                    last method is static in editor and loading done by unity and we can't do anything
+                  
+
+so key difference is the way they use for loading assets into memory
+
+
+
+
+************ loading assets means load assets from disk,url,... which are either serialized or binary files like audio,3d models,images,... into unity objects or a dependecy for unity objects (e.g. actual image binrary byte used along with sprite texture object,so all of them loaded into memory) that can be used in project which placed in memory
+unloading means remove them from memory to free memory
+
+
+
+
+
+
+if a asset references multiple times in scene unity loads that asset once and give save referece to all of them
+but idon't know if unity loads new scene checks if there is referece in current scene loaded and avoid loading again
+for all type of assets whether are sprites,textures or prefabs 
+
+
+
+
+-----------------------------
+
+file ssytem resources like audio,image,... are binrary bytes,...
+these are not stored independedntly in memory,they used on objects that we can access
+e.g. unity when load sprite serialzied version,it first create texture from its corrseponding file bytes
+and then attach that texture to sprite object so sprite object contain texture object,texture contain byte that used for actuall image
+
+same for audio,,...
+
+so all binary files must stored on specific object 
+audio,image,... these binray formats must be stored on objects,which those objects interact with those binrary values to modify things
+
+
+
+not 3d models,animations,rig,... because these are just data files encoded into binrary format with list of properties which get trasfered to differetn softwares to use,so they are in real binrary data
+they just carry data
+
+
+
+------------------------------------
+
+we have two types of model files,ascii and binray which contain model data such as headers,mesh info,animations,rig info
+
+ascii is must slower compared to binary in loading so it is better to use binary
+
+
+
+
+softwares or libraries used data stored on these files to create their own object representation to use in software or libraries
+e.g. fbx model data can have different class in different softwares
+
+fbx,obj,maya,... are model files which may includes animations,rig,mesh,... may have texture too,in both format they just holds data like transforms,vertices,polygons count,.......
+
+even binrary format of these models,are just decoded human firendly representation to be used just like json data to construct objects
+so these binrary are just syntactial suger for text files and are not like audio or image binrary files
+these are just text encoded into binrary format,but images,audio,... are not,they represent devices states,.....
+
+
+References
+model files can referece to other files relative to their location like referece to textures or materials or ....
+
+
+
+Rigging
+
+
+
+UV and Texture
+uv and normal maps,... are images so they can't get in model file,becauseu they can't be represented as text and must be representes like regualr images or audios in raw binary
+
+
+
+ Unity’s primary support for Model files
+ is the FBX format
+ if proprietary formats used,unity use its software fpx export plugin to export to fbx
+ search why its better to use fbx in unity
+
+
+
+
+unity doesn't create object for each individual format,it will extract data from each suported format that has a specific built in class for it,and create common mesh,animationclip,.... which can be used indepently of any format
+if format is binrary it uses specific binrary decoder to get data from them
+
+
+
+----------------------------------
+search about rig fbx file for information in it
+search about rigg if it uses physics joints
+search about materil data in model file
+search if texture can be in model file in ascii,if can,how it serialized
+search how maya aniamte proeprties and what are in fbx files
+
+search whatis readonly animation clip in unity
+
+https://docs.unity3d.com/Manual/models.html
+
+----------------------------------
+
+Mesh
+
+Verticies
+vertices are only points (position)
+vertices position is vector3 relative to mesh pivot/origin
+just like local transform in unity,if pivot scaled,rotate,translate vertex position which is realtive to pivot doesn't change
+but in every frame verticeis global position must be calculate which will be done by relative position of vertex to pivot with pivot scale and rotation
+so mesh renderer in every frame loop through mesh vertices and calcualte their global position in world with other things like uv,... and render the mesh in screen
+
+----------------------------------
+file extensions are also part of filename,but used for inform other ssytems and libraries to what information placed in that file
+e.g. dll file is just simple file which can have binrary format or any format like text
+
+
+--------------------------------------
+for different file formats unity has different importers like for all image formats unity has textureImporter,or for models unity has modelImporter
+
+unity doesn't modify any actuall asset file except for built in assets like scenes or prefabs,...
+it doesn't modify,models files,...
+
+
+---------------------------------------
+How To Loading Screen
+
+Why do you need to convert the progress to value between 0 and 0.9f?
+
+This is because the loading operation’s progress is only measured up to 0.9, with the last 0.1 being used for activation (which won’t be visible on the Slider).
+
+Doing it this way means the bar will fill up completely.
+
+
+
+0.9 means 100% of loading process and 0.1 is for activition which we can't see 
+
+means we only show progress for loading not activiating
+
+async opearation isDone is only for competion whole process not only loading (loading + activition)
+
+
+
+loading -> 0.9        activition 0.1       in async opearation of loading scene
+				   0 -> 0.9                  0.9 -> 1
+
+
+
+activiation means replace previous scene object with new scene objects
+
+if allowSceneActivion is set to false,only loading happens and no activition until set this proeprty to true which is useful for manually chnage scene after loading
+
+also 0.9 is only for loading scene and if loading finished async operation progress remain on 0.9 until activition happends which we can't see
+
+we can't see because only loading works in background,but activition works synchornous and start activiate new scene and removing previous scene object in next fraame after loading operation which progress goes to 0.9
+means in frame we get 0.9 progress,in start of next frame active new scenen which prevent us from doing other works because unload previous scene
+
+activition can't be async because refrences may be lost and errors happen
+
+allowSceneActivation is true by default menas activation happens automatically
+
+
+async opearation 0 ot 1 means completion of opearation progress in range of 0 to 1 which can be converted to precentage by multiplying by 100
+
+1 -> 100
+x -> (x * 100) / 1
+
+also for non-precenetage or in range of 0,1 we say  
+1 -> 1
+x -> (x*1)/1
+
+so if 0.9 is 100%
+
+0.9 -> 100
+x -> (x* 100) / 0.9
+
+also for non-precenetage or in range of 0,1 we say  
+
+0.9 -> 1
+x -> (x*1)/0.9
+
+
+
+******* there is a bug if using coroutine if started in Awake which ignore allowSceneActivation false value and activate new scene after loading
+use Start method
+or put a yield WaitforSecond(0.1f) before that to fix this bug
+
+
+
+
+its not necessary to use isDone in while loop if load scene is single,because we can't see isDone true value anyway because isDone gets true when whole opration gets true not just loading
+but if want to wait until full completion,we canuse isDone or progress,...
+
+
+
+
+
+Async Operation
+You can yield until asynchronous operation continues, or manually check whether it's done (isDone) or progress (progress).
+these are 3 ways to check if opeartion is completed
+
+this is a yield instruction so we can yield for it which will be yield when gets done completly (both loading and activation)
+
+
+for scene loading,only loading part is async and activation part is sync
+
+----------------------------------------
+
+instead of changign scale or sprite renderer size use pixel per unit for resizing
+
+
+
+
+
+
+----------------------------------------
+
+all hirerarchy concepts (root,parent,sibling,child,acestor,decendant) is only for transforms not game objects
+
+transform.find or other methods on transform don't care about game objects (active state,...)
+
+
+think of trnasforms as dom tree which have children and parents
+what shown in hirerarchy window is just transforms tree,but instead of transforms,each transform attached game object will be show there
+because every transform has game object or every game object has transform
+
+root transforms,parent which is null,parent is world transform which is a abstract concept and we can't see and its not attacehd to a game object
+
+proeprties like children,.. like dom are private  i guess and we can only access children by methods like Getchild by index and Find by name
+
+loop through transform object will iterate over its direct children property
+
+getSiblingIndex is just simply get index of transform in children list between other children (like transform.parent.children.indexOf(transform))
+or simply say,place of transform in siblings hierarchy (parent children)
+also setSiblingIndex simply move transform in that list to another index which cacause chaning hierarchy
+
+----------------------------------------
+
+GetAxis 
+beside of beign frame independednt,also smooth values
+e.g. when relasing keys,values don't get to 0 immediately,but smoothly decreased to 0 in multiple frames
+
+
+
+
+
+----------------------------------------
+
+Although we can add velocity to kinemtatic rigidbody but adding force will be ignore despite this fact that force also add velocity but it will be ignore
+also physic engine doesn't add gravity force to kinemtatic body
+
+----------------------------------------
+
+incremenet snap feature also works for colliders bounding volums editing tool which affected by scale property of incremenet snap
+
+
+----------------------------------------
+
+Components Rules
+
+1. some components conflic with some other components like 2d and 3d components can't be attached to a game object at same time
+2. we can't only have one instantce of some specific component type,e.g. layout group type,graphic component type (text,image,...),tranform type (which if you add rect tranform it will replace existing tranform)
+
+
+
+----------------------------------------
+
+
+
+layout groups work with hierarchy positions so they are important (children index (sibling index))
+Layout Groups will also visually reorder the group by their index like dom flex which arrange elements by they order
+inverse alignement,simply show game objects in reverse list order (like row/column reverse in css)
+
+just like dom,grid and flex layout
+
+dom flex -> horizntal and vertical alyout group (row,column)
+dom grid -> grid layout group
+
+layout element component is for layout item which override layout groups jsut like flex-item and grid-cotainer-item in dom
+
+
+flex,grid,layout groups (horizntal,vertical,grid) are just calculate position of each transform like row,column or grid
+
+
+
+----------------------------------------
+scrolling happens by two components
+1. scroll rect which handle actuall scroll behaviour
+2. scrollbar (optional) visual representation of scroll which can have handle to move scroll
+
+
+scroll rect can accept optional scrollbar component which they interchange data and states between eachother
+
+
+
+
+
+---------------------------------------
+some changes in ui require to remove and reattach components to be applied,which is a bug
+
+-------------------------------------
+rect transform acnhor is relative to viewport space means 0 to 1
+also start from left bottom corner of parent size to top right corner
+
+---------------------------------------
+Rect Transform component
+in inspector we have anchor presets dropdown menu
+
+
+Shift also set pivot will set pivot relative to rect width and height along with anchor preset
+
+Alt also set position will set position regardless of pivot along with anchor preset
+simply say,first set anchor and put selected location of rect on anchor
+e.g. put top of rect in top anchor which may place pivot insomewhere else
+for stretch anchors,set top/right/left/bottom on specific anchor
+
+
+**** these two method first set anchor set set pivot or position
+
+
+Pivot
+values are relative to rect (self) width and height and start from lower left corner of rect, 0,0 corresponds to the lower left corner while 1,1 corresponds to the upper right corner.
+Location of the pivot point around which the rectangle rotates and positioned,
+
+pivot is relative to rect own width and height
+defined as a fraction of the size of the rectangle itself
+
+
+
+
+blue circle is pivot
+two stars are anchors (min,max)
+
+
+
+
+Pos X/Y/Z is pivot position relative to anchors
+like game object origin which placed in center of game object relative to world origin which is 0,0,0
+so pivot is same as origin of game object and anchor is base origin
+
+
+
+
+Top/Bottom/Left/Right edges
+these are not position but each rect side relative corresponding anchor
+Positions of the rectangle’s edges relative to their anchors
+these will change rectange width and height
+show instead of width/height and Pos X/Y/Z if anchors are separated
+if only Y of anchors serpated,only Top and Bottom will be shown
+if all of anchors are separated all of Top,... will be shown
+
+these are alternative for both rect size and position
+instead of using position and width/height we can use edges to do these things
+when change positions and width/height these fields get changed,also vice versa
+
+*********** these are just intermediate format just like eualr angles for Quaternion,actuall things are position and width/height
+
+
+top is relative to max anchor y
+bottom is relative to min anchor y
+right is relative to max anchor x
+left is relative to min anchor x
+
+
+
+
+
+
+width/height/left/right/bottom/top
+don't care about pivot
+
+
+anchor is relative to parent rect (canvas for root elements)
+in proportion of parent width and height (size)
+as a fraction of the size of the parent rectangle
+
+
+
+
+don't confuse between corner and edge
+
+corner is upper left,lower left,....
+edge is side or border, top,right,...
+
+-------------------------------
+
+each game object can have only 1 Type of Transform component and must have 1 Type of Transform component
+type means Transform component itself or a subclass of Transform compoent like RectTransform
+transform property despite is direct Transform type but when adding RectTransform to game object,previous transform component object will bre destoryed and new rect transform stored in transform property but can only be accessed by casting or,...
+actuall stored component is rect tranform but compiler only accept actuall Transform type access which we should cast to target type to get actuall object properties,fields,...
+means type of property still is Transform means it can have direct Transform object or subclass of Transform object
+so instead of using get component 
+
+so if ui game object or any game object have rect transform component,it doesn't have direct transform component
+
+-------------------------------
+
+***************** Important ******************
+fix notes
+built in components may not be calculated at begning of frame before any monobehaviour messages
+and may be calcualted at specific order in frame rendering iteration
+
+in https://docs.unity3d.com/Manual/ExecutionOrder.html unity only shows us user callback part of frame iterations
+iternal function,... are placed in mulitiple specific location of frame iteration which we don't know
+
+interal function means updating built in components 
+means built in components may have different message methods or same methods but in diffferent order
+or they may have listen to same methods just like monobehaviours
+e.g. sprite render get final sprite texture for current frame in specific location of execution cycle,but not in start of frame so we have chance to change sprite render proeprties
+
+-------------------------------
+
+collision or trigger always happen for 2 collider
+and messages sent for both of them
+for both because there is no precendence/priority for bodies in physic engine 
+
+
+
+
+-------------------------------
+
+when importing image into unity,unity creates atexture object which we can configure texture import settings
+then we create sprite from texture
+
+sprite is just an object which specify a rectange from its texture to show 
+so it has a position with pivot and verticies which is limited to texture boundries (becasue sprite showing image can't be more than actuall image) so there is boundries for all textures
+
+so Image or sprite renderer component get sprite object and use its proeprties (information) and also actuall image which included in its texture,and select specific rectangle from that texture image and finally render on screen
+
+so sprite is just an object with proeprties to select a recangle from texture to show
+
+ Location of the Sprite on the original Texture is very important to show specific part of texture
+
+
+
+Sprite Editor Sprite Mode
+this means how sprites collected from texture
+
+Single -> 1 sprite exported from texture which we can only change its borders,pivot,... not size of rect,or other rect proeprties,becasue rect is full of texture means whole image,so sprite contain whole image
+		Use Cases
+		1. background,cover images
+		2. single object image
+
+
+Multiple -> multiple sprites can be exported from texture which each of them has rect and coordinates in texture
+		Sprite editor for multiple allows us to select multiple sprites,changing their rect information,offset,...
+		
+		Slice and Trim are optional features which we can use to select sprites easier
+
+		Use Cases
+		1. sprite sheets which include multiple sprites in one image which can be either manually sliced or with slice feature if can be detected
+
+
+
+
+in most places we use sprites not textures 
+-------------------------------
+
+images(texture) are always 2d
+Texture class represent base class for Texture Handling in 2d and 3d
+
+
+
+
+
+
+-------------------------------
+
+Texture is object which holds image with extra data so texture is not special thing its just object name
+actuall representation is image file which included in Texture object
+
+
+
+
+
+
+
+-------------------------------
+
+UI systems 
+
+UI Toolkit (formerly  UIElements module)
+Unity UI(uGUI)( runtime canvas elements)
+IMGUI (Immediate Mode GUI)(suitable editor and editor window)
+
+Your choice of UI system depends on whether you’re developing UI for the Unity Editor or runtime UI for a game or application.
+
+
+
+
+
+uGUI
+Unity UI is a UI toolkit for developing user interfaces for games and applications. 
+It is a GameObject-based UI system that uses Components and the Game View to arrange, position, and style user interfaces.​
+You cannot use Unity UI to create or change user interfaces in the Unity Editor.
+
+
+*** hierarchy right click UI menu is for uGUI
+*** UI namespace is not necessary for ui components like canvas
+
+is inside of core modules
+
+UnityEngine.EventSystems is part of uGUI and is in UnityEngine.UI.dll
+so IPointerXXXX,... are part of uGUI module
+
+it was better to put EventSystems into UnityEngine.UI.EventSystems
+
+
+
+--
+IMGUI
+although this system can be used for runtime game ui  but is not game object based
+and not recommended for runtime
+
+it is better to use for editor window and inspector
+
+
+it only made with scripts
+
+
+Use Cases:
+Creating in-game debugging displays and tools.
+Creating custom inspectors for script components.
+Creating new editor windows and tools to extend Unity itself.
+
+--
+
+
+
+To create runtime UI, your choice is between UI Toolkit and Unity UI (uGUI). (even IMGUI can be used but not recommneded at all so they remoed it from runtime ui list systems)
+
+To create UI for the Unity Editor, your choice is between UI Toolkit and IMGUI. 
+
+so UIToolkit can be used for both runtime and editor
+
+https://docs.unity3d.com/Manual/UIToolkits.html
+
+
+
+
+
+Monobehaviour OnGUI
+
+OnGUI is the only function that can implement the "Immediate Mode" GUI (IMGUI) system for rendering and handling GUI events in game runtime. Your OnGUI implementation might be called several times per frame (one call per event).  If the MonoBehaviour's enabled property is set to false, OnGUI() will not be called.
+this is only way to use imgui for game runtime
+but there are many ways to use it for editor purpose
+
+
+
+
+
+
+-----------------------------------------
+
+Packges System
+
+Core Modules
+
+Unity UI (uGUI)
+uGUI system is based on canvas and children game objects
+uGUI is a Core module which includes Image,Text,... visual components,but Canvas,CanvasRenderer,... are part of built in UI module which implements base of uGUI
+
+
+
+
+Built-in Modules
+
+UIModule
+The UI module implements basic components required for Unity's UI system (uGUI)
+such as Canvas,CanvasRenderer,... but not all uGUI components
+
+simply puy,it just contain basic components required for uGUI not actual uGUI module component
+
+
+IMGUI
+The IMGUI module provides Unity's immediate mode GUI solution for creating in-game and editor user interfaces.
+
+
+UIElements
+which is ui toolkit package
+
+
+
+modules can be seprated into UnityEngine or UnityEditor namespaces and dll 
+
+---------------------------------------
+
+Unity Packaging Concepts
+There are two types of Unity package management provided out of the box:
+
+Unity Asset Packages
+does'n suport dependecies concepts
+.unitypackage method which just extract whole package into projects just like copy project directly into project but bundled in one file with .unitypackage extensions
+
+Unity Package Manager (UPM)
+its new package management system inspired by npm
+
+https://medium.com/runic-software/simple-guide-to-unity-package-management-4aea43d1baf7
+
+----------------------------------------
+
+
+
+
+both pointer up and click happen for previously pointer down element,but up happen if pointer button released anywhere,but click happens if mouse button realeased on same pointer down element
+
+if both happen,first up then click occur
+
+both up and click happen for all mouse button (only main 3 button i guess)
+
+
+
+----------------------------------------
+
+
+som of monobehaviour messages methods can be coroutine,so when unity what to call those methods Stat that coroutine
+
+
+--------------------------
+search raycast distatnce default,is it infinity
+
+
+
+-----------------------------------
+
+after simulation unity sync transforms and also rigidbodies,colliders,... properties
+
+
+
+
+-----------------------------------
+
+Physic Overlaps are Area querying (aka AABB querying)
+
+
+box2d by default doesn't have boxcast,circlecast,... it only has raycast which is same as linecast for unity
+so unity extend box2d casting query methods to add extra methods
+
+
+physic 2d raycast only accept start and end point and not infinity by default,so unity add two points to raycast method which can be limited by maxDistatnce (magnitude of raycast direction vector)
+unity raycast max distance default i guess is infinity of world which means end point is infinity in actuall physic raycast
+so actual physic raycast is LineCast which accept start and end point,unity raycast is syntactical sugar for linecast or actual physic engine raycast
+
+just like javascirpt slice and substr string methods,which substr is simpler way for slice method,by using length instead of actuall index
+
+
+
+
+
+
+Physic 3d
+raycast is just like unity raycast method not like box2d
+instead,linecast is syntactial sugar for raycast
+
+sweep is for boxcast,capsulecast,...
+
+
+
+
+
+unity make two physic system methods similar to eachother for simplicity
+but behind the scene for example line cast is very different than raycast for each physic engine
+
+
+
+-----------------------------------
+
+we use trigger colliders if we don't want to actuall collision happens between them and add new velocities to eachother
+but if two collider want to add force and velocity to each other when collided,then they must be non-trigger collider
+
+
+
+-----------------------------------
+
+unity serialize custom classes if they have System.serializable attribute
+because unity doesn't do this by default and let us to choose what classes to serialize
+so concept is using `Only/Pick` instead of `Except/Omit`
+means only serialize choosen classes not every classes
+instead of Nonserializable Attribute use Serializable to only include selected classes
+
+-----------------------------------
+
+colliders atttached rigidbody is exactly rigidbody in physic engine they are attached to,but if there is not attached rigidbody (null) (not attached to same game object and even in ancestors) new static rigidbody create for that collider game object and collider will be attached to it but we can't see it in editor but it exists
+
+so this means if ancectors of collider have rigidbody,in physic engine this collider will be attached to that rigidbody instead of another static body on current collider game object
+
+so hierarchy state affect colliders attached rigidbody
+so hierarchy state affect colliders attached rigidbody
+
+********** but i don't know why collider offset will not change if attached rigidbody is in ancestors and moving collider game object
+
+
+
+-----------------------------------
+Layermask can be used for both masking and also converting editor layers to index from name or vise versa
+so it doesn't just masking
+
+layer mask is bitmask of layers which is in integer
+----------------------------------------
+Time scale 0 pauses time based logics because they scaled with timeScale
+
+frame runs usally but time scale scales all timebased logic to 0 because multiplying values by 0 will be 0
+
+********** so concept is x * 0 =0
+
+Time.deltaTime,Time.time... are scaled version (not fixedDeltaTime)
+so think of them as scaledDeltaTime vs unscaledDeltaTIme or scaledTime vs unscladeTime
+like velocity which is linearVecloity 
+
+********************** this naming is for short so keep aware of it
+
+search meaning of scaling something like time or value or size
+
+
+
+
+
+
+search if Destory with delay is scaled with timeScale
+
+
+
+
+
+
+check this -> Tips WaitForSecond
+                    1. The real time suspended is equal to the given time divided by Time.timeScale
+                       means if timeScale is 0.5 and given time is 10 seconds,it takes 20 realtime seconds to suspend execution of coroutine
+						
+						becasuse can't devide by zero
+						
+						
+						
+						
+						
+						
+search how apply physic when timescale is 0
+
+
+
+
+
+Timescale doesn't affect audio sources,instead to pause all othem onces use AudioListerneer.pause and exclude indivdual audio sources by audoid source.ignoreListenerPause
+----------------------------------------
+
+
+game objects with tag of EditorOnly only avaialbe at editor not in build 
+however  are available at editor play mode (editor runtime) not build runtime
+also this doesn't include prefabs,only scene objects
+
+----------------------------------------
+
+we have two runtime
+editor runtime (play mode)
+build runtime
+
+----------------------------------------
+
+Project contain Assets and Packages
+so assets is just for our files
+and are not all of the project
+
+Hierarchy only contains loaded scenes which are our assets too
+and doesn't show anything else
+
+
+
+----------------------------------------
+
+Special Folders
+we put some of them together because they work like eachother
+
+Standard Assets,StreamingAssets
+
+You can only have one Standard Assets/StreamingAssets folder and you must leave it in the root of the project, directly within the Assets folder. Place the asset files you need inside the <project-root>/Assets/(Standard Assets or StreamingAssets) folder or one of its subfolders.
+
+Resources,Editor
+
+You can have multiple of these folders placed anywhere inside the Assets folder. Place your these type of assets inside an Editor/Resources folder or a subfolder within it.
+simply put,asset must be placed within Editor/Resources folder(directly or in subfolders of it),but folder can be anywhere and also multiple places
+
+but we prefer place all resources and editor folders at root of projects
+
+----------------------------------------
+
+anything withing editor folder doesn't included in build game
+
+
+
+
+
+----------------------------------------
+
+project root of unity project contain Assets,Packages,... folders
+
+
+----------------------------------------
+
+Hierarchy refer to tree of relationships
+
+----------------------------------------
+
+
+Time.delta times concept is 
+
+so we break a unit into small parts which in 1 second actuall whole unit will be applied on movement or ...
+so per frame unit converted to per second which in each frame instead of whole amount,only a small chunk of unit will be applied which on the end, in one second, actual value will be resovled
+
+
+so key point is how break actuall unit into multiple  frames that in 1 second , actuall number get resolved which means per second unit
+
+so concept is how much value should be applied in each frame,
+like for movement,instead of for example 2 unit per frame,we break 2 into 1 second which has for example 10 frame,in each frame we move proportion of 2 unit which resovle whole actuall number in 1 second
+
+so per second value means how much value applied in 1 frame
+
+
+
+so only concept is converting per frame value to per second,that is
+frame is vary but second is constant
+frame for different computers are vary
+but second/minute/... are equal for anything in world
+
+to convert per frame unit to per second we multiply value by each frame delta which is in seconds
+
+***************************** so if you want per frame value,use value in each frame,but if you want per second value,multiply it by delta time ****************
+
+
+
+************************ Important *************************
+don't think about logic behind this             unit * deltaTime * frames count = actual unit in second
+just use conecpt of per frame and per second
+
+
+
+above unit keyword is amount so don't get confused
+second and frame are actual unit,like kg,ms,...
+
+
+so moving objects just like m/s like car moving 1 meter per second
+
+
+low frame rate only cause rendering and visual
+it doesn't mean it pass certain unit sooner or later,
+only thing is all of them pass ceterin unit in 1 seond in equal
+
+
+
+
+
+********** multiply per second value to Time.deltaTime cause value to be frame dependednt
+
+
+********************
+misleading concept is frame rate is vary in each frame and also can be floating point number
+means in each frame which may take variable time,frame rate will be determined
+shown frame rate in some places is integer and average frame rate
+
+so always think fps is fixed with fixed deltaTIme
+
+in some palces uses example of fixed frame rate like 60 or 30 and says each frame exactly takes 1/60 or 1/30
+and calcualte unit per second with these values,so these are for simplicity
+only misleading concept in real worlds is values and frame rates are vary in each frame and also not a integer value mostly
+
+
+so when we say fps is 10 exatcly (without floating point) means deltaTime is 0.1
+but frame rate changes in each frame so deltaTime will be different
+
+most accurate framerate calculated by:  1s / Time.deltaTime
+
+
+
+FPS
+fps is integer value so its not actuall frame rate
+
+
+so frame rate is not determined before deltaTime
+deltaTime must be determined, then actual framerate
+
+so for example when we say we have 10 fps actually means we have 0.1 deltaTime,which in 1 second we have 10 frame
+
+
+
+
+
+********************************************* Important ********************************
+to make per second unit from actual unit we use :
+
+unit / fps(framerate) = unit * frames deltaTime
+
+
+
+
+Calcualtions
+1 / fps = 1 / deltaTIme
+
+
+
+Definition
+Unity -> The time in seconds it took to complete the last frame
+			    The interval in seconds from the last frame to the current one 
+
+the amount of seconds it took for the engine to process the previous frame
+
+
+
+
+******* these are not best definition and technical definiton is time elapsed since start of previous frame to start of current frame
+			so above just for simplicity and unstatanding
+
+https://answers.unity.com/questions/1368827/what-exactly-timedeltatime-is.html
+
+
+so Since you mustn't know how long your current frame will be, the best bet is the last one
+
+
+
+
+
+
+********************************************************************* IMportant ******************************************************************
+imagine we always have constant frames like 10 and also time between each frame (delataTime) is constant value like 0.1
+so apply all clacualtion based on this hint but for using real world values just ignore one these values like frames count or delta between each frame
+but not all of them 
+like calcualting frame rate without knowing frames count
+we only have deltaTIme so for calcualtio nframe rate we simply say
+1s have 10 number of 0.1 value
+
+like movie which is in fixed frame rate and each frame took extactly same time as other frames
+
+
+
+----------------------------------------
+
+Editor Stages
+
+The Stage class represents an editing context which includes a collection of Scenes.
+
+The main stage contains all the currently open regular Scenes, while a Prefab stage contains a preview Scene used solely for editing the Prefab in.
+prefab mode is alias for prefab stage
+
+
+Stage is currently being rendered in the Scene view and shown in the Hierarchy.
+
+The current Stage can either be the MainStage or any other opened Stage,visualized in the Scene view as the last breadcrumb in the breadcrumb bar.
+
+The breadcrumbs shown in the Scene view when in Prefab Mode each represent an individual stage. Those with a Prefab icon represent Prefab stages.
+
+
+
+
+
+
+
+----------------------------------------
+
+Events
+
+Approaches
+
+1. C# Events
+can't be exposed on inspector
+
+can be either Action or EventHandler
+
+need event keyword
+
+2. UnityEvent
+can assign handler in inspector
+
+
+
+---------------
+note public methods for events only for unity event inspector 
+
+
+
+----------------------------------------
+
+
+
+Prefab Mode
+we can edit a Prefab Asset in isolation, or in context mode
+
+
+Isolation
+
+
+Context
+
+
+
+context means open nested prefabs from another prefab
+contexts can be in sequence which shown on breadcrumb of scene view in prefab mode
+
+if open prefab from main stage hirerarchy,hierarchy scenes or only that scene (i don't know) included as part of contexts of prefab mode
+
+
+----------------------------------------
+
+check if findobject of type can find attached objects to components
+or just game ojbects and components can be founded
+i guess it will find those loaded objects attached to components
+this method only find loaded objects
+
+
+this method only find objects in hirerarchy loaded scenes
+
+----------------------------------------
+
+all search static methods,for Object or specific for GameObject like FindObjectofType or FindWithTag,...
+search thourgh all hierarchy loaded scenes not just one
+also they don't search in assets
+for assets 
+runtime -> use runtime resource loading methods
+editor -> use either runtime resource loading methods or AssetDatabase
+
+
+************ also they don't search in prefab stage
+
+----------------------------------------
+
+anywhere use tags,for examlpe compareTag or findobjectswithtag
+tag must be exist in tag managers otherwise exception will be thrown
+
+
+
+
+
+----------------------------------------
+search also for GetAxis mouse and make sre its frame independednt with examples
+
+----------------------------------------
+check if when setActive to false,all rigidbodies velocity,angularvecloty will set to zero
+all interactions with component will be ignored,like set position,rotation,addForce,...
+iguess body removed from physic engine at all because there is not inactive body conecpt in physic engine
+and note if game object activeInHierarchy set to false,rigidbody will be removed from physic engine or not 
+----------------------------------------
+
+check if moveTowards and Lerp goes at excat value not more and less
+
+----------------------------------------
+POinter and drag info like pointer down gmae object or drag,... not events,calcualted in start of frame
+check for this
+----------------------------------------
+camera physic raycaster and Ipointer on regular game objects,not called if pointer events applied on ui
+so only called if pointer not happen on ui
+or pointer not over ui
+simply before apply on physic world,check if pointer is not over ui ,then apply raycast on each frame
+only for events like pointer down or other start events,not for dragging
+----------------------------------------
+
+setting transform.position or rotation faster than physic simulation,rigidbody position,colliders,joints... still stuck at previous rigidbody position
+because all of them relative to rigidbody state (posiiton)
+until physic simulation happens
+this cause smooth delay in movement of actuall game object and its attached joints,colliders,...
+
+so only rendering and physic engine sync delay matters
+or unity world and physic world sync delay
+
+transforms get synec with physic engine before each simulation (i search for this so its correct) only if changed
+physic engine positions and rotations,synced after simulation with Transforms (before any collison or trigger events and internal animation update)
+or simply put, sync happens both before and after simulation excatly
+******** unless autoSyncTransforms is set to true or call to SyncTransform method which sync unity transform with physics body or also reverse
+
+only sync ahppens if transform changed,otherwise any changes to rigidbody applied in runtime will be ignored
+
+SyncTransform only sync changed flag transform with corresponding rigidbodies,not overwirte all transforms with their rigidbody which don't changed at all
+
+
+chanching position and rotation on rigidbody components,directly applied on physic engine bodies,immediatly
+
+search if sync transform with physc engine is just setting rb.posiiton and rotation,also rb.posiiton applied immediatly
+
+-------------------------------
+Problems
+1.
+setting transform.right in 180 will rotate y axis by 180 degree too
+check this for up and forward as well
+so they may  differ from Quaternion.FromToRotation,...
+
+
+
+2.
+destroyed joint bodies collision will be ignored and must change transform (a liitle bit) to enable collision between them
+only when destroying,not disabling joint or changing connected body
+
+changing connected body before destroying doesn't help
+
+----------------------------------------
+Input
+
+https://answers.unity.com/questions/1699747/how-to-write-input-in-update-and-physics-in-fixedu.html
+
+Instantaneous input (GetKeyUp, GetKeyDown, GetMouseButtonUp, GetMouseButtonDown) must be captured in Update. Otherwise if two Updates happen in a row without a FixedUpdate between them, the input could be detected by the first Update and not the second, meaning you wouldn't detect it in the following FixedUpdate either, so you'd miss the input entirely.
+
+Sustained inputs (GetKey, GetMouseButton) should be read from wherever they are being used. For example: player movement and physics should always be done in FixedUpdate, thus if you want to use input to control player movement, you should just do it in FixedUpdate as well because it doesn't matter if you miss instantaneous inputs.
+
+If being able to move for exactly one frame is super important to your game, then you could read input in Update to set a bool to true, then check that bool in FixedUpdate and set it back to false. This might sound like you should always do it to get more responsive controls, but it would actually have the opposite effect (though still extremely minor either way). If you want to move for 5 exactly FixedUpdates, but an Update occurs just before you release the key, the bool would be set to true and you'd still move on the 6th FixedUpdate, even if it just happened to be a really quick Update and is followed by 1 or 2 more before it comes time for that FixedUpdate. You could add a bit more complexity to only do this for single frame inputs and stop doing it when the button is held, but in 99% of cases that'd be a total waste of time and effort.
+
+
+----------------------------------------
+i don't know why should get mouse position in Update and why not FixedUpdate,search
+
+----------------------------------------
+unity onMousedown happens when raycast from mousepoition hit first collider,if they are in same position,hirerarchy position will be applied (topmost colliders will receive onMousedown)
+idon't know for 3D
+check if same positoon in 3d both recieve onMousedown
+i guess if they ar ein same hirerarchy,topmost will receive message,and if not, higher position in hirerarchy will be
+
+
+OnMouseDown does not take into account the sorting layer because it uses physci raycast and doesn't  use sprite sorting layer
+so OnMouseDown has a rule to call this event for overlapped object
+
+search what collider hitted if overlapped
+
+----------------------------------------
+
+OnMouseUpAsButton
+check if called for multiple colldier on game object released on another other than mousedowned collider
+and fix mouse events
+
+----------------------------------------
+
+
+check if raycast hit edge collider if raycast is on same line or is point inside edge collider
+----------------------------------------
+changing values in inspector not get serialized immediatly, but after save
+search why unity says all fields shown in inspector are serialized values
+
+cehck if when entering play mode fields get serialzied immediatly or just current values in inspector loaded into play mode
+----------------------------------------------------
+
+default values in for fields only applied first time inspector show taht field
+next times change field default values,will not affect inspector
+even if you later change access modifier or type to similar type to current type,then back to previous state,values not changed
+but change type to new type ( not similar) means deleting variable which is not like above anymore
+or removing component completly an dreattached new one
+
+search when values serialized automatically without save
+
+script changes not serialize scene
+
+************************ Important *******************
+transform.rotation *= Quaternion.FromToRotation(transform.forward,right,forward,direectionVector)
+search why this differs from setting transform.forward directly
+because up and right works great but forward not so properly
+
+write note on transform.properties as `How`
+
+
+------------------------------
+search if unity use joints for parent child relations in physic engine
+
+
+----------------------------
+test two inverse force check if they will eliminate eachother
+
+search if rigidbody 2d body type if isKinematic is set  to true then change body type,check if isKinematic set to false
+----------------------------
+UI
+pointer events and drag (not OnMouseDrag) events only used for ui game objects (game object belongs to canvas)
+wrong,we can get this events by using physic raycaster on camera
+
+Content Size Filter
+in order to this component affect size of game object,we must add or remove child game object
+because it will not updated until we change children
+---------------------------
+Inputs
+		Touch
+		to detect touch on game objects we don't have messages methods like onMouseXXXX,we should do it manually with raycasts
+		unity fow mouse events use similar way but for touch we should do it manullay
+----------------------------
+laearn about raycasters and how use pointer events on 2d,3d objects
+-------------------------
+
+
+Tags
+tags will be used for grouping objects,and are general descriptor for objects think of it like html tags or classes
+
+Name
+name is for each specific game object and may should be unique between them (may not) think of that like id in html but can be multiple ones
+
+
+
+Scripts
+1. unity ony show instance properties (serialized) in inspector not static properties
+2. classes that are not component at all or are components and not attached to game object we can't changes their properties in inspector of script,only components instatnces that attached to game objects can be assigned in inspector
+
+
+for having static features but still using instance of component we should use singlton which are instance but there is only one of them in entire scene
+
+Singleton (global instance or static instance)
+singleton class can only be instantiaed once
+its a components and can get refrences to other objects (components and game objects) by filling its slot in edtior also access to monobehavouor lifecycle functions within singlton
+
+Usecases
+globaly accesible by static interface to singlton instance
+no need to fill game object components slot with instance of managers,instead because only one instance created we can access it globaly
+
+
+search why in singlton we say if(Instantce != this) why not use `else` because awake for every component only called once in its lifetime and becasue of DontDestroyOnLoad,it will not be removed at all
+
+it may be becasue if we call awake manually ffrom same instance it doesn't get destroyed
+if we use `else ` it will be destroyed for same object
+
+
+--------------------------------------------------------
+
+
+Pivot Point or Origin Point
+
+When you make changes to an object's position, scaling and rotation, these occur from the location of the object's origin point or pivot.
+vertices which are points (with thier own coordinates in world),will be positioned based on pivot
+everything is vertices which will shape mesh and sprites and 
+when game object rotates,only its pivot or origin will rotate,and all vertices get new position based on origin new data (rotation)
+the only concept is locations of vertices points,if object moves to new position only origin or game object will change and mesh and sprites vertices get new position based on that origin
+if game object rotates or scales,only position of vertices points will change in virtual world and every thing between vertices get rendered and shows on the screen
+
+only position of origin or pivot point will change its location and therefore vertices associated with that
+but rotation and scale of pivot point doesn't change its location in world they are just virtual properties or data which vertices will change their position based them as factor
+
+we have world origin,game object origin (pivot) and vertices points which has their own position
+we use origin or pivot point as base location in world and all vertices will be positioned relative to that so we don't need to set position of each of them relative to world
+ 
+
+also all vertices positions calcualted abosulte,means thier relative position to game object and world position of game object origin,will set vertices posiiton absolute in world
+
+search why use pivot at all,why just not position vertices relative to world
+
+------------------------------------------------------------
+
+we can add rigidbody to all game objects even canvas but we get unexpeected results
+by default every game object are static body in physc engine even camera and canvas
+
+
+search what is rigidbody in physic world and different between soft body
+
+search why static colliders don't collide with eachother and test if we move game object that is static body and collide with another static collider
+
+
+---------------------------------------------------------------------
+search why magnitude of vector makes rotation bigger
+---------------------------------------------------------------------
+learn about enable disable of components and activeate and deactiveate of gameobjects
+---------------------------------------------------------------------
+search when input state get update (before update calls or before any fixed update or before them)
+
+---------------------------------------------------------------------
+search about physics cycle for fixed update how works
+---------------------------------------------------------------------
+search about time.deltaTime and what is mean by time betwen frame what is the target time why it will be 1 after 1 second
+---------------------------------------------------------------------
+search why should use fixed timestep for physc
+---------------------------------------------------------------------
+learn why use physics in update method iknow is bad for getKey and ... but for instant forces its runs without problems i think
+---------------------------------------------------------------------
+check if in same frame of getKeydown ,getkey for same key is true or not or in next frame will be set to true
+
+---------------------------------------------------------------------
+Physics
+
+test add force in fixed update and reset in update to remove any physic update and also check transform before removinh them to check if they are changed because of physic or not
+search what happend to execution flow if new game object added to scene or some monobehaviour components get enabled or game objects activated after first frame of whole scene load (means some times after first execution flow)
+check if in same frame start get called is there any update call ?or happens in next frames and not first one
+check if after collision in onCollisonMethod we get new transform data or previous one
+
+---------------------------------------------------------------------
+
+search for graphic engine for js and how they use pivot
+
+-------------------------------------------------
+search how can object instance will create in edit mode and exits in compiled varsion of app
+-------------------------------------------------
+search about unity serialization and how it is related to edit mode instantiation of components and persist in play mode and build version
+
+-----------------------------------------------------------------------------------------------------------------
+
+Whenever you change a transform (in any way) then it is flagged as changed (For physics simulation)
+changes applied to game object transform for frame rendering however not in physics engine world yet
+**When autoSyncTransforms is set to true, repeatedly changing a Transform and then performing a physics query can cause performance loss. To avoid affecting performance, set autoSyncTransforms to false if you want to perform multiple Transform changes and queries in succession
+
+
+Physics.autoSyncTransforms
+any changes made to the Transform properties are automatically applied to the physics engine corresponding body by setting this property true
+When set to false, synchronization only occurs prior to the physics simulation step during the Fixed Update.
+
+
+check when changing transform and immediatly use raycast,doesn changes applied on physics engine or happens before simulation
+
+search if in legcy version aplliing changes to transform applied immediatly  in physc engine
+
+
+
+With this data, Unity can now create a list of dirty Transforms for each of its other internal systems. The system that handles these queries for dirty Transforms in a multithreaded manner is called TransformChangeDispatch. For example, the Physics system can query TransformChangeDispatch to fetch a list of Transforms whose data have changed since the last time the Physics system ran a FixedUpdate.
+
+
+The physics system works differently than the other systems. Since Unity 2017.2, Unity’s physics system works on top of TransformChangeDispatch. Any time you perform a Raycast, Unity would need to query TransformChangeDispatch for a list of changed Transforms and apply them to the physics world. That could be expensive, depending on how big your Transform Hierarchies were and how your code called physics APIs. However, if we skip the TransformChangeDispatch query, the Raycast might be performed on out-of-date data.
+
+
+https://unity.com/how-to/best-practices-performance-optimization-unity#transforms
+https://forum.unity.com/threads/auto-sync-transforms.603568/
+
+
+
+UI and Logic
+
+
+** also considir world space canvas ui
+
+Bad Ways
+	1. use ui directly in logic
+	2. use ui in separate components and access them in logic
+
+Good Ways
+	1. use events just like react or jquery components or widgets (for small projects)
+	2. use patterns like MVC (for big projects)
+
+
+Thanks very much! It looks very good and easy to understand. I agree i prefer to have logic and ui separate. It would be confusing and annoying to have some things included in UI scripts and other separated.
+
+I only have one question though. The message box is like the typewritter style, so it will stay awake for a certain amount of time before finishing it's sentence. I originally had TryToLearnSkill(); inside that UI script, because i want TryToLearnSkill(); to run once the dialogue/message has finished (after the yield return).
+
+$$anonymous$$y concern is once that event is called in your fixed version, and the message is playing, it could instantly skip to the next skill it's trying to learn and be overwritting itself in the UI?
+
+I don't think putting in a WaitForSeconds (to estimate how long the dialogue plays for) before the TryToLearnSkill(); in LearnSkill(); / SkipSkill(); / ReplaceSkill(); is the right call?
+
+I think i may end up with odd links and sub/unsub things if i tried to make $$anonymous$$essageBoxClose() an event.
+
+What do you think?
+
+avatar imageHellium  juniperspark · Nov 19, 2020 at 01:59 PM 0
+I see, then, I would suggest uncommenting the learnSkill.TryToLearnSkill() in the various UI methods and remove the call from the controller method.
+
+Having the UI call controller logic is not an issue. The opposite is true in my opinion. Controller should not be aware of the presentation layer (UI). At least, this is how I architect my Unity games. I go this way because all my controller are unit tested and if UI is involved, it's almost impossible to test, unless if you use interfaces and mocks, but I find it way easier to have presentation layer (UI) hooking up to a controller instead of having the controller ask to do stuff. I$$anonymous$$O, a controller could live without UI, the opposite does not make sense.
+
+avatar imagejuniperspark  Hellium · Nov 20, 2020 at 10:57 AM 0   Share
+Great, thanks for that.
+
+So basically i can follow the rule that I can have a reference back to the logic script in the UI, but not from the logic script to the UI directly - that should be events only.
+
+If i deleted the UIScript, I technically wouldn't get any error codes on my LogicScripts. It's just that certain functions wouldn't be called because it relies on the UI button to be pressed or its only called after certain UI plays. but that is ok.
+
+ public class LogicScript: $$anonymous$$onoBehaviour
+ {
+      public event Action newEvent;     
+      
+      public void Logic1 ()
+      {
+         // does logic stuff.
+         
+         newEvent();
+      }
+      
+      public void Logic2 ()
+      {
+          // does more logic stuff.
+      }
+      
+      public void Logic3 ()
+      {
+          // does more logic stuff.
+      }
+ }
+ 
+ public class UIScript: $$anonymous$$onoBehaviour
+ {
+     void Start ()
+     {
+         logicScript.newEvent += UIfunction();
+     }
+     
+     void UIFunction ()
+     {
+         // does ui stuff.
+         
+         logicScript.Logic2();
+     }
+     
+     void UIButton ()
+     {
+         logicScript.Logic3();
+     }
+     
+     void OnDestroy ()
+     {
+         logicScript.newEvent -= UIfunction();
+     }
+ }
+
+
+
+
+-------------------------------------------------
+Best Practices
+1. reduce implicit casting
+
+2. always put input capture in Update and all physics in FixedUpdate regardless of one-time input or physic actions
+
+3. separate ui and logic scripts
+
+Systems
+	Tips
+		1. use real life examples for systems and how they interact with eachother
+		
+		Event Dispatching
+			1. for individual game object event system (not global),other game objects use this game object controllers to perform actions on this game object and not dispatch this game object events directly
+				however other game objects can listen to this game object events but can't dispatch its events directly
+
+Naming Conventions
+1. don't use abbreviations
+	Scripts
+			1. name scripts by their job,for data scripts append Data to script name,for compoenents add subject (فاعل) names like Controller,Manager,Generator,...
+			
+			Fields and Properties
+				1. prepend private/protected fields/properties with _ (not variables)
+				
+			Class/Struct Members
+				1. order members by their member type like class,event,property,field,enum,...
+				2. in members also order by access modifiers -> public,internal,protected,private,...
+	
+	Case
+		Animator Controller Parameters
+			parameters named in pascal case format
+	
+		Asset & Folder Names
+			names are in pascal case format
+
+Tips
+1. dont use DontDestroyOnLoad for singletons becuase when new scene load,references in singleton will be destroyed and we should find them again,its better to instantiate new singleton from prefab each time scene load
+
+2. Event Based Reactions
+		two ways to add event based actions:
+		1. use built-in event and Action and subscribe to events
+		2. use interfaces and search through hierarchy for all classes that implemented those interfaces,then call specific methods as events like IPointerXXX and IDragXXX which unity uses for pointer events
+			Cons
+				1. if hierarchy is too big,its not so performance friendly
+				
+		
+
+3. don't put ui controllers beside of actual logic,because data may be used in multiple places so separate ui completly just like react apps 
+
+4. game objects name is not important if there are too many of them in the scene,use tag to search for game objects instead
+
+5. Project Organization
+		Project Files Structure
+			There are a couple of ways you could do this and what’s best for you will depend on the type of game you’re making and how you like to work.
+
+			But, generally speaking, there are two main methods for organising the files in your project, by Content type or by Feature.
+			
+			
+			1. By Content Type
+			
+			2. By Feature
+				Organising your project by feature can be extremely useful for keeping all of the files associated with a particular part of your game, such as the player, or a specific system, together.
+				each feature folder will contain a mixture of scripts, models, sounds and other assets that are specific to that area of work
+				
+				
+			we prefer using content based project structure
+			
+			
+			Tips
+				1. if for example a prefab can be used in multiple places such as main menu,levels,... don't put that prefab into level specific or main menu specific folder instead put it on more generic folder structure,otherwise if it is only used for specific part such as main menu ui,put it on main menu specific folder structure
+		
+		Scene Organisation
+			these methods are useful for both editor to keep hierarchy tidy and easy to manage and runtime to improve query for objects in the scene
+			some of these methods are usefull for both editor and runtime and some of them only for runtime
+			
+			Links
+			https://gamedevbeginner.com/how-to-structure-your-unity-project-best-practice-tips/
+				
+			Methods
+			1. use empty game objects as folders for multiple game objects for easily searching,grouping based on particular category,edit multiple game objects together
+				Use Cases
+					1. for example if all of your environment objects are children of a single Environment folder, marking the parent object as static will allow you to set all of the child objects to static as well
+					2. for example if you want specific objects to persist between Scenes, simply create a folder object for persistent systems and add a single Don’t Destroy on Load script to that parent object (folder)
+				
+				Tips
+					When using this method, you’ll need to remember to set the position of any folder objects you create to the Origin Position in the scene (0,0,0) as well as rotation and scale
+					Otherwise, the local position of each child object will be affected by the relative position and orientation of its parent, which could cause you some confusion later on.
+		
+			2. Instantiate new objects as children of one game object to keep hierarchy tidy when are in play mode and dynamically instantiating new game objects (play mode in editor)
+		
+			3. Use empty game objects as separators to split up your hierarchy
+				their memory impact is minimal, can be removed from the finished game automatically by adding EditorOnly tag to them
+				
+			4. Organise game object behaviours into subsystems
+				Adding behaviour components to an object as an individual behaviour system, instead of adding all of your components to a single object, can make them easier to manage.
+				components don't have to be only scripts
+				
+				the root of your object might only have a few special components on it, ones that will interact with multiple other systems or that may need to be on your object’s root to work correctly, such as a Rigidbody for example
+				While everything else, from the renderers that define how the object looks to the colliders that give it a physical presence in the world, are handled by sub-systems, child objects that each handle particular tasks
+				
+				But why do it this way? 
+				1. it’s easier to work with different components when they’re kept separate.Adding multiple components to an object can quickly clutter it up and, even though components can be expanded or collapsed to save space, it’s often much easier to only work with the components you need at any given time.
+				
+				2. When a certain kind of behaviour is encapsulated to one individual object, it can be much easier to add, remove or change how that behaviour works, without affecting anything else.
+					For example, placing all of an object’s renderers under a single Render System, gives you control of all of that object’s visuals from one point of reference.
+					
+					*** we can't disable non-behaviour components,but if we put component on separate game object,we can deactivate that game object to disable that functionality completely
+					
+				    https://gamedevbeginner.com/wp-content/uploads/Subsystems.gif
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					******************************************************* Read This ***************************************
+					Keep asset data separate from your project files
+By default, assets, packages and other third-party files, such as those downloaded from the Asset Store will be added to your project in the Assets folder.
+
+And, while this isn’t necessarily a problem, it can become tricky to manage your own project files around the files of third party plugins and assets.
+
+What’s more, some assets can’t be moved from their default locations, as this can cause hardcoded connections in the asset’s scripts to break.
+
+However, one solution to make working with other assets easier is to simply add a root folder for your project files, so that any automatically created directories don’t get in the way of the files and folders that are specific to your game.
+
+Just add a folder, named after your game, to store all of your own scripts, models and content.
+
+Screenshot - how to keep asset files separate from project files
+Adding an underscore to the start of your game’s root folder places it at the top and helps to keep files separate from third-party asset files.
+
+Then, when asset and plugin directories are created, they won’t get in the way of your project’s neat and tidy file structure, however you’ve chosen to organise it.
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+6. Systems Communications
+		Tips
+		1. when an action happens in one system,we don't modify related systems data and properties directly because we are not responsible for those action,instead we call specific methods or setters from target system to do action,then they decide to whether or not notify other systems
+
+		How Notify Other Systems
+			Wrong Way
+				dispatch event from non-responsible system
+				
+			Good Way
+				tell specific system to do specific action,then that system decide to whether or not notify other systems
+					Real Examples
+						1. attacking to a army base doesn't notify all army soldiers immediately,instead, responsible soldiers of that attacked part notify other soldiers in the base
+				
+				if that system decide to notify it must also send new information for other system so other systems don't have to retrieve that informations by themselves
+				so system first store new information if needed then if decide to notify other systems,notify other systems while send those information directly or with some modifications
+				its not good practice to let other systems get new informations by themselves because when sending specific event why not send needed informations along with it
+					
+					
+					
+7. Design Principles
+	1. place everything in base position and orientation when want to transform them later,base doesn't always mean 0,0,0 but a position or orientation that works correctly exactly what we want
+			Examples
+				1. if we want to rotate a sword by mouse position,we should set orientation of sword at 0 degree to avoid later issues
+					
+	2. Separation Of Concerns
+			means each system has its own responsibility
+
+					
+8. Inheritance & Composition
+		both are usefull for specific types of projects
+		they can be use alone or with together based on complexity of project
+		
+		***	composition also means aggregation of components
+		
+		inheritance acts as IS	-> enemy is a human
+		composition acts as Like A-> enemy health is like human   or acts as Has -> enemy has human health system
+		
+		https://www.reddit.com/r/Unity3D/comments/cd2gni/inheritance_vs_components_how_to_build_an_enemy/
+		https://betterprogramming.pub/inheritance-vs-composition-2fa0cdd2f939
+		https://onewheelstudio.com/blog/2020/8/16/strategy-pattern-composition-over-inheritance
+		https://forum.unity.com/threads/when-appropriate-to-use-inheritance-versus-components.1301070/
+		
+		unity focuses on component-based design so stick to composition pattern
+
+		generally use composition over inheritance as much as possible
+		anywhere when possible to implement a feature by composition, use composition over inheritance
+		That doesn't mean not to use any inheritance at all. use it But probably only when it satisfies the "is a" constraint.
+		so anywhere that Like A constraint can't be implemented,use inheritance over composition
+		
+		inheritance needs many refactoring later on project when it gets bigger and bigger
+		so for simplicity and get jobs done as quickly as possible and because we work as freelancer/solo developer
+		we stick to composition because it needs less refactoring and restructuring components
+		so just learn about composition patterns in most cases as much as possible
+		
+		
+			Tips
+				1. Unity Forum -> I think the major thing for a solo developer like me is that I need some general patterns to follow so that it's not necessary to remember what every little script is doing - so long as I know the general pattern, then making changes 			throughout development should never be a brain twister
+				
+		
+		***** Important ******
+		in inheritance we can put all behaviours in one class hierarchy or for each behaviour create separate hierarchy
+		same for composition,we can use one class for all behaviours or some of them,or separate class for each behaviour
+		
+		
+Learning
+
+learn about unity scripting and editor conventions and best practices
+review bookmarks in browser
+see reading list of chorme
+see threads in browser
+
+Building Projects Tips
+first make it by your self,then watch videos for better approaches,just make games and don't stop for finding best ways to do things
+don't scare to do new things, just advance and solve problems and only search for answers if really stuck at solving specific problem
+
+
+
+Learned Designs
+	Reach The Target
+			1. put ui controllers on ui game objects not manager game objects,because for multiple scenes, we can use prefabs to reference children instead of query in scene each scene load
+													
+			2. to load and save states 
+				1. save and load on specfic actions like play or exit 
+				2. using timer with delay to save 
+				3. save on each state change (position or rotation) which is no recommend
+				
+	Brick Breaker
+			1. instead of creating multiple scenes for levels,we can put each level objects in one game object and store it as prefab,then instantiate prefab when go to next level
+			2. put group of game objects in one game object so we can easily search,count,transform,... those game objects
+
+
+-------------------------------------------------
+Backup & Copy Projects
+just copy Assets,ProjectSettings,UserSettings,Packages,.vscode
+
+GIT
+only include Assets,ProjectSettings,Packages

@@ -1,0 +1,5 @@
+for invalid query we ave three options:
+
+1. like udemy ignore that filter if it needs simple validation and not extra query to db,otherwise place it in main query
+2. like digikala show 404 page (digikala first makes query for all query inputs and if there is any invalid query item it shows 404 page,then if there is no any invalid input,run main query)
+3. return empty result and dont run main query at all

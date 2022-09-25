@@ -1,0 +1,2 @@
+jquery event object is instance of JqueryEventObject and not Mouse or Keyboard Event
+it has some extra properties as well as e.originalEvent that is instance of MouseEvent or KeyboardEvent of current event

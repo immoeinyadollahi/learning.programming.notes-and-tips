@@ -1,0 +1,2 @@
+body can be dynamic or static
+dynamic bodies can be kinematic or non-kinematic (regular) (default dynamic body type is non-kinematic which we can make it kinematic with flag)

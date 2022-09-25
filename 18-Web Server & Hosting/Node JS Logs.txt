@@ -1,0 +1,1 @@
+node js app logs always located in /home/host-name/.pm2/logs folder that is hidden in file manager but can go through it from terminal

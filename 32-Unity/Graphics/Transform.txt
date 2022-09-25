@@ -1,0 +1,3 @@
+
+Tips
+transform isn't part of physic and is part of graphic rendering 2d or 3d

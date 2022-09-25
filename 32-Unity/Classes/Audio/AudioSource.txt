@@ -1,0 +1,42 @@
+Fields
+        play on awake:
+                      this field, acts like onEnable for audio source component to play clip
+                      if scene loaded and audio source component is enabled and its game object activeInHirerarchy set to true (all parents are active include game object itself)
+                      or if component tree is inactive and changes to active
+                      each time onEnable called for this component,clip will be played (restarted)
+
+
+Instance Methods
+                1. Play
+                        AudioSource will assume any Play call will have a new audio clip to play. (will restart)
+                        ** If AudioSource.clip is set to the same clip that is playing then the clip will sound like it is re-started. (Incorrect Unity Docs)
+                        
+                        **if change clip while playing,new clip will be set and stop previous clip from playing
+
+                        if the clip attached to audio source is playing,it will be canceled when calling Play method
+
+                2. PlayOneShot
+                                this method does not cancel clips that are already being played by AudioSource.PlayOneShot and AudioSource.Play.
+                                Multiple clip can be played on one AudioSource using PlayOneShot simultaneously
+                                
+                Play vs PlayOneShot:
+                                        Play will play or restart (if call again) the clip attached to audio source, while PlayOneShot play additional clip from audio source which uses same configuration of attached clip
+                                        even if you change configurations, they will be applied on PlayOneShot clip even for playing ones
+                                        also can't stop PlayOneShot clip once played(but we can mute audio source to mute those clips which is ideal)
+                                        
+
+
+Static Methods
+                1. PlayClipAtPoint
+                        create new empty game object in the scene in  specified position and add a audio source component with given clip
+                        then plays the clip and once the clip has finished playing, will destroy its game object
+                        
+                        ** it needs position hence its a 3D source
+	
+	
+	                        Limitations
+					we can't Adjust properties of AudioSource created with PlayClipAtPoint or access its game object
+					PlayClipAtPoint creates a temporary game object called "One shot audio" that contains the AudioSource, and destroy it when the sound finishes. 
+					Unfortunately, it doesn't give us any reference to the object created - shame on you, Unity: PlayClipAtPoint should return a reference to the AudioSource, or at least to the object created!
+					
+					so its better to write your own method for this to access game object or audio source create for temp sound

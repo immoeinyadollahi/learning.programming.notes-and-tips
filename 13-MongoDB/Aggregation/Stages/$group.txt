@@ -1,0 +1,4 @@
+this stage for each item in input documents evaluate the _id field then push it to array,then those with same _id (that evaluted to single value,if object or array then compares only values,orders,quantity of them)
+will become one single group(unqiue items will be separate group as well),then for each group first add evaluated _id field to them, then evaluate each new fields(that use accumlators) with context of items of group,finally add new fields
+
+if input documents are empty, group doesn't do anything

@@ -1,0 +1,4 @@
+when using packages command like tools in npm scripts node first look through bin folder in local node_modules and if it exist, execute that, but if nout found it will look through global modules
+
+but if we want to execute modules cli tool directly, we should execute them manually in command line with write in command line :`node_modules/bin/xxxx.sh`
+

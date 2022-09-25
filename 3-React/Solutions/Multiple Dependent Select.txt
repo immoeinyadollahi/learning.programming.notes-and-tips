@@ -1,0 +1,4 @@
+ways you can sync selects:
+
+1. if one changed then after that sync others with them manualy
+2. use useDepenedcyChangeEffect to sync other selects 

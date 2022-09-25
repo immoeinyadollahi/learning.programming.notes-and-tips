@@ -1,0 +1,2 @@
+if you use multiple sql statement .you should separate them with semicolon (in the same line or new line)
+union is a exception that doesn't need semicolon

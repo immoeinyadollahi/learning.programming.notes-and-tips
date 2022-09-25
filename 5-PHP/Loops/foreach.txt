@@ -1,0 +1,2 @@
+for both objects and arrays we can use foreach.
+for objects, foreach only iterates over properties that are accessible (access or visiblity modifier)

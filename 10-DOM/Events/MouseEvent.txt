@@ -1,0 +1,1 @@
+for events like mouseenter, event wil be triggered if mouse entered an element also vice versa

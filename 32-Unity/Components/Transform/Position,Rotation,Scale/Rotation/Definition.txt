@@ -1,0 +1,42 @@
+Quaternions
+Quaternions are used to represent rotations
+Unity internally uses Quaternions to represent all rotations (means final rotation applied to game objects transform is in quaternion format)
+
+They are based on complex numbers and are not easy to understand intuitively.
+
+People very rarely interact with quaternions directly (changing their components directly) (because for correct rotation other components may be rotated).
+it's almost always easier to manipulate them using other representations
+
+
+
+
+Quaternions representations:
+
+		they represent quaternion rotation in simple and human friendly format
+		**** also they are not in special types
+
+		they are just intermediate representation of quaternion which are only for convenience and are not practical in action
+
+		they are intermediate format for rotation which converted to/from quaternion
+		just intermediate formats which is only for easy access to rotation
+		internal format for rotation is quaternion which represent actual rotation
+
+
+		both representations produce same result
+
+
+		****** its faster and better to use euler angles than angle axis
+	
+	
+** if you want to rotate object in one axis correctly, you may change other rotation components or axes too 
+when we call Rotate method (Space.Self or Space.local),unity automatically rotate other axes or components if needed
+this rule is not for position and scale,means when changing for example one axis of position,we don't need to change other axes in order to get correct position
+Rotate method is just for convenient,because if we want to rotate objects correctly we should rotate all needed axes not just one axis
+
+
+
+
+Operators
+Quaternion only have * operator which can be applied on another Quaternion or Vector
+for Quaternion operand, it will rotate that rotation
+for Vector, it will rotate Vector and return new Vector

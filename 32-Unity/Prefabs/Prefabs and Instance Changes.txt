@@ -1,0 +1,19 @@
+Editor Only
+if prefabs components properties change, changes will be applied to all instances in the scene except for instances that have overrides for that properties that currently no action taken (revert or apply)
+however other properties that are not exist in those instances overrides will be applied for those instances
+
+either prefab properties changes directly or instance changes applied, all instances will be updated
+
+instance revert all means revert all current (not all of them) instance changes to original prefab or prefab source
+instance apply all means apply all changes in current instance to original prefab itself that cause to update all instances accordingly
+
+changing instances properties cause instance to be in override mode that requires user to take and action (revert or apply) that can be revert or apply all of them (properties) or apply or revert individually
+overrides will be shown in prefab instance root game object not children
+
+two properties from transform (position and rotation) doesn't cause prefab instance to be in override mode for these properties and even if we apply for other changes, these properties will not be affected on prefab
+but if scale property changes, then change will be treated as an override and added to other overrides if any
+for scale each X,Y,Z property treated as separate override (e.g. maybe one of those property changes)
+in editor changed properties will be highlighted
+also its possible to undo with CTRL + Z to revert overrides if possilble
+
+

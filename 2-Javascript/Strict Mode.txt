@@ -1,0 +1,1 @@
+1. in non-strict mode if we assign value to undeclared variable,variable will be created with var functionality and then value assignment evaluate

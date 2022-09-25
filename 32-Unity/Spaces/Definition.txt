@@ -1,0 +1,12 @@
+There are four main coordinate system in Unity (Space): Screen, World, Viewport, and GUI.
+
+1. Screen coordinates are 2D, measured in pixels and start in the lower left corner at (0,0) and go to (Screen.width, Screen.height). 
+   Screen coordinates change with the resolution of the device, and even the orientation (if you app allows it) on mobile devices.
+
+2. GUI coordinates are used by the GUI system. They are identical to Screen coordinates except that they start at (0,0) in the upper left and go to (Screen.width, Screen.height) in the lower right.
+
+3. Viewport coordinates are the same no matter what the resolution. The are 2D, start at (0,0) in the lower left and go to (1,1) in the upper right. For example (0.5, 0.5) in viewport coordinates will be the center of the screen no matter what resolution or orientation.
+
+4. World coordinates are a 3D coordinates system and where all of your object live.
+
+

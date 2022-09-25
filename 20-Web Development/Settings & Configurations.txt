@@ -1,0 +1,2 @@
+if settings or configurations must be changed by client users,then it must be stored on a storage like database (recomended)
+but if configurations doesn't change by client users and only change in development,it must be stored on config files (env,config file,json,...)

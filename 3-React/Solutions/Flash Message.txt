@@ -1,0 +1,7 @@
+from current url create flash message with a url same as current url and then attach onUnmount handler to layout
+
+then onUnmount check if there are some flash message if are then check for there url that should matched to flash url 
+
+otherwise remove flash messages
+
+this method not recommended

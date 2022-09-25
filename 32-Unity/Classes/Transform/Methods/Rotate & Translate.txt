@@ -1,0 +1,21 @@
+these methods rotate and translate game objects relative to current rotation and position values
+so we call them relative methods not absolute
+
+
+if change transform.position relative to current position, then it is exactly the same as Translate with Space.World
+
+
+
+
+Rotate
+rotating with Rotate method (Self or World) and 
+directly change transform properties
+all produce different result
+
+** this method rotates either in eularAngles or angle axis representation of quaternion
+
+
+Translate
+Transform.Translate (Space.Self) is same as transform.position=transform.TransformPoint(translation) (but not affected by scale)     or   transform.position+= transform.TransformDirection(translation)
+Transform.Translate (Space.World) is same as transform.position += translation
+

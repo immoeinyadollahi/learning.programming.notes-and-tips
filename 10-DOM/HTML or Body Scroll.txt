@@ -1,0 +1,1 @@
+there is big story between body and html  geometry properties and some css properties in different browsers or in single browser so you just use both for compatibility of browsers

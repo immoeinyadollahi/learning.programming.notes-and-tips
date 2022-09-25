@@ -1,0 +1,5 @@
+Filters
+in both physics engines we assign filters (unity layer) to colliders (fixtures or shapes)
+
+Colliders
+every collider instance(fixture for box2d or shape for physx) attached to one body (actor in physx) and positioned relative to (local) body (actor)

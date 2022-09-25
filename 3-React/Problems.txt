@@ -1,0 +1,7 @@
+Disabled Control Element
+
+disabled inputs can be manipulated in browser and rerender doens't update it with state (because react inputs only set disabled property only if this property changes compared to previous value) but this doesn't happend for value property (always will be update on rerender)
+
+
+
+Circluar Dependency 

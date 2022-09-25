@@ -1,0 +1,8 @@
+this actions are only for echo output and not enqueue
+
+if enqueue scripts with function in wp_footer because it is after wp_enqueue_script in footer it doesn't have any output here
+
+if enqueue scripts and styles with functions in wp_head only in_footer scripts does have effect because they enqueued and in footer get printed
+
+
+therefore dont use enqueue with this actions

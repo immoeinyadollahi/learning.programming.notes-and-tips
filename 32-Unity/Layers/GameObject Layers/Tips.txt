@@ -1,0 +1,32 @@
+in unity we only set layers on game objects but that layer will be used in different places
+layer property on game object is simple integer which represent layer index in layers list not layermask
+we use layermask to include or exclude specifc layer by its index in each bit
+
+You can only assign each GameObject to one layer, but you can add multiple GameObjects to one layer. (one to many relationship)
+means at anytime game object can only have one layer
+however we can switch between layers at any time
+
+
+Layers in Physics
+
+				Tips
+				in physics, we don't attach game object layer to bodies,instead layers (filter) attach to each collider (shape or fixure)
+				so in unity the layers attached to every game object will added to every collider it has as filter data (in physics engine)
+				i dont know maybe unity add layer to each body and when checking for collisions,instead of getting layer from collider,we get from collider body custom attached data
+				
+				Layers for queries
+				for queries like casts and overlaps we pass layermask to methods
+				
+				Layers for collision detection in simulation time
+				for simulation collision detection we specify collision matrix in settings
+				
+				for simulation collision detection,we only use layers and not layermasks but in query we use layermasks because we need to inlcude (hit) or exclude (ignore) layers against hit but in collision detection because collison only happens on two collider,we only need to know each collider layer and check for their matrix in order to perform proper action
+
+				
+Layer Masks Constants
+Physics.DefaultRaycastLayers is equal to -5 which represent 1111111111111011 bitmask that includes all layers and excludes ignore raycast built in layer
+Physics.AllLayers is equal to -1 which include all layers
+Physics.IgnoreRaycastLayer is equal to 4 which only includes ignore raycast layer (00000000000000100)
+
+for physics these layermasks are not only for raycast but are for all query methods like overlap and other casts
+also these layermasks are not only for physics queries,but can be used in different places like camera culling mask

@@ -1,0 +1,7 @@
+coordinate system or axes used for identifying the location (position) of point
+so its only related to position not rotation or scale
+
+this may be invalid definition because rotation and scale use axes too
+
+
+

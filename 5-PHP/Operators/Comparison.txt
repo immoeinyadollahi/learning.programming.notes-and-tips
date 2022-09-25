@@ -1,0 +1,2 @@
+> < >= <=:
+					both operand will be cast to number fist, then compare them

@@ -1,0 +1,1 @@
+order of characters in ranges inside of character class must be correct,not just english characters but all valid characters

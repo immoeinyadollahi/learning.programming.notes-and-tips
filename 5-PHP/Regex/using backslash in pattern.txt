@@ -1,0 +1,1 @@
+to use literal backslash in php regex you must use \\\\ (four backslash)

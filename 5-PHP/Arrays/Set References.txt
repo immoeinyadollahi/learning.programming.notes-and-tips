@@ -1,0 +1,25 @@
+in array setting property or setting property of length index:
+
+if the reference before no exists at all:
+
+	if reference is variable:
+
+		create that variable for target scope
+		then set its value to an empty array
+		then set property of that array 
+
+	if reference is property of array or object:
+		
+		first change its value to an empty array
+		then set property of that array
+	
+
+if the reference before exists but is null (can be variable or property):
+
+	first change its value to an empty array
+	then set property of that array
+
+
+
+
+only setting array property has these features and objects throw fatal error if you do these actions

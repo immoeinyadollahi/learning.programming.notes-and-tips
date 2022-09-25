@@ -1,0 +1,10 @@
+ways to handle state of multiple same name checkboxes and finally getting those active checkboxes values as result 
+
+1. one array contains only boolean values which each one corresponds to same checkbox with this index,plus one array for only checked values,when one checkbox changes both array will be change accordingly,finally get checked values array as result              bad
+
+2. only one array contains objects to number of all checkboxes that each one has one key for checkbox value and another key for checked state,when one checkbox changes,finding correct object in array and update that           bad
+
+3. only one object that contains uniques keys of checkboxes values and they values are boolean indicating whether or not checkbox is checked              bad
+
+4. only one numbered array for only checked checkboxes,contains index of checkbox or actual value of checkbox,finally getting checked checkboxes from that array,if we want to check if item exists,use includes for each checkbox        good
+

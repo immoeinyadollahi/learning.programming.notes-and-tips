@@ -1,0 +1,3 @@
+variable initialization means assign value during declaring not after that
+constant variables must have initializer even undefined or null but it must exists when declaring because engine knows its useless if you don't assign any value
+let and var that don't initialize when declaring, javascirpt assign undefined as value for these variables

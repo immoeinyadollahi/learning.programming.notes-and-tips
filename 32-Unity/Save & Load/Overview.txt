@@ -1,0 +1,13 @@
+unity doesn't save any game data at runtime and they should be saved manually with saving solutions
+and loaded again into memory when game starts just like how unity load serialized data
+
+e.g. projects settings and runtime objects modifications will not be saved unless we save them manually
+
+
+think we have a scene with a player,if in runtime we change player data (transform,...) it must be saved manually
+and loaded again each time starting the game
+
+
+so when starting the game,first unity load serialized data previously modified in editor (objects with their references and configurations and ...) into memory
+then if we have saved any game data by any saving solution,we load them manually (may or may not override unity data loaded first)
+then show actual game to player

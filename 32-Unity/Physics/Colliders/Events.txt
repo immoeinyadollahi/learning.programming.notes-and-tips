@@ -1,0 +1,28 @@
+OnMouseXXX 
+if colldier doesn't have attached rigidbody or attached rigidbody is collider game object rigidbody,then sent this event for collider game object scripts
+if colldier has attached collider other than its game object rigidbody,then only send message to that attached rigidbody scripts whether or not received by any script
+
+simply put, if doesn't have attached rigidbody,for current game object,otherwise for attachedRigidbody game object scripts
+
+
+Pseudo Code
+raycasthit hit
+if ( hit.rigidbody != null )
+      hit.rigidbody.gameObject.SendMessage("OnMouseDown");
+  else
+      hit.collider.SendMessage("OnMouseDown");
+ }
+
+hit.rigidbody is attachedRigidbody of hitted collider
+
+
+
+
+
+
+OnCollisionXXX/TriggerXXX sent for both collider game object scripts and also attachedRigidbody game object if is different from collider game object rigidbody (for both collided objects)
+
+1. if attachedRigidbody is null or is same as collider gameObject rigidbody then send event only for that game object 
+2. if attachedRigidbody is any of ancestors,then sent event for both ancestor game object and also collider game object
+
+

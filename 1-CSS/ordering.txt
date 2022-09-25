@@ -1,0 +1,2 @@
+many things like properties or variables don't effected by ordering
+things like selectors and media query may be effected by ordering

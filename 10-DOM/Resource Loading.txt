@@ -1,0 +1,8 @@
+img,video or audio will be loaded as soon as they get src property,even if there are not in dom tree
+scripts and styles will be loaded only if they are inside of dom tree (starts loading as soon as appending to the document )
+also style must have href property or attribute
+script must have src property or attribute
+
+Dynamic Scripts:
+
+	dynamic scripts is  async by default means async property is set to true by default.we can set it to false before insert it to the dom to prevent async bahviour

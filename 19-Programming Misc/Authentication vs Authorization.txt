@@ -1,0 +1,9 @@
+Authentication = login (not register) + password (who you are) user is unknown at this time
+Who is the user?
+Is the user really who he/she represents himself/claim to be?
+کاربری در سایت ما هست یا خیر؟
+
+Authorization = permissions and roles (what you are allowed to do) user are available at this time
+Is user X authorized to access resource R?
+Is user X authorized to perform operation P?
+Is user X authorized to perform operation P on resource R?

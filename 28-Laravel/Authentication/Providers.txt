@@ -1,0 +1,3 @@
+Providers define how users are retrieved from your persistent storage
+
+Laravel ships with support for retrieving users using Eloquent and the database query builder

@@ -1,0 +1,7 @@
+in document middlewars this refers to document   post/pre
+
+in query middlewares this refers to query   post/pre
+
+pre takes one argument and it is next func
+
+post takes two arguments first is method result (return value) and second is next func

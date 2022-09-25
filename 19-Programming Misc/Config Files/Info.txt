@@ -1,0 +1,7 @@
+ways to use config files:
+
+simple config: use .env or env variable for this case
+
+complex config: use json file
+
+very complex config:use programming language file and then expose an object or array of config files (this way we can use functions and other programming language stuff)

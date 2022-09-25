@@ -1,0 +1,9 @@
+A word boundary can occur in one of three positions:
+
+1-Before the first character in the string, if the first character is a word character.
+2-After the last character in the string, if the last character is a word character.
+3-Between two characters in the string, where one is a word character and the other is not a word character.
+
+https://regex101.com/r/I4moyv/1
+
+it is equivalent to  /^(?=\w)|(?<=\w)$|(?<=\w)(?=\W)|(?<=\W)(?=\w)/

@@ -1,0 +1,7 @@
+Strongly typed means that there are restrictions for conversions between types and there is no type coercion and error may be thrown (value will not be automatically converted from one type to another) (has strict typing rules) (value must explicily converted to another type)
+
+Weak (loose) typed means there is no restrictions and strictions for type conversions and doesn't throw any error and automaticaly conversion happens  by translator (type coercion)
+
+strongly type or weakly type only shine at expressions with operators like addition or concatenation
+
+strongly type differs from static typing,e.g. c is weakly type but is static type language,python is strongly type but dynamic language

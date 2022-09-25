@@ -1,0 +1,2 @@
+constraints only applied in simulation by effects of joints,forces,collisions,... not when changing manually
+e.g. for freeze rotation,joints,forces,collisions can't rotate rigidbody but manually changing rotation, will be applied

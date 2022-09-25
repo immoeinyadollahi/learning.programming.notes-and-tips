@@ -1,0 +1,39 @@
+we have 12 node types at all:   https://dom.spec.whatwg.org/#node
+
+we have four main types of nodes (in practice)
+
+1. document node                      the “entry point” into DOM
+2. element node                         HTML-tags, the tree building blocks
+3. text node                                 contain text (without children)
+4. comment node                       sometimes we can put information there, it won’t be shown, but JS can read it from the DOM
+
+
+
+
+
+document node:
+
+
+
+
+comment node:
+It doesn’t affect the visual representation in any way. But there’s a rule – if something’s in HTML, then it also must be in the DOM tree.
+
+
+
+
+
+
+
+tips:
+
+
+dom element finding/selection methods are only for element nodes & document node
+
+getElementById	& getElementsByName is only for document object not every element
+
+we cann't select text or comment node,therefore we cann't access methods like querySelector
+
+first element node  of document is root element (documentElement or html)
+
+there is no constructor for creating text and comment node.you should use document to create them

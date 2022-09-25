@@ -1,0 +1,21 @@
+two ways to organize your code
+1. object literal approach (construct) named controller
+
+
+
+2. module pattern:
+
+1. http://christianheilmann.com/2007/07/24/show-love-to-the-module-pattern/
+2. http://christianheilmann.com/2007/08/22/again-with-the-module-pattern-reveal-something-to-the-world/
+
+
+
+
+
+in browser scripts for both approach we have two ways:
+1. define each controller or module in separate file and for each one add new script tag to body when needed
+2. use dependencies approach and use only one file and dynamically determine which module or controller need to be run in order to cover dependencies
+
+
+
+third way which is no so recomended but widely used in templates, is create on script and put all queries in there and queries specify if element exists, then do specific action

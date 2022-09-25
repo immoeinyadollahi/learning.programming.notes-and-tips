@@ -1,0 +1,3 @@
+tips:
+1. php all declared functions (function statement outside of namespace file) and classes (class statement outside of namespace file) and constants are global,means are accessible from anywhere.also can't redeclare them
+2. we can have same class/function name but in different namespace

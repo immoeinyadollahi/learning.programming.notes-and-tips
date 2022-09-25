@@ -1,0 +1,51 @@
+Vectors are a fundamental mathematical concept which allow you to describe a direction and magnitude (length)
+
+Concluded Definition
+
+Vectors are lines (better to say Hypothetical lines) created by two points,start and end point
+direction of line created by two points relative to coordinate axes called vector direction
+distance of two points or line length called vector magniatude/length
+
+** vectors essentialy are not lines or at least not real lines
+   two points in coordinate system shapes a hypothetical line which have both direction and magniatude
+
+** The magnitude, or length, of a vector, cannot be negative; it can be either be zero or positive.
+
+
+vectors are often used to describe some of the fundamental properties such as the position of objects, the speed something is moving, or the distance between two objects
+
+
+Use Cases
+1. describe width (x) and height (y) (size)
+2. coordinates
+3. direction
+4. magnitude
+
+
+
+
+in unity all vectors start from world origin (0,0,0) and end with specified coordinates
+so we don't need to specify start point of vectors
+so coordinates of end point of vector, indicates which direction or what magnitude vector has
+
+
+
+
+
+************** Important ******************
+vectors can be used as actual vectors for direction,magnitude,coordinates,... or can be used for holding x,y,z values
+some places like sprite render, use size field as vector not becasue of actual vector but for holding x,y values
+
+in some places we use vectors only for direction (direction vector) and in some other places we use vectors for position (position vector)
+
+
+
+
+
+
+
+Vectors in different spaces or coordinate systems
+in world space,1 vector unit refers to 1 unity unit which is 1 meter
+in screen space,1 vector unit refers to 1 pixel of screen
+
+** vector unit differs from vector magnitude

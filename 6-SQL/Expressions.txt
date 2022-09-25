@@ -1,0 +1,9 @@
+types of expressions in sql are;
+
+1. literals                                        (can be used anywhere)
+
+2. regular operators operation     (can be used anywhere)
+
+3. utility or regular functions	       (can be used anywhere)
+
+4. aggregate functions                  (cann't be used anywhere)

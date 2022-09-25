@@ -1,0 +1,3 @@
+DROP INDEX constraint_name
+
+DROP CONSTRAINT constraint_name

@@ -1,0 +1,4 @@
+ways to create order and proceed checkout:
+
+1. after shopping cart, redirect to checkout page that in here we get address and payment methods and coupon code maybe and send to to server and create new order
+2. if we have more that three step like meghdadit or digikala,then in the correct step we will create order with ordered=false then we can use persistant state of order between pages and set different info to that and in the end make its ordered to true and finish process

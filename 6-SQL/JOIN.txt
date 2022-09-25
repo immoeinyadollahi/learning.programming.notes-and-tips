@@ -1,0 +1,9 @@
+Convert Left Join To Right Join and vice versa
+
+table_1 LEFT JOIN table_2 is equal to table_2 RIGHT JOIN table_1 and vice versa only for two tables join
+
+FULL JOIN
+
+combination of left join and right join
+left join first and then right join. all all result will be listed. duplicates as well
+or union all of left join and right join

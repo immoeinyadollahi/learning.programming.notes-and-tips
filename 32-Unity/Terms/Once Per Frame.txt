@@ -1,0 +1,2 @@
+calling event functions once per frame means call those events once for every monobehaviour component in each frame
+or we have one phase for these functions in each frame

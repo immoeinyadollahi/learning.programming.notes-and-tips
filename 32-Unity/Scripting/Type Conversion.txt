@@ -1,0 +1,14 @@
+All Object (unity Object) instances can explicitly or implicitly converted to bool (all components (colldiers,...) and game objects)
+which is same is value != null (unity says 'exists')
+
+
+
+1. RayCastHit can be converted to bool (explicitly or implictly) and behind the scenes is same as hit.collider != null or hit.transform != null (i don't know exactly)
+
+
+
+
+
+
+
+

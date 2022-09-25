@@ -1,0 +1,1 @@
+transition: for this properties transition only applied if there was initial position set

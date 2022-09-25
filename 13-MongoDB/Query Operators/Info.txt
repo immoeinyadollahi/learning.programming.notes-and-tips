@@ -1,0 +1,4 @@
+field dependents:
+
+some operators like $eq,... are field dependent but some of them like $and,... are field independent
+using field dependent operators in top level cause error

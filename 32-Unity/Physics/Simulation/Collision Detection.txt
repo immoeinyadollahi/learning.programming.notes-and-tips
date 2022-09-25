@@ -1,0 +1,34 @@
+when collision or trigger happen in physics cycle,collisions and triggers will be stored
+and after simulation, in very end of cycle
+
+for collisions:
+new collison instances for both collided colliders will be created
+that includes contact points of collision,two colliders that collide with each other (as collider component) (may not exists in 2d but we can get from contact point),game object of collided collider and ... 
+
+
+for triggers:
+only other collided colldier
+
+
+then onCollisionXXX and onTriggerXXX messages will be sent to both colliders game objecs all monobehaviour components (can be disabled)
+
+
+
+
+
+
+
+
+
+Contact Point (Collision Point or Intersection Points)
+contact points of collided colliders or contact points where collision occurs
+
+
+Tips
+ 1. collison instance only passed to messages methods (OnCollisionEnter,...) after collision happend in physics simulation
+ 2. collision contains all contact points of collision
+ 
+ 
+
+
+**** although Rigidbodies are often described as colliding with each other, it is the Collider attached to each of those bodies which collide. Rigidbodies cannot collide with each other without colliders.

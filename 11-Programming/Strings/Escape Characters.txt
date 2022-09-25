@@ -1,0 +1,34 @@
+three type of escape character:
+1-universal escape character like  \n\t\r
+2-regex
+3-programming languages
+
+
+
+escape characters are characters that cause to (used for)  special behavior in different areas
+
+
+
+in regex:
+
+used in two ways:
+
+for characters that are usually treated literally ,indicates that the next character is special and not to be interpreted literally
+
+for characters that are usually treated specially, indicates that the next character is not special and should be interpreted literally.
+
+
+but:
+
+some characters like @ neither have a special meaning when escaped nor when unescaped so  \@ or @ are equivalent (always literal)
+
+
+
+
+
+
+considerations:
+
+in  \\x   second back slash loses its ability to escape its next character
+
+

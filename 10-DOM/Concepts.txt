@@ -1,0 +1,9 @@
+viewport:
+1-the area that is currently visible for user
+2-user's visible area of a web page
+
+traversing:
+traversing(walk/move through) in dom tree to find/select elements (reach to elements) based on relationships between them
+
+all elements enclosed by rectangle (minimal rectangle) and all geometry properties (box model,width,height,positions) is applied to that rectangle
+this rectangle differs from cg polygon and triangle, its only in dom world

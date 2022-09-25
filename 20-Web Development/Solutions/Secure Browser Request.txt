@@ -1,0 +1,4 @@
+we have ways to do this:
+
+1. create secret token and send it to server with header
+2. use socket and right before request we can get new token from server socket and send that with request ,then in server validate that then remove that token from database

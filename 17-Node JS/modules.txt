@@ -1,0 +1,5 @@
+we have 4 type of modules:
+1. internal modules (path,fs,...)
+2. global modules
+3. local modules (dev or production)
+4. current project file modules

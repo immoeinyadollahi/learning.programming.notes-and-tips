@@ -1,0 +1,7 @@
+we have global physic gravity and individual body gravity scale
+this allows us to affect all bodied in world by just changing global gravity
+and each body gravity scale indicates how much gravity relative to global gravity should be applied on this body (body gravity scale * global gravity will add gravity force to each body)
+
+***** in physic engine we only have each body gravity force, means force is not global becasue gravity is a simple force which applied on each step on each body, its for individual body and global gravity is just a base value which all bodies scale based on that
+
+**** like dom or unity transform, all relative values converted to abosulte in calculation, so body gravity scale is relative value which will converted to absolute force when appling gravity on it

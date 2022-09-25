@@ -1,0 +1,5 @@
+Behaviours are Components that can be enabled or disabled.
+
+they provide enabled,isActiveAndEnabled properties on drived components
+
+** components that are not behaviors can't be disabled like transform,rigidbody,.. which don't have enabled and isActiveAndEnabled hence can't be disabled

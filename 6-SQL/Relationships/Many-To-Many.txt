@@ -1,0 +1,7 @@
+also called M:N
+
+considrations:
+
+					 its possible that one side can have multiple of other side but only one relation exists at any time but can have multiple in its life
+					 
+

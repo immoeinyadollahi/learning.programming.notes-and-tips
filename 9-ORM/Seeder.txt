@@ -1,0 +1,8 @@
+to insert some data into a few tables by default
+
+Seed files are some change in data that can be used to populate database table with sample data or 
+test data or initial project data or even product data
+like roles and etc
+
+data can be fake or real
+seeding can be done both in development and production

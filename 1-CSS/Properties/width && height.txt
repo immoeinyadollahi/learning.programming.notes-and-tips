@@ -1,0 +1,1 @@
+width and height with relative value are relative to width and height of content of parent not parent whole element (including padding and border)

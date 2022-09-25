@@ -1,0 +1,17 @@
+ExecuteInEditMode:
+
+	Makes all instances of a script execute in Edit Mode.
+
+	By default, MonoBehaviours are only executed in Play Mode. By adding this attribute, any instance of the MonoBehaviour will have its callback functions executed while the Editor is in Edit Mode too.
+	callback functions functionality is different in editmode
+
+	The functions (messages,lifecycle methods,event)are not called constantly like they are in Play Mode.
+
+	Update is only called when something in the Scene changed.
+	onEnable
+
+HideInInspector
+
+	this attribute will instruct unity to serialize fields just like serializedfield but not show in inspector
+	private field by default will not serialized but with this attribute will be serialized but not show in inspector
+

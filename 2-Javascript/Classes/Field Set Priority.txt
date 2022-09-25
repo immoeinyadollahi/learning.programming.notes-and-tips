@@ -1,0 +1,8 @@
+with constructor and parent
+1-parent constructor with super
+2-public fields
+3-class constructor
+
+without constructor
+1-parent constructor
+2-public fields

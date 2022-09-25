@@ -1,0 +1,1 @@
+this method remove element from dom tree and also remove all attached event handlers and data (not data-attribute) associated with that element and all of its decendants recursively

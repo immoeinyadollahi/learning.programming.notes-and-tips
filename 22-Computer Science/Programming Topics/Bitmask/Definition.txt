@@ -1,0 +1,8 @@
+In binary operations, a bitmask value (binary format) will be used for filter bit values using logical operations.
+changed values known as masked values
+
+operators
+OR,AND,XOR
+
+
+search if numbers computed after bitmask filtring are useful

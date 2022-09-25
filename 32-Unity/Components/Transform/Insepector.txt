@@ -1,0 +1,7 @@
+values shown in transform component inside inspector are local transform (means values are relative to parent transform values) of game object with parent,if game object doesn't have parent,then it will show its transform relative to world space
+
+
+Rotation
+rotation values in inspector are same as local eularAngles but unity shows human friendly represention of local eularAngles which can go negative or more that 360deg
+rotation inspector values are just for convenient and readability
+this rule is only for rotation not position and scale

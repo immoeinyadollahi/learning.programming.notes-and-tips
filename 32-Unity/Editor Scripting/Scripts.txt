@@ -1,0 +1,4 @@
+scripts that run in editor are:
+1. Editor drived script classes
+2. EditorWindow scripts
+3. MonoBehaviour component which run in editor

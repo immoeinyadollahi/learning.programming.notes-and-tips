@@ -1,0 +1,6 @@
+we have two built-in text components which are TextMesh and UI.Text
+
+TextMesh uses mesh renderer to render text
+
+The Text Mesh places text in the 3D scene
+for generic 2D text for GUIs, we use UI Text component instead

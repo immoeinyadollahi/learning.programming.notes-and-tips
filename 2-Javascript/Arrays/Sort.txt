@@ -1,0 +1,7 @@
+Since version 10 (or EcmaScript 2019), sort method is stable. means items that have the same sort field,
+will remain in the same order as before calling the sort. This is what a stable sorting algorithm guarantees.(keep original order of a and b)
+
+but in mongodb or prior versions of javascript order of items with same sort field were not stable (random)
+in sql, rows with same value of orderby column , by default keep there original order,you can specify another column to change there order
+
+

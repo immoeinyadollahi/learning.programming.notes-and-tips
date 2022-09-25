@@ -1,0 +1,4 @@
+The Decimal, Double, and Float variable types all are floating point number (اعشاری) but are different in the way that they store the values. Precision is the main difference where 
+float is a single precision (32 bit) floating point data type,
+double is a double precision (64 bit) floating point data type 
+and decimal is a 128-bit floating point data type.

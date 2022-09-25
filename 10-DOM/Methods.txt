@@ -1,0 +1,8 @@
+HTMLFormElement.submit():
+													element must be inside dom tree
+													no submit event will be generated at all
+													
+HTMLAnchorElement.click()
+													element can be outside of dom tree
+													click event will be generated
+	

@@ -1,0 +1,23 @@
+Much like setState in Class components created by extending React.Component or React.PureComponent, the state update using the updater provided by useState hook is also asynchronous, and will not be reflected immediately.
+
+Also, the main issue here is not just the asynchronous nature but the fact that state values are used by functions based on their current closures, and state updates will reflect in the next re-render by which the existing closures are not affected, but new ones are created. Now in the current state, the values within hooks are obtained by existing closures, and when a re-render happens, the closures are updated based on whether the function is recreated again or not.
+
+Even if you add a setTimeout the function, though the timeout will run after some time by which the re-render would have happened, the setTimeout will still use the value from its previous closure and not the updated one.
+
+setMovies(result);
+console.log(movies) // movies here will not be updated
+If you want to perform an action on state update, you need to use the useEffect hook, much like using componentDidUpdate in class components since the setter returned by useState doesn't have a callback pattern
+
+useEffect(() => {
+    // action on update of movies
+}, [movies]);
+As far as the syntax to update state is concerned, setMovies(result) will replace the previous movies value in the state with those available from the async request.
+
+However, if you want to merge the response with the previously existing values, you must use the callback syntax of state updation along with the correct use of spread syntax like
+
+setMovies(prevMovies => ([...prevMovies, ...result]));
+
+
+
+
+https://stackoverflow.com/questions/54069253/usestate-set-method-not-reflecting-change-immediately

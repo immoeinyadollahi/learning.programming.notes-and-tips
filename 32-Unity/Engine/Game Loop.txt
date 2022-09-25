@@ -1,0 +1,6 @@
+Game Loop
+without game loop two modules (physics and renderer) can't be used effectively
+
+in game loop early stage we simulate physics (physics cycle)
+after some other logics we finally renderer world by using renderer to update what are in screen
+

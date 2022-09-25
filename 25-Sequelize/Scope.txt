@@ -1,0 +1,9 @@
+reuse code with commonly used queries, options,etc
+
+two types of scopes:
+
+1. model scopes -> apply to (modify query) model static finders e.g. findAll,fineOne
+
+2. association scopes -> apply to (modify query) instance finders (mixing) e.g. getXXX,hasXXX
+
+applying scopes means modifying queries by overriding or mergin ...

@@ -1,0 +1,21 @@
+audio listener acts as microphone like device, 
+It receives input from any given Audio Source in the scene,then calculate based on various factors (transform,...) and outputs sounds through the speakers
+
+** we only have one audio listener for each scene because all sources must played relative to one thing (we use camera for game object of audio listener because all sources calculated relative to camera which usually close to player object)
+
+** If the Sources are 3D, the Listener will emulate position, velocity and orientation of the sound in the 3D world . 2D will ignore any 3D processing
+
+** Assumption **
+   when a sound playing from a source in the scene,listener receives chunks of audio in stream manner in each frame for each chunk listener calcualte or emulate position, velocity and orientation of sources if source are 3d mode and finally based on result of calcualtion,final data will be outputed to device speakers for each chunk
+   unity doesn't output whole audio in speakers right after audio played,it will calculate chunks of audio in period of time like stream
+
+   Or
+
+   sound will played as whole and in each frame,its data (pitch,volume) will be changed based on factors like (transform,velocity,...)
+
+
+   if second option is correct then why in low frame rate,sounds get laggy if sound played as whole
+
+
+** We should attach the Audio Listener to either the Main Camera or to the GameObject that represents the player
+   because listener supposed to be player and all sources calcualted relative to listener

@@ -1,0 +1,13 @@
+the reason why errors thrown inside of async function and function defined in try block is because that function never called inside of try block
+
+`try` block only handles function that will be called inside of its block not function declared inside of its block
+because all async task are either micro/macro tasks which come from event loop and get pushed directly to callstack so only one execution context created which doesn't have any chance to find TRY scope from its scope
+
+How Error Handling Works:
+when error occured, program first find nearest scope with flag TRY start from where throw happens until first scope with flag FUNCTION
+if no TRY scope found and reaches to FUNCTION scope then goes through callstack and get this function call execution context data and get scope of where execution context created
+then check if execution context scope is TRY scope,if not, goes up until FUNCTION scope and similar process
+until found first TRY scope,if there is no TRY scope in this way and also there is no execution context left or last execution context scope is null (or has a flag that says its from event loop) then give error to global error handler set by host environment (in php we can set global error handler)
+
+
+therefore error handling works by finding nearset TRY scope and also go up in execution contexts

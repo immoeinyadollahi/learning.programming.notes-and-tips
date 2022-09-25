@@ -1,0 +1,6 @@
+ontrigger/oncollision enter,exit and stay messages will be sent to both collided colliders game object all monobahaviour components (even disabled) if their rigidbodies match for collision
+
+Trigger messages will sent if at least one of colliders are trigger and rigidbody types matched
+Collision messages will sent if none of colliders are trigger and rigidbody types matched
+
+

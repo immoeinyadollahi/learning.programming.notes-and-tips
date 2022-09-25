@@ -1,0 +1,6 @@
+collision is used for detecting colliders collision in simulation time
+queries (overlap or cast) will be used for detecting colliders in specific area and casting used for detecting hit by casting virtual object
+
+short:
+collisions are part of simulation time (happen at simulation time)
+overlap and casting are part of querying (happen outside of simulation)

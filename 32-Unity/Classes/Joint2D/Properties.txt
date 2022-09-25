@@ -1,0 +1,5 @@
+reactionForce:
+            When a joint tries to constrain a rigidbody it may need to apply a force to do so. This is known as the reaction force
+            constrain rigidbody means fixing temporarily broken constraints,which joints use forces to fix them,need forces to fix broken constraints called reactionForce
+
+            *** force value is force applied on rigidbody in order to fix broken constraint in previous simulation

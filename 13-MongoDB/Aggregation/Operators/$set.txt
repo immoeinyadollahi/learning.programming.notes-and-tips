@@ -1,0 +1,1 @@
+$set is an alias for $addFields ,both used for add new fields or overwrite existing field of input documents

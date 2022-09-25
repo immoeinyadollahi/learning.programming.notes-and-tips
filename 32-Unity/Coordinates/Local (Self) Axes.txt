@@ -1,0 +1,36 @@
+Incorrect Definition
+we have two axes,world and self (game object own coordinate system or axes)
+
+world axes means unity world coordinate system or axes which doesn't change or rotate (game object can have rotation but it will not affect on world axes)
+
+local (self) axes
+means game object own coordinate system or axes which may change because of rotation (its global rotation)
+so world axes doesn't change at all but game object axes or coordinate system may change because of rotation
+
+unity docs say transforms game object based on its local coordinate system (Applies transformation relative to the local coordinate system.)
+
+
+** Correct Definition ** there is only one axes or coordinate system in world which is world axes,all game objects placed somewhere in the world and when transforming game object there is no concept of game object own axes,
+own axes can be replaced with custom data or properties which will change behaviour of transformations
+
+local (self) axes or coordinate system is global coordinates system (which doesn't change) but with considiring transform global rotation
+
+
+therefore there is only one axis which is base world axes and don't change (rotate),when transforming game object we still do that with base axes but with including factors like rotation (if transform base on local axes)
+same concept on gizmos,if tool handle rotation set to local,means shape gizmos on game object with appling its rotation factor and if set to global,don't apply those data or properties
+gizmo shaped like axes but they are just for convenient to transform game object based on its relative transform values,
+so there is no concept of game object axes and also no concept of axes rotation
+
+
+
+
+
+
+
+when scaling game objects,always global rotation factor will be applied even in gizmos,scaling always based on object rotation (local and world gizmos for scale are the same and based on rotation factor)
+technically scaling means stretching vertices,so rotation factor will be applied
+
+** when changing transform.position (local or global) property directly, it always ignore current rotation state as factor (incorrect alias: Applies transformation relative to the world coordinate system -> Unity)
+
+
+

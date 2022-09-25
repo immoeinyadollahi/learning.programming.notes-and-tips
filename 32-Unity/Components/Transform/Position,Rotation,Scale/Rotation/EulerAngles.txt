@@ -1,0 +1,31 @@
+euler angles will be used for euler angle represention of the rotation which is based on vector3
+euler angles will be used to represent 3 components (x,y,z) of quaternions by applying each component around their individual axes
+euler angles can represent a three dimensional rotation by performing three separate rotations around individual axes. In Unity these rotations are performed around the Z axis, the X axis, and the Y axis, in that order.
+
+eularAngles vector components values indicate rotation angle around that axis
+
+** Unity performs the Euler rotations sequentially around the z-axis, the x-axis and then the y-axis
+
+
+*** each XYZ values represent angle degrees which must be applied on individual axes
+
+
+Conversion
+we have eulerangles property for quaternion to convert quaternion to vector,and in inverse we have Eular static method for Quaternion class which convert xyz components to quaternion
+
+
+************************ Important Assumption **********************
+like Input.mousePosition which is simple vector but its units represent pixels  (relative to screen space)
+eularAngles vector compoents indicate angle around that axis 
+
+
+euler angles doesn't have to be vector, only XYZ values will be used not magniatude or direction of vector, euler angles just rotate around each X Y Z axis by given each component values
+so vector will not be used like other places, its like Input.mousePosition which vector just holds mouse position in pixel or sprite renderer size which is vector but it just holds x y values 
+vector is not used like physics nad positions
+
+so assume that eularAngles uses vector only for holding XYZ values
+
+
+Tips
+1. eularAngles are always positive and in range of 0,360 degrees
+   if you set eularAngles to negative or more than 360 degrees, it will be corrected

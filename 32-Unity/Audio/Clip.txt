@@ -1,0 +1,6 @@
+audio clip instance contain a refrence to audio data (file) and various of options
+for every audio file imported into unity projects,an instance of audio clip will be created which can be access by scripts
+
+
+** The game may access meta-information about the audio data via the AudioClip even before the actual audio data has been loaded
+   This is possible because the import (also reimport) process has extracted various bits of information such as length, channel count and sample rate from the encoded audio data and stored it in the AudioClip

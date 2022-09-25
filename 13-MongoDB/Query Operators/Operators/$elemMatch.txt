@@ -1,0 +1,2 @@
+$elemMatch with use of simple array field only accepts query expression
+$elemMatch with use of array of embed documents only accepts query (not query expression with operator but like query top level)

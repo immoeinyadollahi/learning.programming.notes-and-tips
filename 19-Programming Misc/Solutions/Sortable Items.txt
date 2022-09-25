@@ -1,0 +1,2 @@
+in order to sort items and save sorting state in databse or any storage you must always specify all items order and save all of them.even if only one item moved to new location ,all items order must be send to server,because we dont know how many items will be reordered
+so we must check for order of all items each time we save orders

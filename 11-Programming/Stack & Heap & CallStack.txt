@@ -1,0 +1,8 @@
+`incorrect definition`
+
+stack is a container (list or array) for scopes  
+
+heap is a container for addresses
+
+callstack is container or array or list of execution contextes
+

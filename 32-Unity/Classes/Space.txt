@@ -1,0 +1,15 @@
+Space.self means apply rotation factor and in Space.world means don't apply that factor when translate or rotate
+
+
+
+Space.Self will be used with Rotate and Translate methods to rotate and translate game objects while considering their computed rotation (global rotation) state
+
+Space.World will be used for same methods to rotate and translate game object but ignore current rotation state
+
+** local or global tool handle rotation are same as Space.Self and Space.World with Rotate method
+
+
+
+Space.World used for transforming objects relative to world coordinate system and Space.Self used for transforming objects relative to local (self) coordinate system (which may rotate because of rotation)
+
+

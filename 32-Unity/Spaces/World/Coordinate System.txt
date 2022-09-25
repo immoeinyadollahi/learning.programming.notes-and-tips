@@ -1,0 +1,9 @@
+in unity world space we only have one coordinate system which is based on world transform
+so if we use the term of local axes or self axes for game objects,it doesn't mean each game object has its own axes which may rotate.
+local (not local space) or self axes means if want to translate or rotate or scale game object,we should consider game object rotation
+(rotation and translate can ignore game object transform rotation state but scale can't)
+
+
+when unity in docs says "Applies transformation relative to the world/local coordinate system." it means apply rotation factor when transforming game objects
+not separate axes for game objects
+

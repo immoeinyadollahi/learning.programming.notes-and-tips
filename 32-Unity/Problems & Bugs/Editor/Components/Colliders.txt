@@ -1,0 +1,3 @@
+1. in 2d, all colliders except BoxCollider2D when attached or reset to default,fit with sprite render
+   for box collider, it only fit with game object transform scale
+	

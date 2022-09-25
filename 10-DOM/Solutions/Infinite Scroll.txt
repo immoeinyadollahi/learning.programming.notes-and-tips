@@ -1,0 +1,58 @@
+        // Window Based Infinite Scroll
+        let isFetching = false
+        $(window).on('scroll', (e) => {
+            // Method 1 reach to bottom of wrapper
+            const itemsWrap = $(".items-wrap")
+            if ($(window).height() + $(window).scrollTop() >= itemsWrap.outerHeight() + itemsWrap.offset().top) {
+                if (!isFetching) {
+                    $(".js-loading").show()
+                    isFetching = true
+                    setTimeout(() => {
+                        for (let index = 0; index < 40; index++) {
+                            const el = $(`<div class="card">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam fugit beatae sunt recusandae minus at odit vitae quae earum dicta?
+        </div>`)
+                            itemsWrap.append(el)
+                        }
+                        $('.js-loading').hide()
+                        isFetching = false
+                    }, 2000)
+                }
+            }
+            // Method 2 reach to specific element
+            const specificElement = $("element")
+            if ($(window).height() + $(window).scrollTop() >= specificElement.offset().top) {
+                // same as above
+            }
+
+            // in both methods you can remove $(window).scrollTop() from left side and in right side instead of offset().top() (equivalent to ---> el.getBoudningClientRect().top + window.scrollY) just write getBoudningClientRect().top
+        })
+
+        // Element Based Infinite Scroll  
+        let isFetching = false
+        const itemsWrap = $(".items-wrap")
+        itemsWrap.on('scroll', (e) => {
+            // Method 1 reach to bottom of wrapper
+            if (itemsWrap.innerHeight() + itemsWrap.scrollTop() >= itemsWrap[0].scrollHeight) {
+                if (!isFetching) {
+                    $(".js-loading").show()
+                    isFetching = true
+                    setTimeout(() => {
+                        for (let index = 0; index < 40; index++) {
+                            const el = $(`<div class="card">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam fugit beatae sunt recusandae minus at odit vitae quae earum dicta?
+            </div>`)
+                            itemsWrap.children(".card").last().after(el)
+                        }
+                        $('.js-loading').hide()
+                        isFetching = false
+                    }, 2000)
+                }
+            }
+            // Method 2  reach to specific element
+            const specificElement = $("element")
+            if (itemsWrap.innerHeight() + itemsWrap.scrollTop() >= specificElement.position().top) { // make sure parent is offset1Parent
+                // same as above
+            }
+
+        })

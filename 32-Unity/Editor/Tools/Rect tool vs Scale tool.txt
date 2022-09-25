@@ -1,0 +1,8 @@
+Scale tool is only for scaling which scales from origin of transform that make sprite/mesh stretch from both sides
+
+Rect tool use both scale and position which scales transform while moves origin position which makes an illusion that game object is scaling from one side only
+it will reposition game object when scaling which pretend game object is scaling only from specific sides
+
+technically scale will move veritces from all sides
+
+

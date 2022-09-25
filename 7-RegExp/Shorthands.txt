@@ -1,0 +1,3 @@
++ ? * are shorthands for some patterns of manualy quantifier { }
+
+\d \w \s \D \W \S  are shorthands for character classes or characters -----> [] | [^]

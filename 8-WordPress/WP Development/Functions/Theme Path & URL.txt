@@ -1,0 +1,13 @@
+get_stylesheet(); name of theme (child theme if exists)
+get_stylesheet_uri(); url of style.css (for child them if exist,otherwise main theme)
+get_stylesheet_directory(); style.css directory path (child theme if exists)
+get_stylesheet_directory_uri(); style.css directory url (child theme if exists)
+
+get_template(); name of main theme
+get_template_directory(); main theme style.css directory path
+get_template_directory_uri(); main theme style.css directory url
+
+
+there is no method for getting absolute filename,we can use get_stylesheet_directory() ."/style.css"
+
+get_template_uri doesn't exists, but its same as   get_template_directory_uri . "/style.css"

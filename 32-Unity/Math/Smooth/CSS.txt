@@ -1,0 +1,5 @@
+just like css, which we have linear,ease,... these are just timing functions
+
+these are cubic-bezier presets 
+so we can create custom timing function by defining our own bezier
+

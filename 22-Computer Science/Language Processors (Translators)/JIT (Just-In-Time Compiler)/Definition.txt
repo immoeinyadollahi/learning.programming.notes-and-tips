@@ -1,0 +1,2 @@
+A JIT compiler only looks at the bytecode once (intermediate language code), and compiles it to native code which can then be understood directly by the computer - no further translation required. The translation takes time, so if you can do it just the once, it's more efficient.
+it is something between interpreter and compiler (close to compiler) that compiles bytecode into machine code at runtime and use cache to improve performance

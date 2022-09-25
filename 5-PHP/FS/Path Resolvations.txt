@@ -1,0 +1,6 @@
+if path is absolute it will find that path properly
+
+in require and all fs functions:
+if path is relative it joins the path with cwd and create full path
+
+all functions and require convert all directory separator to its correct type (to correct platform directory separator)

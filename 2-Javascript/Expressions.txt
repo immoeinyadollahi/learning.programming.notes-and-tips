@@ -1,0 +1,7 @@
+types of expressions in js are;
+
+1. literals
+
+2. operators operation
+
+3. get variable value from stack

@@ -1,0 +1,1 @@
+slug is url-friendly version of the name, it is usually all lowercase and contains only letters,numbers,underscore (\w) and hyphens and spaces replaced by hyphens

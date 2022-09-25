@@ -1,0 +1,6 @@
+
+
+
+Tips
+    1. in some places acts as multiplier for scaled time like Time.deltaTIme
+       in some places like WaitForSeconds,acts as divider

@@ -1,0 +1,1 @@
+Fixed Timestep	->  A framerate-independent interval that dictates when physics calculations and FixedUpdate() events are performed. (physics cycle)(if timestep is very high or very low it may make physic so smooth or laggy but it doesn't mean it takes longer or shorter)

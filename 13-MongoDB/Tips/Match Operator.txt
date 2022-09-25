@@ -1,0 +1,4 @@
+The $match query syntax is identical to the read operation query or regular query syntax. $match does not accept raw aggregation expressions. 
+To include aggregation expression in $match, use a $expr query expression.in other word ,match environment is special in aggregation
+
+there are other special cases in aggregation that are in mongodb documentation 

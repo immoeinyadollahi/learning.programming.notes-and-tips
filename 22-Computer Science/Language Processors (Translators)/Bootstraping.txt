@@ -1,0 +1,25 @@
+In computer science, bootstrapping is the technique for producing a self-compiling compiler — that is, a compiler (or assembler) written in the source programming language that it intends to compile. An initial core version of the compiler (the bootstrap compiler )(assembler) is generated in a different language (which could be assembly language); successive expanded versions of the compiler are developed using previous version of the language. The problem of compiling a self-compiling compiler has been called the chicken-or-egg problem in 
+compiler design, and bootstrapping is a solution to this problem.[1][2]
+
+the process by which simple language is used to translate more complicate programs
+
+Version 2 of the compiler is written in the language they designed. 
+They use version 1 of the compiler (written in assembly), to compile version 2 (written in your new language),into a compiler written in your language to translate other programs written in your language.and so on This is called bootstrapping.
+
+in other word , previous version of compiler compiles new version of compiler source code  (written in your new language)  to new compiler and so on until we dont need new compiler
+
+compiling a compiler (source code of new compiler) with previous version of itself
+
+self-compiling compiler means a compiler that compile new version of itself (source code)
+
+bootstrapping helped to avoid repeating long codes and simplify complex operations
+
+// compiler keyword means assembler for assembly language
+
+
+
+Many compilers for many programming languages are bootstrapped
+
+Assemblers (each versions of assembly) were the first language tools to bootstrap themselves. (assembly is first real programming language)
+
+therefore machine code is the root of programming languages (assembler initial version made with direct machine code)

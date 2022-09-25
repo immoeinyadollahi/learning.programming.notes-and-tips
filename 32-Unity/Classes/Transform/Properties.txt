@@ -1,0 +1,28 @@
+transform.root:
+
+                if transform is root itself (doesn't have any parent which is game object) return self
+                otherwise return root ancestor for this transform
+
+transform.up/right/forward:
+
+                transform.up/right/forward is Vector3.up/right/forward * transform.rotation
+                means world axes but with considiring game object rotation
+
+                ** these properties is based on global axes
+
+                ** these properties are always normalized
+
+                UP
+                    transform up axis is world axis while considiring game object global rotation
+                    we simple say, up direction of local(self) axes 
+
+                    represents The Y axis (green axis) of the game object transform relative to world space
+
+            
+                Property Set
+                setting these properties only rotate transform to put up or right or forward axis (self axis) in same direction as given direction vector
+                *** given vector value treated as direction, so magniatude or position is not important and vector will be stored as normalized version
+
+                same as TransformDirection(Vector3.up/right/forward)
+                   
+                       

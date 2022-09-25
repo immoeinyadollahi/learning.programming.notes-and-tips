@@ -1,0 +1,9 @@
+Data structures are used to hold data while algorithms are used to solve the problem
+
+A data structure is a method of organizing data in a virtual system.Think of sequences of numbers,array,stack, or tables of data.these are both well-defined data structures
+
+An algorithm is a sequence of steps executed by a computer that takes an input and transforms it into a target output.
+An algorithm is a specific procedure for solving a well-defined computational problem
+
+Data stylryctures are for holding data
+Data means every things like pointer,callbacks or primitives and ....

@@ -1,0 +1,2 @@
+operators associativity means operators with same precendece beside each other,will be evaluated from left to right or right to left
+its not the same as direction of evaluation for each operators (e.g. ternary operators have right-to-left associativity but evaluation direction is lefto-to-right)

@@ -1,0 +1,41 @@
+AddComponent:
+                AddComponent will create new instance of component and add it to game object and return new instance
+
+                with AddComponent we can only add unity types (monobehaviour subclass components and built in component)
+                we can't add custom class extend built in classes because they are not unity engine types
+
+
+
+
+SendMessage
+            calls method with given methodName on every monobehaviour component on this game object
+
+
+            *** disabled component will receive message but not those with game objects with activeInHierarchy set to false
+                simply put, only game objects with activeInHierarchy set to true component receive message just like awake
+
+
+
+SendMessageUpwards
+            calls method with given methodName on every monobehaviour component on this game object and all game object ancestors monobehaviour components
+
+
+Get GameObjects Components 
+
+    GetComponent -> search for component in gameobject (gameobject can be either active or inactive)
+
+    GetComponentInParent -> search for component in gameobject first,then if not found, search in all ancestors
+
+    GetComponentInChildren-> search for component in gameobject first,then if not found, search in all descendants
+
+    Tips
+    GetComponentIn Children and Parent only components on active GameObjects (activeInHierarchy) are matched unless explicitly specified.
+    but GetComponent works on inactive game object too
+
+    for GetComponentInChildren if game object itself activeInHierarchy set to false,it only search for component in game object itself and if found,return result and if not, return null and doesn't search through children
+    but if gameobject activeInHierarchy set to true and no result found in itself,search through all of its descendants with activeInHierarchy set to true
+
+    for GetComponentInParent if game object itself activeInHierarchy set to false,only start search from closest ancestor with activeInHierarchy set to true
+    if gameobject itself activeInHierarchy set to true,first search in itself,then if not found,go upward
+
+

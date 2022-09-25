@@ -1,0 +1,50 @@
+for many game object components (built-in or custom) shown in inspector 
+when changing some fields, some fields may be disappeared, 
+they are exist however but because they will be ignored on caluclation based on other fields values, they will be hidden in inspcetor
+
+** we can however change them by changing inspector from normal to debug
+   or before changing those fields, we can configure fields which may be hidden on other state
+
+e.g. 
+1. camera with orthographic projection, any changes to fields like FOV will not affect on camera view because in calculation unity ignore it when projection is orthographic and ...
+
+2. for rigidbody component when changing type, some fields will become hidden because those fields values will be ignored by physic engine internally in simulation (like mass for static type)
+   in unity we can however change them by changing inspector from normal to debug and change physic engine body properties
+   or before chnaging type we can configure fields which may not be available on another type
+   we are only changing physic engine body proeprties
+
+
+
+
+
+3. Can't disable monobehaviour component in editor
+because there is not difference between on enabled or disabled based on current methods state on components
+therefore unity hide checkbox for enabled or disabled components
+
+*** there is no difference for unity but may be used by our scripts
+
+*** Review ***
+OnMouseXXX,OnCollisionXXX,OnTriggerXXX,Awake,... messages will be sent to all monobehaviour components of all game object which are activeInHierarchy and component enabled state will be ignored (activeInHierarchy is only condiiton to send these messages)
+in constrast Start,Update,FixedUpdate,... messages will be sent to all monobehaviour isActiveAndEnabled components
+
+***************
+the key point is if component doesn't have any Start,Update,... messages method,there is no difference between enabled or disabled state,hence unity remove checkbox in inspector for those components
+however we can disable component in scripts but like i said,it is unneccessary action and doesn't make any difference
+
+
+**** if we can't set disabled in inspector we can however disable component by script (or add one those Start ,.. method and set enabled in inspcetor) and prevent calling to those methods (Awake,OnMouseXXX,...) by checking if component is enabled 
+     
+
+Incorrect Definition
+The checkbox only disables Monobehaviour methods (Start, Awake, Update etc). This script has none of those methods, so it will not have a checkbox
+
+correct ----------> checkbox actually disable monobehaviour compoent but unity will still send messages like Awake,... to those component (ignore enabled state at all)
+
+
+
+
+************************
+if somethings shown in inspector and unity sometimes hides them,it doesn't mean it can't change or removed completely,it means its either currently useless (unneccessary) to change them or will ignored in calcualtions
+so they will be hidden because either ignored internaly or useless based on ******** current state *******
+
+***** unity doesn't change any property value when hide them

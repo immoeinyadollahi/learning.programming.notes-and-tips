@@ -1,0 +1,19 @@
+in unity if variable needs vector3 but we give vector2, vector2 will get only x,y values from its instance and treat z as 0 and create new vector3 implicitly and returns it
+also in inverse case,when converting vector3 to vector2,z component will be removed and new vector2 will be creating with existing x and y component
+
+
+** think of vector2 as Vector3 with z of 0 and vector3 as vector2 but with z component (0 or any value)
+   vector3 with z of 0 is same as its vector2
+
+** the key point is when converting vector2 to vector3 or vise versa,X and Y component will remain unchanged and only z component removed/added
+
+
+e.g. when assign vector2 to localscale its will get x,y from that and treat z as 0 and create new vector3 from that (because scale is based on vector3)
+
+
+
+Unity Docs
+
+A Vector3 can be implicitly or explicitly converted into a Vector2. (The z is discarded).
+A Vector2 can be implicitly or explicitly converted into a Vector3. (The z is set to zero in the result).
+

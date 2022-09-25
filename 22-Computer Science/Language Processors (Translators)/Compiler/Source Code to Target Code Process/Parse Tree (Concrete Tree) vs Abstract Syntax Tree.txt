@@ -1,0 +1,3 @@
+Simply, AST only contains semantics of the code, Parse tree/CST (Concrete Syntax Tree) also includes information on how exactly code was written. 
+The concrete syntax tree contains all information like superfluous parenthesis and whitespace and comments, 
+the abstract syntax tree abstracts away from this information.

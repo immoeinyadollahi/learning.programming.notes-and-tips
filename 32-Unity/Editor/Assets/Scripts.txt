@@ -1,0 +1,3 @@
+scripts class name only get file name when first time creating scripts
+renaming in the future only rename file name and doesn't change class name within that script file
+it must rename manually

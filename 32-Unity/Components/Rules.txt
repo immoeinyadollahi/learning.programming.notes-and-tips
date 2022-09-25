@@ -1,0 +1,3 @@
+1. we can't attach 2d components if at least one 3d component exists on game object or vice versa because it will conflict with existing component
+
+

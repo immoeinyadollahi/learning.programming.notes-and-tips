@@ -1,0 +1,12 @@
+Hierarchy contain scenes (1 or multiple) and Scene contain game objects with their children and components,...
+Hierarchy doesn't do anything, its just a container for scenes
+
+scenes are assets which contain game objects
+so scene are container for game object
+
+there is only one world and one physic engine for multiple opened scenes (additive)
+
+
+multiple scenes game objects can interact with each other
+
+

@@ -1,0 +1,21 @@
+Inheriatnce
+hierarchy relationships
+
+Composition
+compose reuseable parts (components)	
+
+
+example -> https://stackoverflow.com/a/891820/14719082
+
+e.g. laravel blade supports inheritance and also includes(composition of reuseable parts)
+
+** composition in general can be implemented anywhere that uses component concept (reuseable parts)
+
+
+in unity, we can use composition and inheritance for components
+
+1. components inheritance
+
+2. separate components for specific behaviours
+
+

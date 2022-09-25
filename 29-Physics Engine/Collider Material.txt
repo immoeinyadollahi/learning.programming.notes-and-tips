@@ -1,0 +1,2 @@
+colliders of all types of bodies can get material not only dynamic bodies or kinematic bodies colliders
+static body colliders can get material as well

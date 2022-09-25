@@ -1,0 +1,8 @@
+we have tree types of bodies:
+1. static
+1. dynamic
+1. kinematic
+
+
+types can be changes by just one method
+properties are shared between them but some of them like mass,velocity,.. has no effect when type set to static but has effect when type is dynamic or kinematic

@@ -1,0 +1,16 @@
+Microphone work Is just get sound waves around and coverting them into Electricity circuit
+
+
+Computers
+					Sound Card
+						Input
+								Sounds will be received by sound card on motherboard and converted into binary format which every program can received this binary format
+								Which some of them can store (record) sounds binary format into files
+								Or any how work with this binary format
+						Output
+								sound card receives binary format of audio and convert it into Electricity circuit and send it for speakers
+
+
+Speakers
+they are just output devices which receive Electricity circuit (directly from microphones or from any devices) and convert it to sound waves
+

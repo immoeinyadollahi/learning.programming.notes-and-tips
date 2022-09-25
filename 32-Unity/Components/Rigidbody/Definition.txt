@@ -1,0 +1,18 @@
+rigidbody allows game objects to be affected by physics
+control of an object's properties like transform through physics simulation. (Unity)
+gameobject will be under control of physics (transform of gameobject will be updated by physics)
+
+technically means game objects with this component will be known to physics engine world as dynamic body with shape and colliders and various properties like mass,... 
+and when removing this component from game objects,body will become static in physics world
+is kinematic property turn dynamic body to kinematic body in box2d and set dynamic body flag to kinematic in physx
+
+
+
+so game object without rigidibody will be static body in physics world
+and when adding rigidbody to gameobject,body in physics world will be changed to dynamic body
+
+
+
+
+
+*** Rigidbody component is just an api to working with corresponding physic engine body of game object

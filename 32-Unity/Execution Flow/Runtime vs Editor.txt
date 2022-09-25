@@ -1,0 +1,5 @@
+unity in edit mode will still create instance of game objects and add instance of different components to it and we can also change their fields 
+so in runtime,same objects fields and states will be used (new instance but with same states)
+
+
+all objects and fields and also all configurations and assets and ... will be serialized into files which can be used later in both editor and specifically runtime

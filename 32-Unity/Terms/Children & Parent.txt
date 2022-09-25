@@ -1,0 +1,6 @@
+Unity may use children or parent in som places which may not refer to only direct children or parent
+they may refer to all decendants or ancestors
+
+e.g. GetComponentInParent refer to component in all ancestors not just direct parent or transform.Find refer to all decendants not just direct children
+
+generaly children are direct decendants and parent is direct ancestor but unity may use them as all decendants or ancestors

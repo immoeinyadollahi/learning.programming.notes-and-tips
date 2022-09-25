@@ -1,0 +1,85 @@
+game object instances that don't belongs to any scene (off-scene game object) and located in project window
+
+prefabs in both runtime and editor are just game object instances but outside of any scene
+
+Concept
+Prefabricated game objects (with all hierarchy relations also all components and component fields)
+game objects that will be used later in project and stored in project window (outside of scene)
+
+Prefab Assets act as templates, we create instance from them (instantiate) and add them into the scene as new game object
+
+
+
+Override
+override means when instantiating new game object from prefab
+we may want to modify new game object structure which copied from original prefab
+we may want to add or remove components,modifying fields,modifying game object children and their data,...
+
+
+
+
+
+
+
+** serialized version of prefab instances created in editor only contians a reference to original prefab and set of modifications
+   and don't contain full game object data and relations
+
+** prefab instances fields like local position,local rotation,name,...
+   are overrides that can't be applied to original prefab
+   and when instantiating new game object from a prefab at runtime for those serialized scene game objects, these overrides must be applied on instance game object
+   however game object fields like active (activeSelf) may or may not be override on game objects
+   
+  
+****** Important *****
+
+   instances created in editor may contain set of overrides which when loaded in runtime and editor, those overrides will be applied after instantiating original prefab 
+   but dynamically instantiated objects  (not exists in serialized scene) don't have any special override by default
+
+   when instantiating prefab in editor, they will be serialized as set of modifications (override)
+   then when opening editor next time or playing game (runtime) new prefab instances will instantiated and those overrides (modifications) will be applied on instances
+
+
+   
+   
+   
+   
+
+
+Tips
+    1. process of creating the Prefab Asset from existing game object also turns the original GameObject into that Prefab instance (like other noraml prefab instances)
+       prefab instances with their children have blue text also root game object of prefab instance (differs from root game object in hierarchy because root of prefab instance can be child of other regular game objects but still known as root of prefab instance) has blue icon
+
+    2. prefabs overrides system (original to instances or vice versa) is an editor feature and in runtime they are just off-scene game objects that will be used to clone and instantiate new game objects (there is no relation between instantiated game objects and original prefab in runtime)
+       any changes to original prefab game object in runtime don't change instantiated game object
+       ** changes will be used next time instantiating new game object from original prefab not for existing game objects in then scene
+           because prefab is just a game object instance and when changing its fields,new instantiated game object from that,will have same fields
+
+   3. prefabs activeSelf may be true but their activeInHirerarchy is always false because they are outside of any scene
+      and because of this, prefabs will not receive any event messages 
+
+   4. in prefabs, references to descendants or ancestors game objects or those game objects components can be stored on components and when instantiating new instance of prefab, this references will be filled with
+      new cloned corresponding game objects or components and not orignal prefab objects (game object or component)
+      simply put, prefabs components (for root or nested game objects) that have references to their game objects children or ancestors object, when instantiated, those references refer to cloned version of those objects set in prefab not original prefab objects
+
+      ****** this feature is for all gameobjects not prefabs, so regular scene gameobject instantiation does same things as prefabs
+
+      ** reference to root of prefab game object in prefab mode differs from reference to prefab game object in project window 
+
+
+Rules:
+   1. we can't store references to scene objects (game objects,components,...) in prefabs. (but every scene objects can store reference to asset objects)
+      we can only store references to "asset objects" (prefabs,prefab components, textures, anything in the project window (asset)). 
+
+
+      ** instances however can store references (because they are in scenes) and they will be treated as overrides but can't be applied to original prefab (only editor)
+
+      ** if we instantiate prefabs many times even in multiple scenes and in editor or runtime,its better to get references within each components Start or Awake method by querying in the scene (Find,FindGameObjectWithTag...)
+
+      Prefabs are supposed to be shared between scenes. That means they can't rely on the object being present in every scene.
+      If you need them to reference something in the scene for runtime instantiated objects, you need to get that reference at runtime.
+
+
+
+Use Cases
+1. reuse game objects in multiple places in a Scene, or across multiple Scenes in your Project
+2. change once and apply changes to all instances (keep all the instances in sync with original prefab)

@@ -1,0 +1,4 @@
+validations ways:
+1. request->validate(rules,messages)
+2. form request (validate before controller automatically)
+3. manually creating validators

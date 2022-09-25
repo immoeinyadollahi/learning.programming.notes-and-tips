@@ -1,0 +1,39 @@
+merge multiple colliders into one collider
+
+
+The Composite Collider 2D uses the vertices (geometry) from any of these Colliders, and merges them together into new geometry controlled by the Composite Collider 2D itself
+
+When you enable Used by Composite on these colliders, other properties disappear from that component except geometry properties, as they are now controlled by the attached Composite Collider 2D.
+means they are not actual collider anymore and final collider geometry created by composite collider
+only sizing and shape and geometry properties remain which just change composite collider shapes and sizing
+they only control shape of actual collider which is composite
+
+imagine real collider is composite collider and it is only one collider
+
+
+Rules
+1. composite collider game object must have a rigidbody because composite collider depends on it
+   thesefore attached rigidbody for composite collider will be its game object rigidbody
+
+2. used Colliders must also be attached to the same Rigidbody 2D as the Composite Collider 2D
+   means attached rigidbody for these colliders must be same as composite collider attached rigidbody
+   means must be exist in same game object as composite collider is, or placed as children of compsite collider game object, which their attached rigidbody points to same composite collider rigidbody
+
+
+3.  Only polygon and box colliders can become part of composite collider
+
+
+
+
+Events
+OnCollisionXXX/TriggerXXX only sent to composite game object scripts instead of used colliders
+also OnMouseXXX only sent to composite gameobject if happen on used by composite colliders
+
+because real collider currently is composite collider and there is no sub colliders,so these messages sent to composite collider game object scripts
+
+
+
+
+Outline Vs Polygon Geometry Type
+Polygons is solid, so can be detected by raycast (line-plane). Outline mode is just lines, not solid. So can not be detected by raycast, line from different plane which are perpendicular(line-line).
+so key is solid and outline are just like font awesome icons

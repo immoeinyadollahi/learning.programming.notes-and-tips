@@ -1,0 +1,53 @@
+we have two types of programming languages:
+
+static type and dynamic differs from strongly type and weakly type
+type checking only used for variables 
+type checking means only check for value type and if it differs from variable type,throw error (typeerror)
+type checking also applied (if any) not only declaration but modifications as well
+type describes (or should have described) the variables in the language rather than the language itself.
+
+1.static typed:
+								variables types will be determined at compile-time
+								 type is bound to the variable
+								types can't be changes once specified (neither at compile-time nor run-time)
+								these languages do variables type checking (i.e. the process of verifying and enforcing the constraints of types againts given value) at compile-time as opposed to run-time.
+								typing is associated with the variable rather than the value it refers to.
+								
+2.dynamic typed
+								variables types will be determined at run-time
+								type is bound to the value
+								also types can change dynamicaly by different value type
+								these languages do variables type checking at run-time. (if any) because there is no compiler at all
+								typing is associated with the value rather than the variable itself.
+								these languages either dont have type checking or its optional
+								
+It could have been better used as a language with statically typed variables versus a language with dynamically typed variables
+also most compiled languages are static typed and interpreted languages are dynamic typed
+also a static typed language can have dynamic type checking system because static typing only will be type safe at compile time and not runtime
+also some dynamic typed languages have type checking (constraints of types) for variables but do not require it for programmer (e.g. php type declaration)
+
+
+also we have some hybrid languages but are few and unimportant
+
+
+
+
+We have typing system which means variables have 
+type or type associated with variable instead of value
+Typing system also provides type checking 
+
+static type means variable types determined at compile time.so it needs typing system and its required
+
+Dynamic type means variable types determined at run time because there is no compiler 
+In Dynamic typing, typing system is optional
+
+Some language have this feature but is optional
+If there is no typing system,type associated to value and not variable and therefore there is no type checking
+
+Static and dynamic typing have nothing to do with typing system and its standalone module
+But in static type langs this module is required but is optional in dynamic typed langs
+
+
+
+
+

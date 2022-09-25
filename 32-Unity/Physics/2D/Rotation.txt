@@ -1,0 +1,18 @@
+in 2d physic we only one axis rotation which is z-axis
+other axes rotation will be ignored in 2d
+
+unlike 3d rigidbody which use complete quaternion for rotation
+
+methods for rotation in rigidbody 2d either receive angle which is z-axis rotation angle or z-axis extracted from quaternion
+
+**** if we pass Quaterinon to SetRotation/MoveRotation methods, instead of full 3D rotation,only the z-axis rotation will be extracted.
+
+
+
+Transform
+X axis rotation will change height of collider components (x extent)
+Y axis rotation will change width of collider components (Y extent)
+
+
+*** rotation value like eulerAngles is always positive and in range of 0,360 degrees 
+    if you set rotation to negative or more than 360 degrees, it will be corrected

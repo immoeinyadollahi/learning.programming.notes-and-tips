@@ -1,0 +1,2 @@
+1. Lexing or tokenization (break sequence of characters into sequence of tokens)
+2. parser for creating ast (parser job is loop through tokens and find relations between them and create ast)

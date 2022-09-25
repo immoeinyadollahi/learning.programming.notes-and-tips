@@ -1,0 +1,3 @@
+ADD UNIQUE (ID);   ----->    key name or constraint name will be column name
+
+ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);

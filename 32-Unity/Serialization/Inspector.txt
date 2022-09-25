@@ -1,0 +1,17 @@
+Process
+1. check if field serialized or not if debug mode enabled
+2. field doesn't have HideInInspacetor attribute
+
+
+
+Rules
+1.  The Inspector window only shows the value of the serialized fields of the inspected objects.
+    but doesn't mean every serialized field must show in inspector (HideInInspector)
+    
+2. unity only show public methods (instance or static) in inspector fields that need methods
+   methods don't get serialized but only their names with corresponding component will be stored
+   HideInInspacetor or SerializeField doesn't affect methods
+   
+   *** if method accept parameters,only those method with specific types of parameters will be shown in inspector
+
+

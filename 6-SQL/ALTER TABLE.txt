@@ -1,0 +1,34 @@
+CHANGE COLUMN column_name -------- CHANGE column_name:
+
+--Can rename a column and change its definition, both must be exists in query.
+
+--Changing definition means only set new values (if not exists,then add ,otherwise overwrite that) not reseting whole definition
+
+--Has more capability than MODIFY or RENAME COLUMN, but at the expense of convenience for some operations. 
+
+--CHANGE requires naming the column twice if not renaming it, and requires respecifying the column definition if only renaming it.
+
+--With FIRST or AFTER, can reorder columns.
+
+
+MODIFY COLUMN column_name -------- MODIFY column_name:
+
+--Can change a column definition but not its name.
+
+--Changing definition means only set new values (if not exists,then add ,otherwise overwrite that) not reseting whole definition
+
+--More convenient than CHANGE to change a column definition without renaming it.
+
+--With FIRST or AFTER, can reorder columns.
+
+
+RENAME COLUMN column_name -------- RENAME column_name:
+
+--Can change a column name but not its definition.
+
+--More convenient than CHANGE to rename a column without changing its definition.
+
+
+ALTER COLUMN column_name -------- ALTER column_name: 
+
+--Used only to change a column default value (SET/DROP).

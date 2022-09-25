@@ -1,0 +1,6 @@
+the root of engine classes is Object class which has name property and other properties
+then we have Component and GameObject classes which inherit from Object class
+
+all Component class instances attached to a game object (with game object parameter when constructing from component class or its subclasses)
+
+Component class implemented 

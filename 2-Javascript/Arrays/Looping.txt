@@ -1,0 +1,8 @@
+methods like forEach,map,... loop from 0 until array length (exclusive) and only call callback if current index is own property of array (must exists) otherwise continue to next index
+therefore for array with empty slots only iterate over array elements that is not empty (not undefined but only own property)
+
+all callback dependent method
+
+member access and dynamic member access however return undefined for given index but given index is not exists at all
+
+but fill method fills empty slots as well for given range

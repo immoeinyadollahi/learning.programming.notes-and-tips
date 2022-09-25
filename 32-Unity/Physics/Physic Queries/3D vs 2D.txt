@@ -1,0 +1,26 @@
+Single query methods means find first query result and stop
+
+
+Physic2D
+all single query (casts or overlap) methods return object (collider or hit) and not bool
+and don' need paramter hit as ref
+
+
+Physic3D
+overlap
+    there is no single result overlap method
+    all of them return all overlapped colliders
+
+casts
+    single query methods always return bool and can get hit info by passing hit variable as reference (out)
+    casts can be all or single mode just like 2d
+
+
+Ray Parameter Method
+in physic 3d we can pass Ray object to raycast method, but in 2d we don't have this parameter overload
+instead there is separate method called GetRayIntersection which does same thing
+
+
+
+
+

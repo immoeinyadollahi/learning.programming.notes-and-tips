@@ -1,0 +1,3 @@
+1. in htaccess change 127.0.0.1 to localhost otherwise always req.hostname is 127.0.0.1
+
+2. add subdomains and wait a few seconds  (if want to use subdomain on different app ,create new app and set subdomain as Application URL,otherwise just create subdomain and set public html as Document Root) 

@@ -1,0 +1,61 @@
+GameObjects can be activated and de-activated and Components can be enabled and disabled.
+
+
+
+
+if game object or any of its ancestors get deactivated (game object activeInHirerarchy set to false),game object itself will be ignored by unity in most cases (not all cases) (like GameObject.Find method which find active game object)
+also their components will not receive any lifecycle messages anymore
+
+Tips
+1. inactive game objects just like dom display:none ,exists in tree but their components are not fully functional
+
+
+2. most of lifecycle messages will be sent to components that their isActiveAndEnabled set to true (awake method sent to components with game objects activeInHirerarchy set to true and component enabled state will be ignore)
+
+3. both disabled components and inactive game object instances can be manipulated (because they are just c# objects and unity can't prevent us from access them) by other components and unity but they don't react to lifecycle flow because unity ignore them
+
+4. disabled/enable and active/inactive are just properties for instances of components and gameobject,unity may or may not interact with these objects based on these properties state
+
+5. inactive game objects will not be shown in camera because their sprite/mesh renderer component is not functional, same for rigidbody,colliders,...
+
+6. like dom elements display none or elements that don't not exist in dom tree which geometry properties are null or zero
+   components states and fields may or may not be computed (set to zero or null) if component isActiveAndEnabled is false (component tree is inactive)
+   e.g. if collider component isActiveAndEnabled set to false,its bounding will be empty bounding box and fields like extents will be set to 0
+
+   ** for prefabs which their components isActiveAndEnabled is always set to false,their components fields may or may not be computed
+
+
+
+
+** however changes to disabled components and inactive game object instances will be applied in inspector
+
+** e.g. rigidbody can't be disabled because itsn't a behaviour component,but if its game object activeInHirerarchy is set to false, any force added to game object rigidbody will be ignore,force methods will be called but methods check if component is enabled then apply that to game object corresponding body in physics world
+
+
+
+
+
+**************** Important ********************
+game objects are just objects, functional pieces of game objects are components
+and because of this, when we de-activate a game object or disable a behaviour, components will not perform any (maybe some functionalities) functionality for their game objects (because they will not receive any built-in lifecycle messages),that is
+
+
+
+
+** unity uses both game objects and components active and enabled fields states to perform specific actions or ignore them
+
+
+
+**  for bahaviour components,instead of checking if both component enabled and its game object activeInHirerarchy set to true
+    components have field isActiveAndEnabled which means the same
+    so when unity want to perform awake for monobehaviour component (monobehaviour is a behaviour) it uses component game object activeInHirerarchy (because component can be disabled)
+    and when want to perform onEnable or ... uses component isActiveAndEnabled
+
+
+
+
+Component Tree (Learning Purpose)
+    component tree contains component with its game object and its parent game objects 
+
+    when we say tree is active means components is enable and game object of component has activeInHirerarchy set to true or component isActiveAndEnabled set to true for short
+    for non behaviour components we only say their game object activeInHierarchy set to true

@@ -1,0 +1,1 @@
+alising works for classes,namespaces,functions

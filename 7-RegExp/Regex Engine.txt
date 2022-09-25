@@ -1,0 +1,67 @@
+there are two type of characters or regex tokens or regex matcher:
+
+1-literals ->  abcdefg123123?@/-_%#  match literal characters in string
+
+2-specials -> \b \s \w | {} [] ^ $ () ? + *  match special characters or patterns in string (metacharacters)
+
+--------------------------------------------------------------
+
+there are two type of matches:
+
+1-character match
+
+2-position match or zero-length assertion // positions that there is no character there
+
+--------------------------------------------------------------
+
+types of special characters:
+
+
+Assertions
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions
+
+types:
+1-Boundary-type assertions ^ $ \b \B
+2-Lookaround assertions (?=)(?!)(?<=)(?<!)
+
+this are position matcher or zero-length assertion
+
+
+
+Character classes
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Character_Classes
+
+\s \d \w \S \D
+
+
+
+
+Groups and ranges
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Groups_and_Ranges
+
+x|y [xyz] [a-z] [^xyz] [^a-z] (x) (?:x) (?<group-name>x) \n \k<group-name>
+
+
+
+Quantifiers or Repetition Operators
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Quantifiers
+
+x* x+ x? x{n} x{n,} x{n,m}   x*? x+? x?? x{n}? x{n,}? x{n,m}?
+
+
+--------------------------------------------------------------
+
+in regex each character has a job.its job is to match characters or positions in string.
+in start of matching from left,engine eval each character in regex and each character should
+return true otherwise pattern will not match.consider it as logical and in programming.
+
+
+The engine is “eager” to report a match.
+It therefore reports the first match as soon as it finds that
+
+
+
+
+
+
+

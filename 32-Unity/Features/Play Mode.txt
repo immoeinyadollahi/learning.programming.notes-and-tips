@@ -1,0 +1,10 @@
+Unity -> Play Mode is one of Unity’s core features. It allows you to run your project directly inside the Editor, via the Play button in the Toolbar
+         When you enter Play Mode, your project starts and runs as it would in a build. Any changes you make in the Editor during Play Mode reset when you exit Play Mode.
+
+
+
+in play mode only changes to scenes like objects (game objects,components) or game objects hierarchy will be reset when exiting play mode
+also changes applied on project settings
+
+changes to assets like prefabs and prefab components will be persist
+also changes to preferences

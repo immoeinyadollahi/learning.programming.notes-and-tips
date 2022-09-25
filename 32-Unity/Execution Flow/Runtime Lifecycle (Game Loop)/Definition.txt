@@ -1,0 +1,17 @@
+first before rendering each frame and also before event methods like update and onGUI
+unity first set Input state by comparing previous frame stored input state with new input state getting from device in this frame
+input state means keydowns,holding keys,released keys 
+
+
+
+update method which will be called once per frame (before rendering frame) can get proper input values
+e.g. when getting input.getKeyDown, it ensures that only once when pressing keys, keydown happens and not more than once means in next frame it will be false and reset
+
+onGUI method which will be called multiple times before each frame, getting input here may be undesired
+e.g. getting input.getKeyDown may be true for many times onGUI get called before each frame
+
+
+
+
+
+onEnabled will be called if component was disabled and get enabled or game object of this component get activated from inactive state or is active in first frame

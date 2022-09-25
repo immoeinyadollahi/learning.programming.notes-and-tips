@@ -1,0 +1,24 @@
+
+we have two main things:
+1. global object (window or global (for node))
+2. global scope
+
+assumptions
+1.when assigning property or method to global object they also will be declared for global scope immediately
+2.instead when accessing variables or method,interpreter first search through upper scopes,then global scope, finally if variable not found,search through global object
+
+
+Node js
+its not possible to control global scope (declaring variable for global scope) in node because all modules wrapped by wrapper function,it only means developer can't declare variable for global scope but node internally can
+`var something` inside a Node.js module will be local to that module
+instead we can assign property or method to global object
+
+Browser
+we can declare variable in global scope unlike node
+
+when declaring variable with var or declaring function or class statement (declarations ) in global scope,variable  automatically become property and functions become method of window object
+but not variables with let and const keyword (can become variables of global scope however if declared in global scope) however we can add property to window manually
+
+
+global scope
+this scope will be create when main execution context executed

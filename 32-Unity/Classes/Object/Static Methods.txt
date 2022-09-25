@@ -1,0 +1,43 @@
+because we have multiple subclasses of Object class,when calling these methods,different actions will be performed based on type of subclasses
+
+Instantiate:
+            Clones the object original and returns the clone. This method makes a copy of an object in a similar way to the Duplicate command(for game object) in the editor -> Unity
+            so in contrast of method name,it will not Instantiate new instance of class,it only clone game object instance
+            it will be used for cloning or duplicating object instances that are game objects,if you pass components as object,it will clone component game object instead
+            here clone or duplicating instances of objects means instatiate new instance from GameObject class with another object instance properties and components and children and children components,...
+            
+            ** when cloning game objects,their components will be cloned,means new instance will be created with original component fields and added to cloned game object and same for nested game object
+
+            ** all instantiated (cloned) game object will be added to active scene (all prefab instances added to scene when instantiated)
+            
+            ** for instantiated gameobjects, references to descendants or ancestors game objects or those game objects components reference stored on components will be set to cloned objects.(see prefab definition for this)
+               if reference in components which points to parent or children not found in cloned version (only clone part of game object), reference will refer to original game object hierarchy
+
+
+            
+            so cloning game object means clone all game object hierarchy
+
+            object must be either game object or component (which only get component game object),other Object subclasses instance will be ignored (doesn't throw error,it does nothing)
+
+Destroy:
+            Removes a GameObject, component or asset.
+            ** Destoring Object instances set their references to null (whereever they are referenced)
+
+DontDestroyOnLoad:
+            DontDestroyOnLoad means Do not destroy the target Object when loading a new Scene. (loading new scene,destories all current scene objects)
+            Call Object.DontDestroyOnLoad to preserve an Object during loading new scene after scene which object created for first time  (not first scene of existence of object because object doesn't exists before first of its scene load)
+            
+            DontDestroyOnLoad just moves game object to DontDestroyOnLoad dynamic scene,if scene doesn't exist, scene will be created dynamically
+
+
+            ** If the target Object is a component or GameObject, Unity also preserves all of the Transform’s children (hierarchy). 
+               Object.DontDestroyOnLoad only works for root GameObjects or components on root GameObjects
+
+            ** Important ** when loading new scene, Awake and other lifecycle function that run when scene load,will not be called again for DontDestroyOnLoad objects
+										Start get called only if previously not called and now component isActiveAndEnabled is set to true
+										same for Awake but component can be disabled but its game object activeInHierarchy must set to true
+
+                             *** Awake and Start called once for every component in their lifetime
+
+            ** like Instantiate you should pass either game object or component,otherwise will be ignored,like Instantiate,if you pass component,game object of component will be used because DontDestroyOnLoad only adds game object to a scene
+            ** references stored on target Objects may be removed if those references objects destroyed when loading new scene

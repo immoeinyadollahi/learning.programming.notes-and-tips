@@ -1,0 +1,3 @@
+Physics
+like FixedUpate that we can get non instant inputs (continuous ) inside FixedUpate,we can work with phyiscs inside Update method only if its one-time physic interaction (one -time force)
+

@@ -1,0 +1,1 @@
+Radio buttons with the same name in the same form act as a set, but not with those of different forms. Radio buttons with no form act as a set with those with no forms. (with same name)

@@ -1,0 +1,15 @@
+all object keys are string,array is object too so its keys are string
+
+Map keys can be any datatype
+
+
+
+Ordering
+
+setting unsigned integer as a key will be sorted with other unsigned integer keys as well as placed before any other non-unsigned integer keys
+
+means integers like 0,1,2,... whenever set on a object as key,they will be placed in start of object keys in order
+e.g. in {a:"x",2.4:1} object,setting key of 10:x will change object to {10:x,a:"x",2.4:1}
+
+
+Map instead keep order of insertion of properties

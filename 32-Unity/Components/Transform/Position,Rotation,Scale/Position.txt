@@ -1,0 +1,3 @@
+positions can be represented by vectors (2D,3D)
+
+position of game object means position (coordinates) of origin of game object relative local or world

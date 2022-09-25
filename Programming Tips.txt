@@ -1,0 +1,53 @@
+1.Thinking Like Programmer:
+
+	programming is always about problem solving
+	thinking like programmer means thinking about how to solve problems
+	thinking like a programmer is simple. The key is to know how to break problems down into smaller ones and find solutions for them one by one (Tackle each problem individually, then move on to the next one.)
+	finding solutions can be done by thinking about problem or googling problem or documentation or ...
+
+	How to stop freezing when you see a blank JavaScript file?
+
+	1.You freeze when you face a blank JavaScript file because you think about how you should structure the code.
+		Don’t think of structure. first just prototype the solution
+		Overcoming programming block is simple. Think of the problem you want to solve. You can follow these four steps:
+			Break down the problem into small problems
+			Find solutions to your small problems
+			Assemble the solutions into complete solution
+			Refactor and improve
+		Structure comes in last (during the 4th step, refactoring). If you think of structure, you screw up your brain before you even begin. Thinking of structure before solving the problem leads to complicated, overwhelming, bloated code.
+
+	2.Errors are your friends
+	A second reason why you freeze is because you’re afraid of the errors that show up.
+	Don’t be afraid of errors.
+
+2.Programmers enjoy what they do
+	As much as coding is a tool to solve problems, it’s also a great tool to express your creativity. Learn to experiment with new and exciting tools or take on projects that you find interesting.
+	It is important to work on projects that you enjoy and you can have fun doing. If that isn’t feasible, maintain side projects that you can work on in your free time. Passion projects are a great way to keep your creative juices flowing and to get inspiration for projects you work on for clients.
+	So find something you love and get involved!
+	
+3. the computer is stupid. 
+	It cannot guess what you're trying to tell it. You always have to tell every step.
+	
+4.practice
+	programming also is always about practice. 
+	It's all try and error for me. Learning by doing. 
+	
+5.don't think intuitively 
+		stick with only thinking logically and algorithmic
+		Algorithmic thinking is the use of algorithms, or step-by-step sets of instructions, to complete a task
+		logical thinking is finding sensible solutions also called logical reasoning
+		logic (استدلال و دلیل) can be conditions,&& || ! loops switch and ...
+		logic is human reasoning
+		
+6.make mistakes
+
+7. for problem solving remove available ways one by one until finding best solution
+
+
+
+GMTK unity mark brown steps `How I learned Unity without following tutorials`
+1. learn absolute basics, nothing more
+2. get familier with basics through repetition and simple projects
+3. slowly,overtime,build and build projects
+
+stay away from tutorials and try to solve problems with your knowledges

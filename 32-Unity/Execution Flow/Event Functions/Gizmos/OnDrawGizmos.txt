@@ -1,0 +1,8 @@
+this method get called for any monobehaviour (both editor and runtime ) component and applied in scene view when ever something in scene view happens
+components can be disabled like for Awake method but thier game object must have activeInHierarchy set to true
+
+*** component doesn't need to have [ExecuteInEditMode] attribute because both runtime and editor component will be notified
+
+all gizmos drawen with current color set in Gismoz.color
+if you set color all next gizmos drawn with that color and when overriding that color,further next gizmos get that color and so on
+

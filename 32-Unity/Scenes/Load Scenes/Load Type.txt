@@ -1,0 +1,33 @@
+Non-Async (Sync)
+
+stop rendering next frame and only try to load new scene, although current frame get rendered then start loading
+after current frame finished,start load new scene and doesn't render new frames, after load get finished, start activation phase
+
+
+*** after loading get completed,activation phase will be started immediately
+
+
+
+
+
+
+
+
+
+Async
+
+keep frames rendering and loading new scene in background, once loading finished,wait for end of current running frame, then start activation phase only if async operation allowSceneActivation set to true otherwise let next frame gets render and keep check this process until allowSceneActivation gets true
+
+start of activation phase prevent next frame rendering until activation get finished
+
+*** once loading get finished,wait for end of current frame,then check if allowSceneActivation is set to true,then start Activation phase,and if allowSceneActivation is not true,let frames get render until allowSceneActivation becomes true at end of one of subsequent frames
+
+
+    Use Cases
+        loading screens that use animations,ui tranisitons,visual effects,... which require frames to be rendered like usual
+
+
+
+
+Sync and Async types difference is only in Loading phase of loading new scene not Activation phase,for Sync type in Loading,load happens directly but for Async,load happens in background
+Activation phase for both of them is the same and happens synchronously

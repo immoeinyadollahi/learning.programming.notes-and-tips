@@ -1,0 +1,7 @@
+Guards define (is a mechanism) how users are authenticated for each request
+authentication can be happen by sessions and cookie or tokens
+
+web guard uses sessions
+api guard uses tokens
+
+Laravel ships with a session guard (web) which maintains state using session storage and cookies

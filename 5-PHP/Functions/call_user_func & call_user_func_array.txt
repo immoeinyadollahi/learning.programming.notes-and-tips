@@ -1,0 +1,3 @@
+call_user_func is exactly same as call `()` operator and doesn't have any advantages over this operator    function.call() in js but without `this`
+
+call_user_func_array is same as function.apply() in js but without `this`

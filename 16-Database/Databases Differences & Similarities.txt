@@ -1,0 +1,5 @@
+MongoDB & MYSQL Order & Grouping
+
+1. sql grouping use unique approch
+2. sql order by and mongodb grouping using same technic
+3 mongodb order use unique approach

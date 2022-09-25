@@ -1,0 +1,3 @@
+** we only have one camera component 
+   which we can choose between two camera projection types
+   in order to change view between 2d and 3d

@@ -1,0 +1,2 @@
+1. when using Time.delta time inside FixedUpdate it returns Time.fixedDeltaTime
+   because unity before calling all fixed update methods, set Time.deltaTime to Time.fixedDeltaTime and set to default once finish call those methods

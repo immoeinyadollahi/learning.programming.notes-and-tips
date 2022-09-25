@@ -1,0 +1,3 @@
+for horizontal border radius maximum curve is 50% of width of element and for vertical border radius maximum curve is 50% of height of element (both relative and absolute border radius value)
+
+border radius with relative value,for horizontal border radius, curve is relative to value of width of element and for vertical, curve is relative to value of height of element (e.g. 50% of border radius for horizontal axis means it bends with value of 50% of element width)

@@ -1,0 +1,42 @@
+four main part of wordpress:
+
+1. required or controller files of wordpress get loaded
+2. active plugins
+3. active theme child if exists
+4. active theme parent or just main theme if there is no child
+5. wp core (that works like plugins or theme to print content)
+
+
+
+
+
+
+frontend cycle:
+
+1. before page file get required (load) first wp required (needed) files (may add hooks first) then all active plugins then child theme functions.php (active child theme if exists) then parent theme (active theme) functions.php then wp core related stuff get required
+2. if any echo get called, because cann't print anything before head tag they will be printed right after head tag before all other tags (see Gererating Rules in HTML folder)
+3. then for exmaple index.php loads
+4. first get_header function get called for getting header.php file
+5. in header.php first initial head section will be created then after template meta tags and other (not title tag) get_head function get called
+6. get_head function first create title tag then call all wp_enqueue_scripts callbacks in order (sorted callbacks based on required functions.php) 
+7. all enqueued styles and script will be saved
+8. then some of wordpress action callbacks get called here
+9. here enqueued styled and not in_footer scripts will be printed here in order
+10. then other wordpress action callback get called here
+11. wp_head callbacks will be called here (only echo output and not enqueue them)
+12. and here custom css will be printed
+13. wp_head will be done here
+14. then body tag based on different themes generates here
+15. then get_header will be done
+16. after that some template html will be created
+17. then get_footer get called
+18. after that some template footer html will be created
+19. then wp_footer (do_action) will be called and wp_footer action callbacks get called here in order
+20. then some wordpress stuff prints here
+21. then wp_enqueue_scripts in_footer script will be placed here
+22. again some wordpress stuff
+
+
+admin cycle:
+
+same as frontend cycle, first wordpress required files then active plugins then active child theme then active parent theme then wp core get required

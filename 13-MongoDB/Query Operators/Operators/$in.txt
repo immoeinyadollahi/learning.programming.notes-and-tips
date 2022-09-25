@@ -1,0 +1,9 @@
+only in monogoose:
+
+if operator operand (parameter) is array of documents ,it matches document _id field with target field,if there is no _id field
+it apply equality match with target field and document as whole to check if array contains target field value
+
+
+mongoose and mongodb:
+
+if operand is not an array of documents ,check for array that contains target field value or not

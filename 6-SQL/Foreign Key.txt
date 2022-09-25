@@ -1,0 +1,7 @@
+Foreign key modify
+
+there is no way to modify foreign key . you should first drop constrant and then add new one
+
+
+On Update Cascade
+if you do UPDATE parent SET id = 20 WHERE id = 10 all children with parent_id column of 10 will also be updated to 20

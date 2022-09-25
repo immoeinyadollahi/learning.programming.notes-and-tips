@@ -1,0 +1,8 @@
+AddForce and AddTorque are based on global axes (without considiring rigidbody rotation) just like transform.Translate with Space.World
+
+AddRelativeForce and AddRelativeTorque are same above methods except they are based on rigidbody axes or with considiring rigidbody rotation
+
+
+rigidbody velocity is based on global axes
+
+gravity force always applied on world axes and down direction,not rigidbody down direction in own awes

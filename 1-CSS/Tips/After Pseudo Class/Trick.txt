@@ -1,0 +1,2 @@
+after pseudo element with pos absoulte with parent relative if parent has children with pos absoulte or fixed
+after will place only inside of parent element not their child

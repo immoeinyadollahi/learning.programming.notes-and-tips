@@ -1,0 +1,9 @@
+innertText returns rendered or human readable (not hidden) texts of element (concated texts inside of element)
+textContent returns all text inside of element
+
+
+if element itself is not rendered (not in dom tree or hidden from view (only display:none)),then these two properties are the same even if all of there children are hidden or not in tree
+
+hidden means only display:none not visibility or opacity
+
+set method for both works similarly

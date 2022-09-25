@@ -1,0 +1,7 @@
+if rect transform added to game object, transform component will be removed
+and if rect transform doesn't exists on game,transform will be added
+transform component can't be removed if we don't replace it with rect transform
+
+so at any time one of them must exists on game object,
+
+transform is base class for rect transform

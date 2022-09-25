@@ -1,0 +1,6 @@
+change (rotate) game object transform gizmos based on global or local rotation state
+or rotate game object transform gizmos to fit with world or gameobject own axes or coordinate system
+here local means rotation of game object itself (same as Self in Space) (not local space of game object) (rotation of game object itself here means global or resolved rotation of game object)
+global here means rotation of world which is 0,0,0 (not game object rotation relative to world),
+means set gizmos rotation based on world rotation which is 0,0,0 (here we don't work with game object rotation)
+same as Space Class definition

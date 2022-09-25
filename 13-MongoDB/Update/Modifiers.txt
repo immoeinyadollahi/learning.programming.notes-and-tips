@@ -1,0 +1,15 @@
+$each
+Modifies the $push and $addToSet operators to append/set multiple items for array updates.
+
+$position
+Modifies the $push operator to specify the position in the array to add elements.
+
+$slice
+Modifies the $push operator to limit the size of updated arrays.
+
+To use the $slice modifier, it must appear with the $each modifier. 
+You can pass an empty array [] to the $each modifier such that only the $slice modifier has an effect.
+
+
+$sort
+Modifies the $push operator to reorder documents stored in an array.

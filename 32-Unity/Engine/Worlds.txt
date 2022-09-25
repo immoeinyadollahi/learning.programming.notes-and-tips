@@ -1,0 +1,10 @@
+we have two separate worlds
+1. unity world 
+2. physics world
+
+unity world which will be used for graphic rendering has its own coordinate system.
+physics world is in separate environment (module).
+	
+
+
+

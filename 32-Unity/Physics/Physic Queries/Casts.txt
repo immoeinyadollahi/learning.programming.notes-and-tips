@@ -1,0 +1,20 @@
+Definition
+casts only return one hit per each collider (may hit with multiple different collider if use `all` methods),for getting all hit for one collider you must cast multiple times
+RayCastHit only contains one contact point of cast with each collider unlike Collision which return all contact points
+
+even in raycast `all` method, only stores one hit (first hit) per collider and ignore further hits from that colliders
+
+cast `all` means all different colliders (one hit per collider) not multiple hit for each collider
+		
+by default for cast methods only first collider hit will be returned
+but with `all` method we can tell unity to get all hited colliders (not multiple hit per collider) (instruct physics engine to don't stop on first collider hit)
+
+Tips
+
+	1. casts will not detect Colliders for which the cast origin is inside the Collider (unless in 2d physics settings,set Queries Start In Colliders option to checked which default is checked)
+	
+	2. Raycast hit is not only for raycast,it will be used for all casts queries
+	
+	3. we don't need magnitude of direction of casts which is vector,only direction is important and we can handle length of casts by maxDistance parameter
+
+	4. if no hit detected,return value will not be null and will be raycasthit object but its collider set to null which says no collider hitted

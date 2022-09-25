@@ -1,0 +1,9 @@
+we have two areas for projection 
+
+1- after query (regular query)
+
+2- aggregation stage
+
+operators are different in this areas from each other
+
+in both aggregation stage and projection after query we can use aggregation pipeline expression operators

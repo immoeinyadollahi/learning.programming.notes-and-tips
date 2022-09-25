@@ -1,0 +1,2 @@
+by default we can't change game objects pivot point or origin
+but if we use sprite renderer we can change sprite pivot to different position

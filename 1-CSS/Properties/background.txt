@@ -1,0 +1,1 @@
+background image or color starts from start of padding

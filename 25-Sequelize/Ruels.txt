@@ -1,0 +1,5 @@
+1. if you want to use nested column,you must use in .col() method (include,fn,...)
+
+2. in fn() parameter always treated as literal string,ifyou want to use column,you must use col() if even if its not nested
+
+3. in ordering for associations column we should use col() (without column as next array element) or model class before column,but for main model we can use column directly (and sequelize will prepend main model name in sql)

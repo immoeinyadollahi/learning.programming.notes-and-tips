@@ -1,0 +1,31 @@
+Terminology
+normalize means make thing normal,if its less or more than regular/usual state,make it normal (regular/usual) (not more, not less)
+
+
+in Vectors,we may normalize magnitude of vector
+
+the normal magnitude of vectors is 1
+
+normalizing vectors means keep vector in same direction but by reducing/increasing xyz components units of vector, reduce/increase magnitude of vector to 1 while keeping direction of original vector
+
+normalizing will clamp vector components between -1,1
+
+
+
+
+
+
+Hint
+    1. vector3 consists of XYZ components but vector2 only uses XY components (because world is always 3d, vector2 is vector3 with z component of 0)
+    
+    so if vector3 has z component with non-zero value and converted to vector2,both direction and magnitude will be different (z will be treated as 0)
+    hence normalized version of vector3 will be different than normalized version of vector2 with same XY components
+
+
+
+
+
+
+    2. when normalizing vector3 with 0,0,0 or vector2 with 0,0 values,values remain unchanged and magnitude will be 0
+
+

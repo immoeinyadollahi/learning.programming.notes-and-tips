@@ -1,0 +1,8 @@
+in multiplayer (local or online)
+each player game is separate from each other
+each one belongs to differnt application
+there for each one belongs to their own scenes
+other players are just regular game objects in current player scene (don't have components like audio listener)
+
+so for example audio listener for all of them belongs to their own scene and only one audio listener must exists for each one
+but players transforms and components data will be synced with all players even played audio source

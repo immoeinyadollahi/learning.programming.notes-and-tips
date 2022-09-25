@@ -1,0 +1,13 @@
+1-Dispatch(action)
+
+2-store gets incoming action
+
+3-store call all reducers ->
+(action)=> { 
+	for(let key in combinedReducers){
+	
+	state[combinedReducers[key]] is undefiend for first time
+	
+    	state[combinedReducers[key]]=combinedReducers[key](state[combinedReducers[key]],action)
+	}
+}

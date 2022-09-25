@@ -1,0 +1,23 @@
+
+
+Transform
+	unity will sync between its world transform data and physics world transform by interchange data between them
+	whenever unity game objects transform changes, in right time unity query and update physic world corresponding bodies
+	whenever physic simulation complete,unity update all game objects transform based on their bodies transform in physic world
+
+
+Parenting System
+		
+    parenting system is part of unity world so there is no local transform or transform relative to parent in physics world and all world bodies are unrelated to each other
+    each child of game objects is a different body and has its own global transform and there is no local transform in physic world
+
+    when game object transform changes, game object itself and all of its children must recalcualte their transform and set changed flag for next physics cycle
+    then in physics world transforms of all bodies get updated
+
+    so there is no parenting or relationship between bodies, only colliders have relationship with their bodies
+
+    Unless there are joints attaching them, the parent-child relation has no effect between rigidbodies in the same tree
+    so there is not local transform in physic engine, only world transform, Unity however update parent-child transform in physic engine to sync with unity world
+
+
+    e.g. when collison happens on a body,unity gets new transform from that body and apply that to corresponding game object transform,and then recalcualted children transform and i don't know may add changed flag for physics to get updated before next simulation or ...

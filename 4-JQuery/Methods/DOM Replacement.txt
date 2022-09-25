@@ -1,0 +1,1 @@
+replaceWith returns preceding original jQuery object ,This object refers to the element that has been removed from the DOM, not the new element that has replaced it.   el === el.replaceWith(newEl) // true

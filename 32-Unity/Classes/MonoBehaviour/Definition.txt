@@ -1,0 +1,4 @@
+monobehaviour class is base class that every scripts classes that want to become component in unity must drive from that
+and every scripts classes that drive from that get these features:
+1. script class becomes component just like other built in components
+2. script class can hook into unity lifecycle functions and add behaviours and functionalities to game objects

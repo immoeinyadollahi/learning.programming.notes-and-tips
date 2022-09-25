@@ -1,0 +1,11 @@
+PHP:
+
+		doesn't support named groups replacement, You’ll have to use numbered references to the named groups. (named groups are numbered as well)
+		
+		for using whole match regex we should use $0
+		
+JS :
+
+		support named groups replacement with  $<Group-Name>
+		
+		for using whole match regex we should use $&

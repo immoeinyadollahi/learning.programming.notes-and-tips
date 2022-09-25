@@ -1,0 +1,37 @@
+coordinates:
+						in both css and js top and left coordinates are calculated from top-left corner of rectangle (relative to top and left of window/element) and not top or left side/edge of rectangle
+						
+						in js bottom and right coordinates are calculated from bottom-right corner of rectangle relative to top and left of window/element (which is same as left/top + width/height) but in css they will be calculated from bottom-right corner of rectangle relative to right and bottom of window/element
+						
+						generally top-left and bottom-right corner of rectangle are needed for coordinates
+						top-right and bottom-left corner doesn't participate in coordinates and they are only for width/height growing
+						
+						i don't know,maybe there is only top-left coordinates and right-bottom also will be calculated from top-left corner
+						so in this case there is only one origin for each element also for window and document which is top-left corner and positioning of each element is from origin of element relative to origin of parent (window,document,other elements)
+						
+
+					
+
+						
+						in dom Y properties is different from graphic coordinates and positive value of Y will be under of X axis
+						therefore in transform css styling, Y works like positioning
+						so in dom world positive Y is always under of X axis
+						
+						
+						
+						
+						getBoundingClientRect
+						
+						Main DOMRect properties:
+
+						x/y – X/Y-coordinates of the rectangle origin relative to window origin,
+						width/height – width/height of the rectangle (can be negative).
+						
+						
+						
+						x/y and width/height fully describe the rectangle.left/top/right/bottom are just drived properties and can be easily calculated from them:
+						
+						left = x
+						top = y
+						right = x + width
+						bottom = y + height

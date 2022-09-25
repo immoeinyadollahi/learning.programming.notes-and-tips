@@ -1,0 +1,4 @@
+unlike unity which in every frame update all inputs
+browser for some event like keydown except initial press (which is instantly) only will emit new event and set repeat to true if elapsed time from when key initially pressed is greater that a predefined value,if so emit new event with repeat to true otherwise do nothing
+even if elapsed time from initial press is greater that predefined value, new subsequent events for repeating also have delay between each other because browser can't emit event and add new task to macrotask queue in every frame so here we also have small delay
+other events like keyup is are also instantly

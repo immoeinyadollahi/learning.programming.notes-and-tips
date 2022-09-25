@@ -1,0 +1,3 @@
+** editor window script onGUI only called when there is interaction in window,otherwise it doesn't get called for performance impact
+interaction can be simple hovering or moving on specific area and other input events
+even entering or exiting window as well as resize or other stuff

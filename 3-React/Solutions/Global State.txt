@@ -1,0 +1,5 @@
+two ways to change state globaly:
+
+1. use redux to store state globaly
+2. use local state and if you want change it from outside of component use data (custom) state to signal globaly
+3. use local state and then signal it with events (not recommended)

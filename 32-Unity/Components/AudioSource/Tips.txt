@@ -1,0 +1,1 @@
+1. as soon as component isActiveAndEnabled becomes false (deactivate game object or its ancestors or disabled component) playing audio will be stopped

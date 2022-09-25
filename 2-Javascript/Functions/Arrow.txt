@@ -1,0 +1,2 @@
+in arrow functions this and arguments variables will not be created and because of that there is no this and arguments for this functions therefore
+this variables will be captured from upward scopes

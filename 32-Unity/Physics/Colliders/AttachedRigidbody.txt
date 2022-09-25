@@ -1,0 +1,14 @@
+Unity -> Colliders are automatically connected to the rigidbody attached to the same game object or attached to any parent game object.
+
+
+
+
+if collider game object has rigidbody, collider attached rigidbody will be that rigidbody, otherwise it will be first ancestor rigidbody (first rigidbody in ancestors)
+but if there is no rigidbody in tree,it will be null
+
+
+************** Assumption ************
+for ancestors type of attached rigidbody,game object still has static body in physic engine which differs from attached rigidbody
+
+colliders offset is offset relative to their rigidbody position in physic world,
+therefore attached rigidbody is not same as actual rigidbody for collider in physic engine if attached rigidbody is in ancestors

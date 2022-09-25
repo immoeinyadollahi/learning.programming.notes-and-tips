@@ -1,0 +1,2 @@
+every ui component depends on rect transform component which will be used instead of transform component (replaced)
+if game object at least one ui component,transform component will be replaced with rect transform

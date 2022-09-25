@@ -1,0 +1,16 @@
+1. Loading 
+
+In this process, Unity will load the assets into the memory to make the upcoming level. This is also where your game (current scene) will stay longer especially if your new scene is big or uses a large set of game objects.
+
+technically i think unity start from scene asset serialized version and reconstruct objects from there and when face references,it tries to load references recursively,this process gets done when all references get resolved
+
+** this process can be either sync or async based on calling method
+
+
+2. Activation (not activate scene)
+
+After the new scene with its assets are loaded, Unity will start removing (destroying) the previous scene game objects (only in Single load mode not additive) and starts initializing the new scene with game objects to draw the upcoming level.
+
+in single mode, load of a new Scene (not first startup scene) destroys all current loaded Scenes objects except DontDestroyOnLoad scene objects
+
+** this process is always synchronous

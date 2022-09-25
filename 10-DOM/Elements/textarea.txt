@@ -1,0 +1,4 @@
+just don't get/set innerHTML,innerText,textContent of textarea,only use value property
+
+ 
+ any content between textarea will be parsed as pure text, any html tags will be treated as literal characters

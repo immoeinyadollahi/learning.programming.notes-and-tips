@@ -1,0 +1,4 @@
+Computers CPU only understand binary (0 or 1),so assembly language or high level languages must be translated to binary or machine code (by compiler or interpreter or assembler)
+
+these three translators have different names because they have different translation process
+e.g. compilers and assemblers translate at once and produce executable file whereas interpreters translate dynamicaly (could be line by line)

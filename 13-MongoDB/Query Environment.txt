@@ -1,0 +1,10 @@
+if we have <array-field>:<array-value> it evaluated like assert module (value,quantity,order are important)
+if we have <object-field>:<object-value> it evaluated like assert module but order is important here unlike assert
+
+<array-field>:<non-array-value (literal value)> is same as <array-field>:{$elemMatch:{$eq:<non-array-value>}} or <array-field>:{$eq:<non-array-value>}
+
+
+<field (array or non-array)>:<value (literal value)> is implicit $eq operator
+<field (array or non-array)>:<regex> is implicit $regex operator
+
+some query operator that usually work with non-array field, operates differently with array fields 

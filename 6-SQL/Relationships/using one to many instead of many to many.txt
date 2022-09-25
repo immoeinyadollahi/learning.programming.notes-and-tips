@@ -1,0 +1,2 @@
+if we can use both one-to-many or many-to-many in relationship, just pick whichever is relevant
+in this scenario we could have one many-to-many relationship or two separate one-to-many relationship but in orm query result is different

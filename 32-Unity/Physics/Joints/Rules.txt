@@ -1,0 +1,2 @@
+1. all joints must have attached rigidbody (not connected rigidbody) which positioned relative to that rigidbody (anchor)
+

@@ -1,0 +1,8 @@
+unity world is always 3d,even in 2d mode,world still remain 3d but somehow ignoring z axis (not really ignoring,treating z as 0) (camera orthographic projection mode and ...)
+
+all transform calculations are based on 3d space (position,rotation,scale)
+so every vector2 must be converted to vector3 for transform calculation
+
+in most cases engine uses vector3, but in places like texture coordinates in a Mesh or texture offsets in Material or in physics2d uses vector2
+
+

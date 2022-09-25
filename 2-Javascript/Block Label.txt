@@ -1,0 +1,5 @@
+only blocks have label
+
+if block is loop or switch then we can use break and continue (only in loop) with or without label
+
+if block is simple block or if else block (non-loop) ,then break needs label in order to work otherwise throws error (we can't use continue with these blocks)

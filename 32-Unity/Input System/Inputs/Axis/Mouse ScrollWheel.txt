@@ -1,0 +1,3 @@
+just like mouseScrollDelta,it is delta for scroll position between -1,1 as floating point number
+which positive means scroll up and negative means scroll down and 0 means no scroll between frames
+which is always Multiplication of 0.1 (0.1,0.2,0.3,-0.1,...)

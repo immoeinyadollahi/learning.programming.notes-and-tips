@@ -1,0 +1,7 @@
+ways to set env variables:
+1. system default env variable (predefined variable)
+2. variables that set from terminal when stating server (name=value style) (only bash-like terminals and not windows cmd)
+3. using .env file and then in app use third party library to parse that file and include them in env object or array 
+
+
+in step 2 we can use cross-env lib for using in windows cmd because that doesn't support this style

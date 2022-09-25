@@ -1,0 +1,2 @@
+1. unity change inspector of each property (serialized private fields or public fields) based on type of property and proper ui component will be displayed on each property. for example when we have property with layermask type, unity create select menu to choose between layers
+even for primitve types like float, unity create proper component for it

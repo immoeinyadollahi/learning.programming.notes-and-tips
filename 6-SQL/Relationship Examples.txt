@@ -1,0 +1,7 @@
+find another side of Many to Many Relationship
+
+you can left join intermediate table with one side and only get that side
+
+or
+
+you can select from target side with Exists/IN/Some/Any in intermediate table

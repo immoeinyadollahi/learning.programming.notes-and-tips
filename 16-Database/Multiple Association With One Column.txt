@@ -1,0 +1,5 @@
+we have three solutions:
+
+1. for each table create separate join table 
+2. for each table use separate column in target table (productId,postId,userId,...)
+3. use polymorphic association

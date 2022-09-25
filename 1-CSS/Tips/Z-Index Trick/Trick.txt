@@ -1,0 +1,20 @@
+imagine we have header and main tag
+header is relative and z-index 10
+main is relative and z-index 1
+the result is header and its content with every z-index value will be higher than main
+it means every content in main cant get higher than others even with z-index 5000
+the solution is remove main z-index but still relative
+in this case main contents with greater z-index than header can be placed higher than them
+
+
+
+but if header doesn't have z-index but is relative if its contents z-index is bigger than main contents
+header contents place higher than main content it means header and main without z-index but they contents fight with greater z-index
+
+another case can be main without z-index but relative with contents with z-index against header with z-index and contents with z-index
+in this case only header and main contents fight for higher place not header contents
+
+it means if parent has lower z-index its contents with z-index 1000 always are lower place than main contents
+
+
+in nutshell parent shouldn't have z-index if it has very large one, their contents always are top if doesn't their content always should be careful to check other parents z-index

@@ -1,0 +1,37 @@
+velocity can be applied on both dynamic and kinematic type body (not static)
+
+
+Kinematic
+for kinematic type,velocity will be applied as well
+
+e.g. if type is dynamic and object falling by gravity and change type to kinematic,velocity will be preserved and applied in kinematic type as well
+
+its not true gravity adds velocity to kinematic body, because kinematic body is unaffected by physic stuff except velocity
+
+
+kinematic type may ignore physic stuff like collisions,forces(gravity),joints but velocity on body will be applied for kinematic type as well
+
+
+the only physic applied to kinematic type is velocity (not position and rotation)
+
+
+
+**************** Important ****************** 
+A Kinematic Rigidbody 2D does still move via its velocity, but the velocity is not affected by forces or gravity.
+means its constant unless changed explicitly
+
+
+
+
+
+
+
+Static
+when setting type to static,velocity will be set to zero
+
+and if type is static and set velocity,will be ignored
+
+velocity doesn't affect (apply) on static body
+
+
+

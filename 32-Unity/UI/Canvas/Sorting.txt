@@ -1,0 +1,7 @@
+sorting of game objects inside of canvas,depends on render mode of canvas
+
+for Screen Space based on hierarchy position of game objects:
+                                children get rendered on top of parents
+                                top children placed behind of bottom children (bottom children rendered on top of top children)
+
+for World Space just like sprites, they sorted based on sorting layers and order in layer and not hierarchy posiitons

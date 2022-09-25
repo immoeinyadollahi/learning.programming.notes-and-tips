@@ -1,0 +1,6 @@
+Creates a rotation which rotates angle degrees around axis. (vector (axis) magnitude will be ignored and not applied and treat vector as direction)
+simply put, rotates around the given axis by the number of degrees defined by the given angle.
+
+
+Conversion
+we have toAngleAxis method in quaternion to convert quaternion to angle axis (angle,axis), in inverse we have AngleAxis method for Quaternion class which convert angle,axis to quaternion

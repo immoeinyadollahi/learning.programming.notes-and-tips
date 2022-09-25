@@ -1,0 +1,11 @@
+before parsing html to dom ,generating rules will be applied 
+if in html text response some tags or pure texts exists in wrong places they will be positioned in right places and in the end a valid html will parsed to dom elements
+
+you can see unparsed or raw html text in page source 
+
+for example if an head tag placed outside of head tag,it will be placed in first of the hed before all tags but if it is simple text it will be placed inside of body tag before allall tags and texts
+
+
+https://javascript.info/dom-nodes
+
+If the browser encounters malformed HTML, it automatically corrects it when making the DOM.

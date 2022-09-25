@@ -1,0 +1,2 @@
+
+in unity some classes may have shorthand static properties which simply are getters that return new instance of class itself with predifined constructor parameter or predfined properties

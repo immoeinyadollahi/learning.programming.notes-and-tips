@@ -1,0 +1,2 @@
+1. like node-react-cursus create main layout and find matched routes between routes list
+2. each partial route is regular route but for sharing data use window.__DATA__ to prevent refetch

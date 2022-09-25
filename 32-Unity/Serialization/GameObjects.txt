@@ -1,0 +1,2 @@
+serialized version of game objects and their components either stored in *.unity files which are serialized version of every scene
+or outside of any scene which are prefabs

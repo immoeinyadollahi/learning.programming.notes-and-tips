@@ -1,0 +1,7 @@
+each regex token first assert the string with corresponding token
+but zero length assertions only assert and not take any character and only report length 0 to engine
+non zero assertion first just assert and then take characters and report to engine
+
+assert means whether token matches or not with given characters
+
+so first step for all tokens is assertion then reporting to engine

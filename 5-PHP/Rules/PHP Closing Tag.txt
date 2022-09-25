@@ -1,0 +1,1 @@
+only if there is non-php text under of php tag ,tag must be closed and text must be placed below that

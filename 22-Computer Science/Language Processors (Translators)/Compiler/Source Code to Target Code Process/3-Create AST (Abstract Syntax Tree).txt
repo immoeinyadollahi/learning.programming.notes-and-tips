@@ -1,0 +1,8 @@
+In general, the AST models (shapes) the relationship between tokens in the source code.
+as a tree comprising of nodes and the nodes containing children. And each node contains information about the type of token, and related data.
+
+like DOM it has tree pattern,because tree pattern is easy to traverse and finding nodes and relationships
+
+Compared to the source code, an AST does not include inessential punctuation and delimiters (braces, semicolons, parentheses, etc.).
+
+The AST is used intensively during semantic analysis, 

@@ -1,0 +1,29 @@
+regex methods: test,exec
+
+str methods : match,matchAll,search,replace,replaceAll,split
+
+
+
+If you need to know if a string matches a regular expression RegExp, use RegExp.test().
+
+If you only want the first match found, you might want to use RegExp.exec() instead.
+
+If you want to obtain capture groups and the global flag is set, you need to use RegExp.exec() or String.prototype.matchAll() instead.
+
+
+
+match:
+
+without global flag returns first match found with all capturing groups and index info
+
+with global flag only returns all match without any capturing groups and index info
+
+
+split:
+
+it is always globaly even with non-global regex
+
+
+match vs exec
+if you dont want to global search and find all matches they are exactly the same with same results but 
+with global search exec works better and more appropriate

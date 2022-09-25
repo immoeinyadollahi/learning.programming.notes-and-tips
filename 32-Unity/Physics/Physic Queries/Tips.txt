@@ -1,0 +1,6 @@
+1. casting and overlap doesn't need new simulation so we don't need to wait for physic cycle and we can do it from anywhere,they will be performed againt world at any time except of simulation
+   it performs at current snapshot (state) of world
+
+2. both casts and overlaps,hit or overlap once for all filtered colliders if they are hitted or overlapped
+   
+3. if multiple colliders belongs to one body,all of them will be returned if they hitted or overlapped

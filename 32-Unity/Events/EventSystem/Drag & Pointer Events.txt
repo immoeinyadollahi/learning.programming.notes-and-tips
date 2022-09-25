@@ -1,0 +1,50 @@
+**** drag and pointer move only get called if mouse position changes between frames, unlike OnMouseDrag which called every frame for mousedown game object,regardless of mouse position
+
+
+
+
+Drag
+to start dragging mouse position must pass certain range while pointer down on game object in order to store current begin drag game object and dispatch IBeginDragHandler event
+
+IBeginDragHandler
+
+
+**** only sent to component if IDragHandler implemented on component
+
+
+IDragHandler
+for game object which previously begin drag dispatched on it, in every frame if position changed from last frame will be dispatched (may not be over gameobject)
+
+
+
+IEndDragHandler
+
+
+**** only sent to component if IDragHandler implemented on component
+
+
+
+
+
+
+
+
+IPointerMove
+for game object which previously pointer enter dispatched on it and not exited (means pointer is over of game object), in every frame if position changed from last frame and pointer is over on game object will be dispatched
+
+
+
+
+
+
+
+
+
+
+
+
+IDragHandler vs IPointerMove
+for pointer move, mouse must be over game object, for drag, mouse position can be anywhere and sent to previously begin drag game object
+
+
+

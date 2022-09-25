@@ -1,0 +1,3 @@
+two ways to use label and input correctly:
+1. label without `for` attribute (not even empty and not even with correct `for` and id in input) and input inside of it
+2. input with id and label with `for` same as id

@@ -1,0 +1,1 @@
+*** physics engine doesn't eliminate velocities and forces, only forces will netural other forces/velocities just like real world

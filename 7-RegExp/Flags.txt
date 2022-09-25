@@ -1,0 +1,12 @@
+m  multiline
+
+if ^ or $ or both used and whole string doesn't match:
+
+split the text to multiple line and find first match in array of lines (find) but if 
+global flag is available find all match in each line (filter)
+
+
+
+s singleline (dotAll)
+
+makes . token match every character even newline

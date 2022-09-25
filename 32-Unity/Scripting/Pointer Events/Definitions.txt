@@ -1,0 +1,3 @@
+
+Tips
+1. pointer events run independently from OnMouseXXX events, so both happens in order

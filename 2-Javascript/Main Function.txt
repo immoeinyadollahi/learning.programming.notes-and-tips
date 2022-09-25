@@ -1,0 +1,3 @@
+each window (global for node) lifetime starts by calling main function bind to global object (window or global for node) and added to callstack
+program variables and object will be stored in memory and main function pops from callstack but host environment api (web api or node c++ api) by they async features and callbacks, continuously make program alive and prevent program from shutting down
+like node with creating web server or creating interval or browser by creating events and ...

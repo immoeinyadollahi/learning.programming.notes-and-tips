@@ -1,0 +1,1 @@
+regex.toLowerCase().exec(string.toLowerCase())    i

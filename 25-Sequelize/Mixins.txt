@@ -1,0 +1,3 @@
+tips:
+		e.g. for hasMany we have addBar,addBars so if you choose alias in plural form,for add single one you must remove last `s` character from alias and call that function and for addBars just full alias name
+		also for createBar its always single and singular and there is no method to create multiple association

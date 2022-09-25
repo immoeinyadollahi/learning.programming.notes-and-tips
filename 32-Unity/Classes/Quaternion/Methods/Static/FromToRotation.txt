@@ -1,0 +1,2 @@
+this method means what rotation applied (how much rotation must be applied) on fromDirection to be in same direction of toDirection
+or returns a rotation which if applied on fromDirection, it will be in same direction as toDirection

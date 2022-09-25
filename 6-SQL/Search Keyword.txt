@@ -1,0 +1,2 @@
+you can use LIKE, and if table collation is general_ci, it will be used case-insensitively
+if collation is different, just use LOWER or UPPER function to convert value , then use LIKE operator

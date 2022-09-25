@@ -1,0 +1,13 @@
+low level languages are machine code and assembly language (close to machine langauge or machine-friendly)
+
+other languages treated as high level language (close to human language or human-friendly)
+
+assembly is low level language but it also must be translate to machine code
+
+high level languages must be compiled or interpreted and language like assembly must be assembled (by assembler)
+
+
+considirations:
+
+						In the old days, C was considered a high-level language. Today, many engineers might laugh at that because C is so low level. C and C++ are now considered low-level languages because they have no automatic memory management. 
+						The only true low level programming is machine code or assembly

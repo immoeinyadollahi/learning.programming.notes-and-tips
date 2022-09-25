@@ -1,0 +1,44 @@
+coordinates of an element is coordinates of minimal rectangle that encloses element
+
+
+pageY,pageX – document-relative(based) coordinate ,offset from top or left of document (similar to position:absolute relative to document but not completely the same)
+
+clientY,clientX – window-relative(based) (viewport) coordinate ,offset from top or left of window or viewport (similar to position:fixed but not completely the same)
+
+
+methods:
+
+element.getBoundingClientRect():   get information about the size of an element and its position relative to the viewport .  returns window-relative coordinates for a minimal rectangle that encloses elem ,relative to top or left edge of viewport or window
+tip: coordinates may be negative as well
+
+
+window.elementFromPoint(x, y):   returns the most nested element at window coordinates (x, y)
+
+
+tips:
+
+Javascript Coordinates right/bottom are different from CSS position properties
+
+in CSS positioning, right property means the distance from the right edge, and bottom property means the distance from the bottom edge.
+
+in JavaScript All window-relative or document-relative coordinates are counted from the top or left corner, including right and bottom rect coords.
+
+
+
+
+tips:
+
+for any element not just mouse position
+getting document-relative coordinates of element not window-relative(getBoundingClientRect)
+pageY = clientY + documentElement or body scrollTop
+pageX = clientX + documentElement or body scrollLeft
+
+
+
+
+Summary
+
+Any point on the page has coordinates:
+
+Relative to the window – elem.getBoundingClientRect().
+Relative to the document – elem.getBoundingClientRect() plus the current page scroll.

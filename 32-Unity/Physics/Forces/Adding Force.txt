@@ -1,0 +1,18 @@
+
+Force Position
+
+*** if force applied directly on center of mass, it only generate linear velocity not angular
+*** AddForce is same as AddForceAtPosiiton but applied diectly on center of mass
+
+
+How To
+for adding forces, we only need one vector,
+which vector direction will be used as force direction and 
+vector magnitude for force power,
+so we don't need force extra parameter (like force power ,...)
+
+
+
+Rules
+        Body Type
+                    when body type is kinematic or static using AddForce or other force methods will be ignored and no force will set on body

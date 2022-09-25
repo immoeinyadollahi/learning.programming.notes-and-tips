@@ -1,0 +1,20 @@
+we have two ways to bind variables:
+
+1. named variables
+
+
+2. positional variables
+
+
+
+each ways has two ways to use
+
+
+1. bindValue or bindParam methods
+
+2. pass array of variables to execute method (this will only pass variable as value if you want pass by reference use bindParam)
+
+
+
+
+prepare and bind variables only insert correct data and prevent injections

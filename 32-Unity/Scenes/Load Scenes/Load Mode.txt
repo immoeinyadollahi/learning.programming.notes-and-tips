@@ -1,0 +1,11 @@
+Single : 
+        Closes (unload) all current loaded Scenes and loads a Scene.
+
+Additive:
+        Adds the Scene to the current loaded Scenes
+        or loads a Scene without unloading currently loaded Scenes
+
+
+Single and Additive modes difference is only in Activation phase of loading new scene not Loading phase,for Single mode in Activation,all current loaded scenes object get destroyed but not in Additive mode
+
+it was better to use Activation mode instead of Load Mode,because these modes only affect Activation phase of loading new scene

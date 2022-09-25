@@ -1,0 +1,59 @@
+Virtual Axis
+one virtual axis which contain values between -1,1
+
+differs from coordinates axes, its just simple one direction axis,\
+a thing with range of -1,1
+
+
+The value will be in the range of -1...1 for keyboard and joystick input devices.
+
+
+Devices
+The meaning of this value depends on the type of input control
+
+If the axis is mapped to joystick's horizontal axis a value of 1 means the stick is pushed all the way to the right and a value of -1 means it's all the way to the left; a value of 0 means the joystick is in its neutral position.
+
+If the axis is mapped to mouse, the value is different and may not be in the range of -1...1. Instead it'll be the current mouse position delta multiplied by the axis sensitivity. Typically a positive value means the mouse is moving right/up and a negative value means the mouse is moving left/down.
+
+
+
+
+GetAxis
+Returns the value of the virtual axis identified by axisName with smoothing filtering applied.
+
+***** this is frame rate independednt means doesn't need to multiplied by Time.deltaTime
+
+
+GetAxisRaw
+Returns the value of the virtual axis identified by axisName with no smoothing filtering applied.
+
+Since input is not smoothed, keyboard input will always be either -1, 0 or 1
+and is useful if you want to do all smoothing processing yourself.
+
+*** this method can be used frame-independently in fixed update
+
+
+
+
+
+GetAxis vs GetAxisRaw (keyboard)
+
+1. GetAxis is between -1,1 and can be 0 but never get exactly -1,1
+   GetAxisRaw is always -1, 0 or 1
+
+
+2. GetAxis is good for joystick because value can be between 1 and -1 or 0 besed on stick position
+   GetAxisRaw doesn't care about joysticks exact position, if its in up direction,return 1 ,if doesn't move return 0, if its in down direction return -1
+
+
+3. GetAxis Horizontal and Vertical ranges change from 0 to +1 or -1 with increase/decrease in 0.05f steps. 
+   GetAxisRaw has changes from 0 to 1 or -1 immediately, so with no steps.
+
+GetAxis is good for joystick movement (variable)
+GetAxisRaw is good for constant movement
+
+
+
+
+************ Important *************
+GetAxis and GetAxisRaw are equal for axes like MouseX,MouseY,MouseScrollWheel and are frame-independednt

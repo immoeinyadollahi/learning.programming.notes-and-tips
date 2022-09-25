@@ -1,0 +1,12 @@
+mongoose query methods however is same as mongodb methods but are different (manipulated or controlled by mongoose) in some cases:
+
+	find:
+		if we have <array-field>:<array-value> in mongoose it convert this to $in operator,but in mongodb it check for equality (deep not shallow)
+		of field with that array and not array contains the field
+
+	update:
+
+		in mongodb all update operations requires atomic (update specific) operators but in mongoose <field>:<new-value> is equivalent to $set:{<field>:<new-value>}
+		
+		
+mongoose also manipulate aggregate method but objectId must be mongodb objectId

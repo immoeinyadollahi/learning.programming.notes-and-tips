@@ -1,0 +1,18 @@
+*** frame-independent doesn't always mean per second,it will be per fixed physic time step in FixedUpdate 
+    here we only use per second for conversion but frame independent can be any units independent of frame
+
+
+concept is converting units from `per frame` to `per second`
+
+e.g. for moving object for exact 1 unit, instead of moving object by 1 unit in each frame (per frame), we should move object by 1 unit in 1 second (per second)
+
+** unit can be any value
+
+so only concept is unit conversion just like speed,acceleration,mass,...
+just like mass kilogram unit which can be converted to gram by 1/1000 proportion
+for converting per frame to per second we use 1/framerate proportaion which is same as Time.deltaTime
+
+e.g. deltaTime value in 10 fps game can be calculated by (1*1) / 10 = 0.1 -> deltaTime
+     and for converting 1 unit per frame into per second we should just multiply it by deltaTime which produces per second value
+
+** multiplying unit by Time.deltaTime is same as devide unit by framerate

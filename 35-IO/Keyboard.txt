@@ -1,0 +1,14 @@
+device only expose whether or not key pressed on keyboard when requesting to device (0,1 / true,false)
+it doesn't say anything about things like keyDown,hold key or key up som we should resolve thme by our selves (or engine like unity does that for us)
+
+we can achieve these three types of actions or more with simple principle (0 means not pressed,1 means pressed)
+storing variable for previous status of each key and check:
+if was 0 and now is 1 -> keyDown (once)
+if was 1 and now 1 -> keyDown (hold)
+if was 1 and now is 0 -> keyUp
+
+e.g.
+in browser environment,browser each key on keyboard reference in variable like object and in every frame check current status of all keys,but in browser we only have keyDown(means both once and hold) and keyup
+
+in unity we have all of them (keyDown(once),key(hold),keyUp)
+i don't know unity get previous status of keys from another stored variable or what it stored for previous frame on each key

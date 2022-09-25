@@ -1,0 +1,5 @@
+authentication ecosystem made up with Built In Browser Authentication Services and API Authentication Services
+
+Please note that api authentication services and Laravel's built-in cookie based authentication services are not mutually exclusive. 
+api authentication primarily focus on API token authentication while the built-in authentication services focus on cookie based browser authentication. Many applications will use both Laravel's built-in cookie based authentication services and one of Laravel's API authentication packages.
+for web application its common to use both but on remote services when they need to authenticate to access an API, cookies are not typically used for authentication because there is no web browser.

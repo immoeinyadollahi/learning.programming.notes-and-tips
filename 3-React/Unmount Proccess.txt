@@ -1,0 +1,1 @@
+first new component renders then previous component unmount callback will be called then new component mount hooks will be called

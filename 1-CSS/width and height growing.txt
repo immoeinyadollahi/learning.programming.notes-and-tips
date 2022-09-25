@@ -1,0 +1,20 @@
+if position property doesn't exists or set to all except absolute and fixed
+	in this case an anchor (fake position (top/left/bottom/right)) will be applied to element relative to parent but after padding and element will be realigned after width/height changes on every dom render
+
+	height always anchored to top but will be anchored to bottom in column-reverse flex-direction of parent
+	width in rtl always anchored to left and in ltr anchored to right , and inverse in row-reverse flex-direction of parent
+
+if position is set to absolute or fixed and width/height property exists
+	if both top/bottom exists,top will be accepted (bottom property will be ignored at all even in positioning like when doesn't exists,changes to it doesn't change anything)
+	if both left/right exists,left will be accepted (right property will be ignored at all even in positioning like when doesn't exists,changes to it doesn't change anything)
+	
+	if element doesn't have width/height property both left/right or top/bottom will be affected
+	
+	
+there is no growing concept or grow direction its a visual illusion by browser because its very fast at rendering
+every visual element are positioned by pixel ,so its like always absolute position in screen so we need to realign element in every render
+
+
+examples:
+
+for resize element (not positioned element) we should calculate resized distance and move away element from its anchor by resize distance 

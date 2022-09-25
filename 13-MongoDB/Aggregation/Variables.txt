@@ -1,0 +1,9 @@
+there are two types of aggregation variables
+
+1-user-defined variables
+2-system variables
+
+
+you can use variables value with $$ sign prefix
+
+we use $ prefix only for get input documents fields value

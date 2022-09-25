@@ -1,0 +1,28 @@
+each machine with different CPU architecture (operating systems or different cpu model or other machines like fax and phone and ...) has its own machine instructions (need specific machine code to operate on) or instruction set
+
+so if we compile compiled languages like c++ in one machine and execute it in different machine,code might not work (if target machine is a computer,it only works if its architecture is same as our current machine,otherwise it won't)
+to solve this problem we should compile our code to that computer specific machine code (corresponding machine code for target CPU instruction set) (computer is an example,we can use non-computer machines like fax or phone as well)
+we can use specific platform compiler for that language
+means copy each platform executable file and and use them in different platforms,otherwise it won'y work  (Every Single Platform)
+
+e.g. C++ is a cross-platform language in the sense that there exist compilers for many platforms. (cross-platform means there are c++ compilers for different platforms)
+Not all features/versions/libraries are implemented in every compiler or available on all platform
+e.g linux compiler differs from windows
+
+
+java and c# use special techinque,instead of directly compiled to machine code,they compiled to IL (intermediate language) called bytecode.
+then we send this bytecode to different platforms and there we use of JIT
+
+
+both java and c# compilers compile source code to an intermediate language ,that for java called java bytecode and for c# .NET called MSIL (microsoft intermediate language)
+
+also both java and c# have specific compilers for compiling their bytecode (java bytecode or MSIL) to machine code, that called JIT (just-in-time compiler)
+
+JIT compilers only compiles the byte-code to equivalent native code (native machine code) at first execution. Upon every successive execution, they also stores the resulting native code so that it is accessible for subsequent calls (doesn't compile again)
+but this doesn't mean its compiled to that machine specific machine code forever and has performance like c/c++,there are some other situations and aspects that we should consider,although they are better than interpreted langauges 
+
+
+// for java,JIT is one of the components of JVM, that JVM is a part of JRE
+// for c#,JIT is a part of Common Language Runtime (CLR) in .NET 
+
+** we can use platform keyword instead of different machines

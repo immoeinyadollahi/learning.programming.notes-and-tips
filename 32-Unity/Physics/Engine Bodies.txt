@@ -1,0 +1,18 @@
+in unity by default,game object become static body in physx engine means every game object in scene become body (default is static body) and add to physics engine
+
+
+Types
+
+
+
+
+
+Tips
+ 1. when we add rigidbody component to it,for box2d it will become dynamic body and for physx it will become non-kinematic dynamic body 
+    when setting is kinematic to checked,for box2d body type will be changed to kinematic and for physx Kinematic flag will be set on actor
+
+ 2. physic engine bodies created only for game objects because positions and rotations synced with game object transform
+    it doesn't means bodies created for every game object
+    unity only create physic engine body for game objects if there is any collider (any type) or rigidbody component,
+    therefore for UI, it doesn't add any body in physic engine, because they don't usually have any collider or rigidbody
+

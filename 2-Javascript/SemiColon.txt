@@ -1,0 +1,6 @@
+three type of semicolon:
+1-forbidden
+2-must use
+3-optional
+
+semicolons are only for expressions also can use with `return` (empty return) 

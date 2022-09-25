@@ -1,0 +1,6 @@
+activeSelf -> game object itself is active (local active state) which is set using GameObject.SetActive
+
+activeInHierarchy -> game object itself (activeSelf) and all of its parent game objects are active also must be in hierarchy (always false for prefabs because there is no scene and hierarchy at all) 
+
+active -> deprecated version
+

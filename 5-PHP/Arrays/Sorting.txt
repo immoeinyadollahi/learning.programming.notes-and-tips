@@ -1,0 +1,7 @@
+functions:
+
+	sort:sort array by value in ascending order and doesn't maintain key association (also if there is non-numeric key,converts them to numbered key)
+	asort:sort array by value in ascending order and maintains key association
+	ksort:sort array by key in ascending order (maintaining key association means nothing here,also it's funny to say maintains value association)
+	
+maintain key association means after sort each values has its originial key and it doesn't change after sort

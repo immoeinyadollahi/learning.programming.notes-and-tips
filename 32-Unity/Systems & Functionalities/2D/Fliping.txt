@@ -1,0 +1,6 @@
+best way to flip 2d object is to use negative scale 
+becasue it also flip children as well
+
+unlike sprite fliping which only flip current object sprite
+
+** negative scale doesn't flip axes for game object

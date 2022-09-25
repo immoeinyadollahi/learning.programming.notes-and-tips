@@ -1,0 +1,5 @@
+join table can be used for all relations even one to one or one to many but it is unnecessary, so just use for many to many (M:N)
+
+join table can have extra column for convenience and reduce performing multiple queries
+
+join table can join not only two tables but multiple tables

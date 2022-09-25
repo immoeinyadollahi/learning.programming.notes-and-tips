@@ -1,0 +1,4 @@
+quantifiers is greedy by default
+
+only quantifiers that support minimum occurance (not fixed quantifier) can use the non-greedy token that makes them lazy
+

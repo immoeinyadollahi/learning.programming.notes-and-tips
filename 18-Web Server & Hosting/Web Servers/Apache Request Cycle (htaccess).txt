@@ -1,0 +1,38 @@
+1. getting first and closest valid htaccess file (same level or upper,not inside of that if it is directory)  and evaluate that (valid means not empty and contain at least one valid statement in it),DirectoryIndex and Options Indexes is not valid ones (if path doesn't exists reduce that to first valid path in system)
+2. if there is any rewrite in that file then do it,otherwise go to closest htaccess file that contains any statement (not empty file),if so evaluate that,other wise perform below steps
+
+1. if path endswith file,then find that find,if doesn't exists return 404
+2. if path endswith only directory,then first check for existence of directory index file (html,php,...),if so execute that,otherwise if there is Options -Indexes show 403,otherwise show directory listing
+2. if path is empty,find index file,otherwise 404 error
+
+path means REQUEST_FILENAME
+
+
+
+
+htaccess rewrites only control access to directory files and sub directories
+for control current directory you should use some options like (DirectoryIndex, Options Indexes)
+
+
+listing called directory listing of htaccess
+
+
+two ways to prevent directory listing
+
+using .htaccess in same folder : Options -Indexes       403 forbidden error
+
+create blank index file (php,html) in folder
+
+
+request_filename is url corresponding path in filesystem,if url doesn't exists in filesystem,then only valid part of url plus one extra path portion will be request_filename
+
+
+directory index file can be customized with DirectoryIndex example.php
+
+
+Options +Indexes is set by default
+
+if both DirectoryIndex and Options Indexes exists in htaccess DirectoryIndex will be evaluated first,if there is no such file,then evalute Options Indexes
+
+DirectoryIndex and Options Indexes only work if request_filename is directory and effect any subdirectories as well
+

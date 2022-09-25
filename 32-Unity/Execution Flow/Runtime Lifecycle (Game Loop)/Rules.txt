@@ -1,0 +1,6 @@
+when adding new component dynamiclly to a game object or instantiating new game object in the scene,components Update or Start or Awake methods (or others like FixedUpdate ,... not onEnable which called when new instatnce created) 
+get called after finishing current game frame and in start of next frame
+so for new components they should wait until next frame begin
+
+therefore new game objects components (or game objects which activated for first time) or new components added to game object will be synced with game lifecycle flow
+Start and Awake and other lifecycle messages only get called for those new components,further messages will be synced or merged with previously exist game objects components

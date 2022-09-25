@@ -1,0 +1,1 @@
+combination of Math.trunc() & Number.prototype.toFixed()

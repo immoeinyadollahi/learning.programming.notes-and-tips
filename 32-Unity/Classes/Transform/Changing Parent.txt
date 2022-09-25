@@ -1,0 +1,13 @@
+two ways to set parent:
+
+1. setting parent property
+   this may change local transform but keep the global transform the same.
+
+2. SetParent method
+   if worldPositionStays parameter is true (default), its excatly same as setting parent property
+   but if is false, local transform of game object remain unchanged but global may change.
+
+
+** `may change` because if global transform of parents are equal, local and world transform of child game object will be equal when changing parent
+
+so concept is maintain local transform and change world transform or maintain world transform and change local transform

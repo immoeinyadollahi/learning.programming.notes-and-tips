@@ -1,0 +1,7 @@
+files differ from folders
+
+rules:
+file can be without extension
+file extension is part of file name so we can have same file name but different extension
+in one directory we can't have two or more file or directory with same name (two files or two folders or one folder and one file) (file extension also is part of file name)
+

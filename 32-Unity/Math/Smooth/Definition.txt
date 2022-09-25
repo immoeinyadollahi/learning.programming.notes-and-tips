@@ -1,0 +1,14 @@
+gradually (overtime or frame-by-frame) change value towards the target value
+value can be either rotation or vector or float
+
+
+
+Lerp,Slerp,MoveTowards,SmoothDamp
+
+
+
+
+
+Vector.Lerp vs Quaternion.Lerp vs Color.Lerp ,... vs Mathf.Lerp 
+Vector.Lerp and Quaternion.Lerp and Color.Lerp ,... are same as Mathf.Lerp but instead of lerping one value,these methods will lerp each component separately
+same for other methods

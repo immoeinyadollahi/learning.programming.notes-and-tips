@@ -1,0 +1,19 @@
+kebab case   x-x-x
+snake case    x_x_x
+pascal case   XasdYasd
+camel case   xasdYasdNasd
+
+databases lik sql (columns and tables name) and mongodb (collections and document fields) and also database names must be snake case
+all data like json,request body,query params,inputs name, must be snake case 
+files or directories that are model,constructor,class,component must be pascal case , other files or directories must be kebab case
+html tags,css classes and id,sass classes and id must be kebab case
+constants must be uppercase separated with _
+
+js variables and function and methods and properties must be camel case
+js classes must be pascal case
+
+php variables and functions must be snake case
+all properties and methods (static or non-static) in class must be camel case except class constants
+
+
+

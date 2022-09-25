@@ -1,0 +1,5 @@
+Laravel includes built-in authentication and session services which are typically accessed via the Auth and Session facades. These features provide cookie-based authentication for requests that are initiated from web browsers.
+
+you can interact with these authentication services manually to build your application's own authentication layer. 
+However, to help you get started more quickly, we have free packages (starter kits) that provide robust, modern scaffolding of the entire authentication layer
+they just template built on top of built-in browser authentication services

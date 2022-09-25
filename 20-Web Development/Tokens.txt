@@ -1,0 +1,22 @@
+we have two ways to use tokens for auth or verification or guest user
+
+1. use token model with `token` and `issue_id` field/column and send jwt token contains issue_id and extra payload and when verifying token we should find token with that issue_id and also match existing token record `token` field/column with received token string
+this approach is useful for email verification and also user remember me and guest user cart token
+we can also have fields/columns like user_id or cart_id and type in token record/document useful for revocation
+
+2. use token field/column or other name in target table/collection like user or cart and send jwt token to client, for verification we should decode token and find record/document based on token payload and also match record/document token field/column with received token string and for revocation we should change token field/column to null or another value
+this approach is useful for user remember me and guest user cart token 
+
+3. like first approach but only store issue_id in token and store actual payload or needed data in token record/document,first verify token then use its value
+
+4. like third approach but don't create token string at all,create unique id and store that in token table/collection and also send it to client and store needed data in token record/document
+
+
+Don't
+
+don't query based on token string because its very long and has negative impact on performance
+
+
+Consideration
+
+if you want to use revocation mechanism you should use database or other storage so 4 approach is very good, but if you don't use revocation at all, you should store payload in token itself

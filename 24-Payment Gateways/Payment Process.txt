@@ -1,0 +1,2 @@
+all gateways except zarinpal after successful payment ,will post payment result to callback url.
+zarinpal use `get` and send payment result in request url query portion

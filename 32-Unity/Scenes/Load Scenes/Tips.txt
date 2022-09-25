@@ -1,0 +1,5 @@
+1. unity doesn't say don't do anything after calling LoadScene method or LoadSceneAsync setting allowSceneActivation set to true,for example say all scene references get lost after calling these methods
+   this will not happen and all actions performed after current frame get finished completely,even after OnDestroy and OnDisable messages at end of frame
+   so this ensure that none of our scripts run when activating new scene
+
+2. loading new scene doesn't reset things like Time.timeScale,... or other configurations

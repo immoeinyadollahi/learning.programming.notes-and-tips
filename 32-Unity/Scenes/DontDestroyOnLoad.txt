@@ -1,0 +1,8 @@
+DontDestroyOnLoad is a scene same as other scenes but is not asset and has different behaviours
+we can move game objects from DontDestroyOnLoad scene to other scenes or interact with scene object
+
+think of this scene as an dynamic scene and not static asset like other scenes
+
+*** loading new scenes even in Single mode don't unload DontDestroyOnLoad scene
+*** DontDestroyOnLoad can't be unloaded with unload scene method on scene manager
+*** this scene gets removed when its game objects cleared

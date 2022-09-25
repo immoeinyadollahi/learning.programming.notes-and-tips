@@ -1,0 +1,2 @@
+SetRotation method and setting rotation property directly are equivalent
+

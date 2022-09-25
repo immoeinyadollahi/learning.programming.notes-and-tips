@@ -1,0 +1,1 @@
+$sum for each item in group evaluate parameter expression then push it to one array,and in the end sum all items value and returns total value

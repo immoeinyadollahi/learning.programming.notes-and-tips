@@ -1,0 +1,4 @@
+1. Unity hierarchy parent-child relationship doesn't affect sort in layer and order in layer
+    
+
+    e.g. for sprites, children must explicitly specfiy sort in layer and order in layer which usualy must be higher than parents

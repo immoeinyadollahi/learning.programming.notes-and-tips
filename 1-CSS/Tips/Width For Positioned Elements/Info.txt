@@ -1,0 +1,2 @@
+block elements in pos absolute or fixed or sticky don't take full width
+and they only scale with their content so you should give width and height

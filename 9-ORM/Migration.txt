@@ -1,0 +1,14 @@
+up:
+
+called when from backward migrate to this migration or upper
+
+down:
+
+called when from this migration or upper migrate to backward
+
+
+migrate from forward to this migration doesn't do anything
+
+there is a table in db that shows the migrated migrations this will prevent recall those migrations
+only those migrations that doesn't exist in this table will run, after that they will added to this table as new row as well
+but if this table doesn't exist all migrations will be called

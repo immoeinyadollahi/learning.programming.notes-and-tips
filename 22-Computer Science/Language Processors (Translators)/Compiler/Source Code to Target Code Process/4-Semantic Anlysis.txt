@@ -1,0 +1,3 @@
+Semantic analysis is the task of ensuring that the declarations and statements of a program are semantically correct
+compiler checks for correct usage of the elements of the program and the language.  A complete traversal of the ast allows verification of the correctness of the program.
+It usually includes type checking, or makes sure a variable is declared before use

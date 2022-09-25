@@ -1,0 +1,63 @@
+Under Development Projects
+                        Castle Defender
+								Ideas
+									its a strategry game
+									add shop for buying items with coins
+									add different attacking and defnding objects
+									add archers,...
+									add building features like building castle parts
+
+
+						Angry Birds
+							
+								Fix
+									lazer lookAt
+													
+													
+						Reach The Target
+								Learned
+									1. put ui controllers on ui game objects not manager game objects,because for multiple scenes, we can use prefabs to reference children instead of query in scene each scene load
+													
+									2. to load and save states 
+										1. save and load on specfic actions like play or exit 
+										2. using timer with delay to save 
+										3. save on each state change (position or rotation) which is no recommend
+												
+								Not So Important ToDo
+									1. Unsubscribed from events in some classes
+
+								
+						Assault Hawk
+										
+							elimitine up force when throttle down or vise versa or just make easily switch bettween up and down faster
+							
+							
+						Brick Breaker
+						
+						Plants VS Zombies
+						search how inactive ui bind events and ....
+						
+						First RPG
+							Designs Tips
+								we can have multiple event dispatcher for multiple purpose like health,movement,face,...
+							
+							To Do
+								in one direction we can only rotate toolbox from top to bottom (0,180 or 0,-180),so when change direction we should place tools in new direction angle threshold
+								use rotateAround for rotating rotatble tools not parent game object 
+								
+								instead of flipping sprites we can use negative scale on player to apply on all children tools and ,...
+
+Future Projects
+	    Tips
+			focus on portfolio
+		
+		Atari games
+		bridge constructor
+		
+		Next Projects In Order
+		bayat games platformer
+
+
+add all proejcts list in order here
+backup projects in D drive
+use vsc (Version Control System) GIT

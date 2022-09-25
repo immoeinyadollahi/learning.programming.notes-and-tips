@@ -1,0 +1,1 @@
+throw only accepts object that is instanceof Throwable interface otherwise throw error

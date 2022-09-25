@@ -1,0 +1,2 @@
+for gitignore and htaccess files and directories and for js/tsconfig only files
+they will find for first valid configuration file start from their directory up to the root path and stop if they find valid configuration file

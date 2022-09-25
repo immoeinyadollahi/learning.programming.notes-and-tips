@@ -1,0 +1,8 @@
+joints anchors,colliders offsets,things like center of mass,... coordinates are relative to body position and axes
+
+just like unity local transform which is relative to parent transform, local coordinates for these things is relative to bodies position and own axes which may rotated by their rotation
+
+
+Rotation
+only bodies in physics engine rotates
+colliders can't rotate

@@ -1,0 +1,26 @@
+await wait for a promise to resolve if it had a value, return a value in async function further statement doesn't run before resolve complete
+
+async keyword convert a funtion to return a promise with a resolve value that can be function return value
+
+
+
+
+function async(fn) {
+  return new Promise((res) => {
+    queueMicrotask(() => {
+      let result = fn();
+      if (result instanceof Promise) {
+        result.then((z) => {
+          res(z);
+        });
+      } else {
+        res(result);
+      }
+    });
+  });
+}
+async(() => {
+  console.log(1);
+  return 2;
+}).then((s) => console.log(s));
+console.log(1111111111111111)

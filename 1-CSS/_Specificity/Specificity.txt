@@ -1,0 +1,6 @@
+Universal selector ( * ),
+ combinators ( + , > , ~ , ' ', || ) and
+negation pseudo-class ( :not() ) 
+also media queries
+
+have no effect on specificity.

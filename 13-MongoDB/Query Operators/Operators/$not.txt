@@ -1,0 +1,1 @@
+$not only accepts either regex or query expression as operand (parameter)

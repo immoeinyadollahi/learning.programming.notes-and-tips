@@ -1,0 +1,9 @@
+Machine code is binary (1's and 0's) code that can be executed directly by the CPU.
+
+Object code is a portion of machine code not yet linked into a complete program. It's the machine code for one particular library or module that will make up the completed product. It may also contain placeholders or offsets not found in the machine code of a completed program. The linker will use these placeholders and offsets to connect everything together.
+
+Assembly code is source code for assembly language
+
+Byteode is intermediate language code
+
+Source code is written by a programmer,Source code is generally understood to mean programming statements that are created by a programmer with a text editor or a visual programming tool and then saved in a file

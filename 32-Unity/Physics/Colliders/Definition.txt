@@ -1,0 +1,41 @@
+colliders are invisible
+
+we don't have multiple types of colliders,we have only one type of collider but we have multiple types of bodies
+and colliders attached to that bodies act differently based on their body type
+so we have multiple types of bodies but only one type of collider and those colliders act differently based on their body
+e.g. if body is static,then in unity we say all of game object colliders are static
+however colliders shape may be vary
+
+in unity for simplicity we say we have multiple types of colliders (static,rigidbody,kinematic rigidbody) but actually we have one type of collider that can be attached to one of multiple types of bodies
+
+in unity we have static collider (without rigidbody) and dynamic collider (with rigidbody)
+
+every collider belongs to one body in physics engine
+
+Tips
+game objects with static colliders still will be in physics world as static body but static body are static and doesn't receive any physics simlulations
+
+
+Box2D
+static colliders refer to fixures of static body
+rigidbody colliders refer to fixtures of dynamic body
+kinematic rigidbody colliders refer to fixures of kinematic body
+
+Physx
+static colliders refer to shapes of static body
+rigidbody colliders refer to shapes of dynamic body without kinematic flag
+kinematic rigidbody colliders refer to shapes of dynamic body with kinematic flag
+
+
+
+
+Trigger Colliders (یعنی نیروی بازدارنگی نداره)
+
+trigger means collider on game object with `is trigger` property doesn't force other collider push back, they only will be triggerd whenever other colliders enter or exited its collider so other colliders can pass through this collider, however proper trigger events will be dispatched
+simply `is trigger` means collider allows other game objects pass through,otherwise if not is trigger, they can't
+
+From Unity -> A collider configured as a Trigger (using the Is Trigger property) does not behave as a solid object and will simply allow other colliders to pass through
+
+
+game object with trigger collider advantage over game object without collider is we can receive events when other colliders enter,... to this trigger collider
+so only physic engine events are important

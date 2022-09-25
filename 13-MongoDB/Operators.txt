@@ -1,0 +1,49 @@
+same operators in different areas acts differently
+like push in update and aggregation
+
+there are also different areas in aggregate that have there own conditions for operators
+
+
+areas:
+
+Query and Projection Operators (query means regular queries)
+
+Query operators provide ways to locate or find data within the database
+Projection operators modify how data is presented.
+
+
+Update Operators
+
+Update operators are operators that enable you to modify the data in your database or add additional data.
+two types of update operators are:
+1-fields
+2-arrays --->> consists of operators and modifiers
+
+
+
+Aggregation Pipeline Stages
+
+each stage has different name.for example we have sort stage or match stage.they will be written like operators with starting $ but they are stage identifier
+we have only one stage identifier in each stage in each pipeline that located in stage top level
+this are like statements in javascript opposite to expressions
+
+
+Aggregation Pipeline Expression Operators
+
+this operators are expressions.means returns or resolves to single value
+
+
+
+two main topics in all areas
+
+1-query expressions alongside with query operators that are special expressions that resolve to binary boolean to indicate the result of there match
+
+regular query,aggregation match stage,some parts of update operations and projection
+
+
+2-aggregate expressions alongside with expression operators that resolve to single value
+aggregation pipeline expression operators,$expr operator in regular query environemnt
+
+
+3-accumulator expressions alongside with accumulator operators that return accumulated result
+$group stage

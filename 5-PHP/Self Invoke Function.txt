@@ -1,0 +1,1 @@
+only function expression (closure or arrow function) can be used as self invoke function and function declaration can't

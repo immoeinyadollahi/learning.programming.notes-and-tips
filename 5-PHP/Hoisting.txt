@@ -1,0 +1,4 @@
+there is no variable or constant hoisting in php
+
+
+but there is hoisting with functions and classes if not nested and other considerations

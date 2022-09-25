@@ -1,0 +1,7 @@
+compile means translating high level language (source code) to low level language (target code)
+
+compiler translate source code to target code and doesn't execute that if its machine code and produce executable file unlike interpreters
+
+low level can be either machine code or even assembly
+
+compilers may compile directly to machine code or assembly code or object code (all known as target code)

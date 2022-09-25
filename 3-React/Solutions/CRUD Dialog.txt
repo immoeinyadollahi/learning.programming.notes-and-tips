@@ -1,0 +1,2 @@
+you can have two separate dialog ,one for creating and another one for updating
+you can have one dialog and with some conditions use it for both create and update operations

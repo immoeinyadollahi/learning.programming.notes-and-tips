@@ -1,0 +1,3 @@
+nodeType: integer of node type
+nodeName: all node names
+tagName: element nodes tag name

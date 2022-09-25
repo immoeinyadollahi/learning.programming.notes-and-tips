@@ -1,0 +1,4 @@
+for non spa apps
+
+1. validate values before submit and then call form.submit() to submit the form
+2. submit the form to api for validation and other things then if result was success redirect to new page otherwise show errors

@@ -1,0 +1,1 @@
+64 bit CPU can have both 32 bit and 64 bit version of operating system but in 32 bit operating system,the 64 bit CPU may not run at its full capability

@@ -1,0 +1,3 @@
+expressions always returns or resolves to single value
+
+statements enable us to do particular actions or cause partiucalr action occurs

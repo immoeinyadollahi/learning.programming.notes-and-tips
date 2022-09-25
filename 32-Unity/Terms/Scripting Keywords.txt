@@ -1,0 +1,30 @@
+Delta
+difference,variation or change of values
+
+
+
+Offset
+deviation
+
+
+
+Threshold
+آستانه ، سرحد
+
+
+
+Sensitivity
+حساسیت ، میزان حساسیت
+
+means in one change, with which scale,change must be applied
+(its acts as a multipler)
+
+
+Reuse
+means use one thing in multiple places and when changing original, all of them will be affected
+
+
+Direction
+if you see variables are Vector type and named direction
+it means only direction of vector matters not magnitude
+like for raycasts,...

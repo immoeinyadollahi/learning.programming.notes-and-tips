@@ -1,0 +1,1 @@
+other than functions.php every .php file in child theme overwrite same file in parent theme if exists (only main files)

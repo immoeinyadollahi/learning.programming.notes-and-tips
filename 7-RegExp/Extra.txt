@@ -1,0 +1,232 @@
+// #region
+// void after the string is an unreal character but it has all information about a real character like index or length .... that live in end of string (next character after last character) or in empty string is only character of string,this character not included in string length,but there is an index in that position even though that index returns undefined or access violation happens there
+// zero length matches or positions count is equal to string charaters length (include void after string)
+// cursor position in string advances with regex tokens
+// regex matches are always non-discrete and only one string
+// if all token matched,even if cursor position still has more characters because there is no token remaining and regex is eager ,regex finish the match and perform cleaning up and aggregating result to report to programming languages the success
+// each result has to property Match.MatchLength,Match.MatchPosition.
+
+// if a token match is zero length engine doesn't move cursor position to next character index but if positive length,after match always cursor position moves to next character index (next character after last character of previous token match,if match length is 1 then next character after that character) (sum of current cursor position index and match length will be next position or index)
+// regex test all possibilities to find match
+
+// first initial cursor position is in zero index and match started,if one possibility failed because of one token,then initial cursor position advances to next character,then match start again from that position or index
+// it will advance until void character after string (it starts match again from void after string as well because it is possible to find zero length match here) and if regex cann't find proper or complete match and no more character remain,engine report big failure
+
+// in global match in most engines like js regex engine after match the lastIndex will be next character after last character of previous match (zero length or non-zero length match) (if zero length then next character after zero length index character)
+// but in pcre like engine (php,perl,...),next match starting index will be end of previous match if match length is positive length so from next character index after last character of prevouis match (same as above)
+// if match was zero length then they use backtracking technique, noting that and in next attempt if match again was zero length they dont accept that (one of three failure will occur like next alternation in logical or (pipe operator) ,or,next character and start again with tokens)
+
+// in regex we have three failure operation,whole regex failure of matching (if there is no complete match and cursor position reaches the end of string (void after string will be tested as well) and no more character remain), each individual alternation failure (each side of alernation) , specific token failure (go to next whole string cursor position (maybe after backtracking) and start again)
+
+// if you want to match positions in string you should get character position or index (can be real character or void character after string) plus length of zero.this is the formula for matching positions in string
+
+// for each cursor position failure ,engine put it to the history  (history of tokens matches with length and start position) ,
+// if in any cursor position regex find complete match and because it is eager ,it aggregate the result (get success history from tokens match and then sum total of length and get first token match start position and then send this length and position to programming language for success)
+
+// always last character of one character string is that character itself (real or unreal character)
+
+// regex only send match length and position to porgramming lang and not all information about each token length and position
+
+// regex beside of match position and length ,send groups as well to programming lang
+
+// we have multiple type of cursor position,whole string cursor position (only advance if whole regex fails) & token specific (internal) (like alternation) cursor position & token advancer cursor position (will be reset to whole string cursor position after each failure)
+
+// if one token matches some portion of string or even zero length match,cursor position will be incremented by token match length if match was zero length because length is zero cursor position doesn't advance further like programmming languages lastIndex that has same approach
+
+// index of void after string is always equal to string length
+
+// in regex tokens are fixed-length and variable length.only non-fixed-length quantifiers and alternations are variable length
+
+// regex is very eager,as soon as it finds first valid/complete match,it reports that and then give up from fining other match or backtrack futher or ...
+
+// in regex character doesn't matter,only match position and match length are important
+
+/*
+    *** zero length assertions only assert current cursor position index (can be token specific cursor position or token advancer)) and if success report cursor position index as match position and length of zero
+
+    ^ , $ , \b named anchors that are zero length assertion
+
+    (?=) (?!) (?<=) (?<!)|(?!=) collectively named lookaround that are zero length assertion like anchors
+
+
+    Desc
+
+    ^ ----->  if cursor position is on zero index (first character that can be void after string in empty string as well) then this anchor match this position (index) with length of zero then report to engine to push it to history of tokens matches
+
+    $ ------> if cursor position is on void after string then this anchor match this position with length zero then report to engine 
+
+       ------->  if cursor position is on zero index and this character is a word character then report index of zero as match position plus length of zero as match length
+    \b ------->  if cursor position is on void after string then it stepsback to previous character to check if that was a word character and if it was then report void after string index for match position and length zero as match length to engine
+       ------->  Between two characters in the string, where one is a word character and the other is not a word character. in this case this anchor stepsback to previous character to check for word or non word character if it matches then report current cursor position as match position and length zero as match length to enigne
+       -
+       -
+       -> in other word this anchor only stepsback to prevous character to check for match.but in start of string because there is no previous character ,it checks for current cursor position character to check if it is word character or not
+
+    
+    lookarounds actually match characters but discard the match and report to engine match position and length of zero so engine cann't move cursor position to next character
+
+    we can use quantifiers with lookaround but only 0 (? or * not +) or 1 occurance accepted because quantifiers doesn't repeat zero length match more than once (prevent duplicate)
+
+    lookaround without any regex inside of that, treated as zero length position  ((?=) matches positions that have position front of them and (?!) will not match any position because it means match any position that there is no position after that)
+
+    positive lookahead report current cursor position index and length zero as result only if given argument matches (is followed by cursor position). start from current cursor position
+    lookahead will match only if concated string include current cursor position character and rest of string matches with argument regex also that regex match position is equal to current cursor position of lookahead
+    * you can use any valid regex in lookahead in all falvors even using groups and backreferences even using backreferences outside of lookahead are valid and working normaly
+
+    positive lookbehind report current cursor position index and length zero as result only if given argument is behind of current cursor position .in this case engine stepsbackward to check for possible match
+    * in most regex flavors do not allow you to use just any regex inside a lookbehind, because they cannot apply a regular expression backwards,The regular expression engine needs to be able to figure out how many characters to step back before start matching the regex inside of lookbehind
+    * in those type of flavors the regex argument must be fixed-length then the regex engine determines (calculate) the length of the characters that regex must match (not `can` but `must`) inside the lookbehind,then steps back that many characters in the subject string, and then applies the regex inside the lookbehind from left to right just as it would with a normal regex,and if matches,then reports success
+    * php is an example of those type of flavors but javascript not (can match both non-fixed-length or variable-length regex) (only in newer versions ,since es 2018)
+    * in javascirpt if lookbehind is present,it goes to start of string (zero index) then start matching tokens like normaly ,in this case it returns the result if next index of last character of match (in zero length match current cursor position itself and in 1 length match next index after that) was current lookbehind token cursor position, then match is successfull but if end index is smaller or bigger than lookbehind cursor position index, it fails
+    
+    negative lookarounds act like NOT operator or ! operator in js and only reverse the result of match.success if failed and failure if successfull.it only returns success if there is no match in backward (only if value is falsy then return true)
+
+
+    each zero length assertion token has different approach to match like lookarounds that match characters but discard the match,but generaly they report current cursor position index as match position and length of zero as match length to the engine
+    zero length assertion means only assert current cursor position index based on whether index of current cursor position or before/after characters of that or both and length of zero if assert is success
+*/
+/*
+    in some regex falvors we have mode modifers (inline modifier) that differ from flags (modifier or global modifier) but both have single goal.flags are for whole regex pattern but mode modifer are for small portion of pattern
+    javascirpt doesn't support any mode modifier and only can use flags but php support both
+*/
+/*
+  ** Wrong Definition ** quantifiers that support zero occurance,first check for non-zero occurance and if there is no match,match zero occurance ** Wrong Definition **
+  
+  quantifier with fixed zero occurance or minimum of zero occurance will always match
+
+  ** fixed zero quantifier is useless because will match every position that cursor position currenty placed ,maybe can be used to match anywhere cursor position currently placed
+
+  zero occurance means current cursor position as match position and length of zero as match length
+
+  tips:
+
+  1. ? -> makes preceding quantifier lazy or non-greedy or ungreedy only if quantifier supports minimum occurance (variable-length)
+  2. x{1,1} is fixed-length quantifier
+  3. A greedy quantifier first tries to repeat the preceding token *as many times as possible*, and gradually gives up matches (reduce) as the engine backtracks to find an overall match. A lazy quantifier first repeats the token *as few times as required*, and gradually expands the match as the engine backtracks through the regex to find an overall match.
+*/
+/* 
+    Possessive quntifier
+    its like a greedy quantifier but it clears out all backtracking matches after quantifier reach end of its matches,With a possessive quantifier, the deal is all or nothing
+    essentially a notational convenience for atomic grouping
+*/
+/* 
+    atomic group
+
+    1. js does not support atomic group ,but we can mimic that with lookahead and backreference   /(?=(.*))\1/
+
+*/
+
+// All regex flavors that support possessive quantifiers also support atomic grouping,But not all regex flavors that support atomic grouping support possessive quantifiers. With those flavors, you can achieve the exact same results using an atomic group.
+
+/* 
+    backtracking
+    means trying different possibility with use of alternation or variable-length quantifier (backtrack to previous states) only and only if failure occurs in regex (see below situations),each alternation or each variable-length quantifier match is backtrack single state or possibility
+    1. backtracking only applied with existence of variable-length tokens (non-fixed-length quantifiers and alternations)
+	  2. if regex is linear (fixed-length regex) (without any variable-length quantifiers or alternations) backtracking will not happen at all
+  
+    backtracking occurs in two situations:
+    1. after one token failure occured and right before whole string cursor position advaces to next position because of that failure,regex start backtracking first ,if really there is no match at all even with backtracking,then advance cursor position
+	  2. if there is a internaly failure for specific token (like lookaround argument regex or inside of each alternation side) ,backtracking will be start only inside of that specific token,if really there is no match at all even with backtracking,then if there is extra alternation ,current alternation will fail then goes to next alternation (only for alternation token) otherwise token failure occurs (step 1 will happen)
+	generaly backtracking only happens if there is any failure
+
+    how regex engine knows that there was a variable-length quantifier or alternation before reaching to this point:
+    The engine remembers that the plus has repeated the dot more often than is required.(or for alternation knows that there was another alternation) (Remember that the plus requires the dot to match only once.) Rather than admitting failure, the engine will backtrack
+
+	tips:
+	1. if one variable length quantifier match as many as it can,it doesn't have any problem with that match,even maybe there is no any mismatch after for example ten token after that,but maybe in eleven token failure occurs,in that point regex starts backtracking
+    2. if there is no failure at all and all tokens match correctly,backtracking will not happen at all
+    3.backtracking in greedy quantifier, reduce quantifier reach (occurance) but in lazy or non-greedy quantifiers,expands that
+
+    backtracking with nested or recursive variable-length quantifiers or alternations
+
+    Comparison of the input string with the regular expression continues in this way until the regular expression engine has tried all possible combinations of matches, and then concludes that there is no match. 
+    Because of the nested quantifiers, this comparison is an O(2n) or an exponential operation, where n is the number of characters in the input string. This means that in the worst case, an input string of 30 characters requires approximately 1,073,741,824 comparisons,
+     and an input string of 40 characters requires approximately 1,099,511,627,776 comparisons. If you use strings of these or even greater lengths, regular expression methods can take an extremely long time to complete when they process input that does not match the regular expression pattern.
+    
+    according to https://docs.microsoft.com/en-us/dotnet/standard/base-types/backtracking-in-regular-expressions#backtracking-with-nested-optional-quantifiers
+
+    in some cases its better to use different approach and prevent engine to backtrack,for example for matching html tags instead of making quantifiers lazy ,we can use negated character class with greedy quantifier to reduce risk of backtracking performance
+
+  */
+/* 
+    backreference
+    this token matches same text (not tokens only matched string) that preceding capturing group captured that
+    backreferences are only for capturing groups,they match the result (content or match) of preceding caputured group from where they are currently placed 
+    backreferences must be placed somewhere (anywhere) after corresponding capturing group (neither inside nor before that group)
+    backreferences can be used either in regex pattern or as special replacement pattern in replace method
+    backreferences value may be change during using quantifier as operator or backtracking inside of corresponding capuring group or before that (not after that),the regex engine does not permanently store captured text inside backreferences after first match. If a new match is found by capturing parentheses, the previously saved match is overwritten
+    backreferences for empty capturing groups or capturing groups with zero length match inside of them, match successful zero length at any position they are currently placed
+
+    two situations that backreference will be overwrited:
+    1. because of backtracking new value will be stored in backreference (overwriting)
+    2. by repeating capturing group with quantifier, each time quantifier match new character, new value will be stored in backreference
+*/
+/* 
+    greedy & lazy quantifiers
+
+
+
+*/
+/* 
+    Conditionals
+
+    js doesn't support conditionals but we can use alternation to match different condition and its same as `if else if else` steps
+
+
+
+*/
+/* 
+    Examples:
+
+    1. match start of string without caret (^)                         (?=^),(?<=^)
+    2. match second index position of string                           (?!^),(?<!^)
+    3. match any index position of string                              (?<=^[\s\S]{n}) | (?=[\s\S]{n}$)
+*/
+/* 
+    non-supported tokens in js
+
+    \A               only matches start of string even in multiline-mode                use ^ instead
+    \Z               only matches end of string even in multiline-mode                  use $ instead
+
+*/
+/* 
+    differences between php && js
+
+    $ : 
+        in non-multiline mode
+            in php $ token matches very end of string as well as before last \n if exists (matches all in global mode) (if multiple \n exists in string,then matches only before last of them as well as last of string)
+            in js $ only match very end of string
+
+        in multiline mode
+        in both langs $ matches end of string as well as end of each line (before \n)
+
+*/
+/* 
+    Character Classes
+
+    With a “character class”, also called “character set”, you can tell the regex engine to match only or dont match one out of several characters
+
+    In most regex flavors, the only special characters or metacharacters inside a character class are the closing bracket ], the backslash \, the caret ^, and the hyphen -. 
+    The usual metacharacters (not shorthand character classes or \n \t \v) are normal characters inside a character class, and do not need to be escaped by a backslash. To search for a star or plus, use [+*]. Your regex will work fine if you escape the regular metacharacters inside a character class, but doing so significantly reduces readability.
+    you can use those four special character as literal with two ways, 1. by escaping them with a backslash 2. or by placing them in a position where they do not take on their special meaning
+
+    Shorthand Character Classes
+
+    shorthand character classes can be used both inside and outside the square brackets (character classe)
+    \b , \B , \A , \Z , ... aren't shorthand character classes
+*/
+/* 
+    Capturing Groups
+    capturing groups make it easy to extract part of the regex match by capturing (remembering) the matched text inside of them
+
+    Named Capturing Groups
+
+    most flavors, number both named and unnamed capturing groups by counting their opening parentheses from left to right. so all named capturing groups are numbered as well along with other numbered groups in order
+
+*/
+/* 
+    Regex Glossary
+
+    negated character class
+*/
+// #endregion

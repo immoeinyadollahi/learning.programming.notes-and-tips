@@ -1,0 +1,29 @@
+variables are (containers or dishes):
+
+1-simple scope variable (stack variable)
+2-arrays property
+3-object property
+
+tips:
+
+variables that passed by reference:
+
+only in loops if there is such a variable name in scopes, that will be redeclared and gets new reference
+
+
+variables that passed by value:
+
+if there is such a variable name in scopes, that will be set to new value.(not redeclare)
+also if that is a reference variable ,whole reference will change (side effect)
+
+ways we can pass variables by reference:
+
+foreach                       (cause redeclaration if variable currently exists)
+function parameter
+function `use`
+function return
+assignment
+
+
+
+assignment to reference variable means setting reference value

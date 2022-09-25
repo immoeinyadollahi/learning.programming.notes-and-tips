@@ -1,0 +1,4 @@
+in php if request content-type is application/json ,$_POST will not be populated
+also if request method is PATCH or PUT neither $_POST nor $_FILES will be populated
+
+we should get raw request input from file_get_contents("php://input") (only text)

@@ -1,0 +1,13 @@
+Map is like Object
+
+
+
+A Map holds key-value pairs where both keys and values can be any datatype.
+
+
+A Map remembers the original insertion order of the keys.
+unlike object, in Map any key added at end of the Map in order
+ordering is based on insertion order
+
+
+A Map has a property that represents the size of the map.

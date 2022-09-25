@@ -1,0 +1,9 @@
+Geometry properties are zero/null for elements that are not displayed (display:none) or not in tree (document) . also scroll methods doesn't work and scroll properties are zero or null. also Coordinates are zero or null
+
+Geometry properties are calculated only for displayed elements.
+
+If an element (or any of its ancestors) has display:none or is not in the document, then all geometry properties are zero (or null for offsetParent).
+or
+if an element has display:none or is not in the document, then all geometry properties are zero (or null for offsetParent) for that element as well as all of its decendants.
+
+For example, offsetParent is null, and offsetWidth, offsetHeight are 0 when we created an element, but haven’t inserted it into the document yet, or it (or it’s ancestor) has display:none.

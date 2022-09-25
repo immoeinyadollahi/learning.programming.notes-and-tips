@@ -1,0 +1,14 @@
+we have static and dynamic analytics and statistics
+
+statistics:
+			  if statistics are huge and requires lots of db requests
+					single field statistics : store statistics fields in resource and update it whenever any dependecy changes (e.g. user rating that must be updated after inserting new review that related to user)
+																									
+			  or whether statistics need lots of db requests or not :
+					  just request to db whatever needed dynamicaly
+						
+						
+						
+analytics:
+				because analytics need timestamp and other analytics related data, they cann't be stored statically and must be dynamic
+				to improve db requests we can store related date in separate table or in simplied table with all columns needed and dynamicaly read it from db whenever needed

@@ -1,0 +1,16 @@
+we have two separate execution flow in unity:
+1. editor
+2. runtime (playing game  (play mode or build))
+
+
+each of them have different lifecycle event functions and execution loop
+
+
+unity execute c# code in both editor and runtime
+objects (game objects,components,..) will be created in both environments
+but their functionalities may be different
+
+** serialzied version of scenes,game objects,components,... will be used in both environments
+
+** things like project settings and preferences and ... can be used in both environments
+   and things like Input,SceneManager,... are only for runtime and somethings are only for editor

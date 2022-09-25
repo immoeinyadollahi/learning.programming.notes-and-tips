@@ -1,0 +1,3 @@
+1. create new router and pass it to callback and each method (get post delete) add route with prefix path and middlewares in addRoute method finally get this router routes and merge them to previous router routes (too many regex match cause bad performance)
+2. instead of merge all routes to previous router at once ,in addRoute call previous router addRoutes method with prefixed path and middlewares    (too many regex match cause bad performance)
+3. like express add use method with new router and prefix ------> previous_router.use(prefix,middlewares,group_router) (recommended way)

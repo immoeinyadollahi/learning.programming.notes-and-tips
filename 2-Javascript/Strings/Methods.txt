@@ -1,0 +1,16 @@
+replace,replaceAll:
+
+the only difference between this two is that replaceAll without regex and just string, works globaly.and with regex it must be globaly
+replace with g flag is same as replaceAll with g flag regex
+
+search,indexOf
+
+they find start index of first match
+
+lastIndexOf
+
+start index of last match
+
+split
+
+doesn't return empty string results

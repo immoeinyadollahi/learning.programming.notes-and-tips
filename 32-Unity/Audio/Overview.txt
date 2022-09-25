@@ -1,0 +1,7 @@
+In real life, sounds are emitted by objects (sources) and heard by listeners (can be microphone or human ears)
+The way a sound is perceived depends on a number of factors (position or distance of source relative to listener,surrounding ambient,velocity of source may change pitch what received by listeners)
+
+
+To simulate the effects of position, Unity requires sounds to originate from Audio Sources attached to objects which have transform (for caluclating position we need game object transform to achieve that)
+
+

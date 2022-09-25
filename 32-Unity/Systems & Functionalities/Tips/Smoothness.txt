@@ -1,0 +1,2 @@
+everywhere we need smoothness we should store a Target value 
+and overtime and frame by frame reach to that value

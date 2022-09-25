@@ -1,0 +1,3 @@
+replace every . token in regex with [\s\S] to match every character even newline    s
+
+info: makes . token matches every character even newline

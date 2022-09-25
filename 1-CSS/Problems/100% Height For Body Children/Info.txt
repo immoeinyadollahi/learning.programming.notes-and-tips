@@ -1,0 +1,5 @@
+100% Height Doesn't Work For elements that their parent are body
+because body doesn't have height with length(px or..)to Fix this
+should use 100vh to get viewport height
+
+but for fixed or absolute 100% work fine

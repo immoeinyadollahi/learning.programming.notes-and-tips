@@ -1,0 +1,2 @@
+in play mode only changes on game object will not be saved 
+but changes to assets in project will be saved, like modifying prefabs (changing prefab in playmode doesn't update realtime on game objects and you should restart and play again)

@@ -1,0 +1,10 @@
+we can only change bodies global position
+we don't have any local position for bodies in physics world
+but for colliders we can only set their local position relative to parent
+
+e.g. in physx we only have setGlobalPose for bodies but for colliders because each collider has transform relative to body, there is setLocalPos which set collider position relative to its actor (body)
+we can change global position of colliders and only can set realtive position of them
+
+
+
+physics engine only support local transform for colliders

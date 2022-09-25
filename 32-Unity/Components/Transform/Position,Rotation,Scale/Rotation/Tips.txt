@@ -1,0 +1,10 @@
+1. look at axes from negative direction into positive direction in order to apply rotation
+   or apply rotation around positive direction
+
+2. always look at gizmos for rotation from behind because gizmos show positive axes
+   from top of gizmo, rotation will be reverse, negative will be counterclockwise and positive will be clockwise
+
+3. degree start from 0 at top
+   positive degree is counterclockwise
+   negative degree is clockwise
+

@@ -1,0 +1,17 @@
+the array field must appear as part of the query.
+
+
+$
+
+Acts as a placeholder to update the first element that matches the query condition.
+index of first element in array field that matched with query
+
+$[]
+
+Acts as a placeholder to update all elements in an array
+unlike $ placeholder that was for index of first element in array field that matched with query, $[] operator is query independednt
+and update all elements in array for matched documents
+
+$[<identifier>]
+
+Acts as a placeholder to update all elements that match the arrayFilters condition for the documents that match the query condition. (update array field elements only those that matched with arrayFilters)

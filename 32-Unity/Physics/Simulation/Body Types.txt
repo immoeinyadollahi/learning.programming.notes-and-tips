@@ -1,0 +1,2 @@
+body in physic engine doesn't change in all types (static,dynamic,kinemtatic) and only type of body will be changed
+and based on that type, physics engine may or may not ignore some fields in calculations

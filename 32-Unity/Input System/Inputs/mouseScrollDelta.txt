@@ -1,0 +1,20 @@
+Input.mouseScrollDelta returns delta (variation or change) of previous frame scroll position to current frame (inputs get updated in start of every frame)
+
+mouseScrollDelta is delta for scroll position in Vector unit which its y axis is scroll delta value and its value is always Multiplication of 1 (1,2,3,4,5,-1,-2,...)
+
+*** mouseScrollDelta vector.x will be ignored and always is 0, it was better to return a float value instead of vector2 because only y axis value will be used
+
+
+** positive means scroll up and negative means scroll down
+
+
+Unity
+Input.mouseScrollDelta is stored in a Vector2.y property. (The Vector2.x value is ignored.) 
+Input.mouseScrollDelta can be positive (up) or negative (down). The value is zero when the mouse scroll is not rotated. (between two frames) 
+The value returned by mouseScrollDelta will need to be adjusted according to the scroll rate (sensitivity)
+
+
+
+Difference between mouseScrollDelta and GetAxis("Mouse ScrollWheel")
+
+mouseScrollDelta (y property) is always Multiplication of 1 while GetAxis is delta between -1,1 as floating point number which is always Multiplication of 0.1 (0.1,0.2,0.3,-0.1,...)

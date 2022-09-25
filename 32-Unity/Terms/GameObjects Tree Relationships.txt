@@ -1,0 +1,4 @@
+all tree relationship is based on game objects transform not game object themselves
+parent,children,root are for transforms not game objects
+
+e.g. when we say game object is root,means game object transform is root (no parent (world transform))

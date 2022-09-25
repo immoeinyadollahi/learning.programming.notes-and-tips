@@ -1,0 +1,2 @@
+react keys in whole lifetime of list item component must be unique and also persistant (not changed) among item siblings
+e.g. after sorting the list,items must preserve their keys

@@ -1,0 +1,13 @@
+for every game objects, coordinates of game object will be calculated from origin of game object relative to another origin (in world space relative to origin of world and in local space relative to origin of parent object)
+
+
+in unity instead of game objects origin we say pivot point of game object
+
+
+
+
+in coordinates system every object has coordinates relative to base origin (world)
+objects that are relative to another object still calculated relative to base origin but based on parent or relative game object factors
+like dom nested element are relative to parent element but there position are always relative to base origin but its based on result of its position relative to its parents
+
+so everything on screen are positioned absolute and every relative value must be converted to absolute (like css relative values will end up with computed values which is final value that will be shown on screen)

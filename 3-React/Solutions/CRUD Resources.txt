@@ -1,0 +1,5 @@
+you can fetch whole resource after update or create or delete one of them (good for shopping cart and other server dependent calculations)
+you can do crud one specific item,then using map/filter/concat method to add/delete/update that item and leave other ones like before (not good for shopping cart and other server dependent calculations)
+
+
+for only update: you can use interal state for each item,then after update only change that state (be aware that list of items will not be changed (original items list))

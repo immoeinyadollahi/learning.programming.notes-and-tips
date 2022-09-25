@@ -1,0 +1,6 @@
+in both 2d and 3d, rigidbody position and rotation properties, refers position and rotation of body in physics engine world
+that will be synced with game object transform
+
+** If you change the position or rotation of a Rigibody using Rigidbody.position or rotation or MovePosition or MoveRotation,  (i don't know if changes applied immediately in physics engine)
+   the transform of corresponding game object will be updated after the next physics simulation step (in WriteTransform phase)
+

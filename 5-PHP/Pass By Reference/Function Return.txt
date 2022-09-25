@@ -1,0 +1,3 @@
+if a function return reference with &name syntaxt,then storing its value into variable or other references should also use & to store reference.
+so it only works if we use & in both place
+if we use & in just one place it will not work and may throw error 

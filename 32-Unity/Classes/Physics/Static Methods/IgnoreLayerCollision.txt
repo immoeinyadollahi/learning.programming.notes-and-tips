@@ -1,0 +1,4 @@
+like ignoreCollision ignore all collisions between any collider in layer1 and any collider in layer2
+and also is not persistent
+
+default values for project stored in editor settings collision matrix which will be set when game played

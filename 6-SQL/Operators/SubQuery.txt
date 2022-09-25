@@ -1,0 +1,1 @@
+subquery in different areas have different rules such as returning only one row or returning only one column or both

@@ -1,0 +1,3 @@
+void after string not counted  in character length
+
+regex cursor position can be placed in void after string character

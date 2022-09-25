@@ -1,0 +1,28 @@
+in reality every explosion modelled as a sphere with a certain center position and radius in world space
+
+normally, anything outside the sphere is not affected by the explosion (no forces will be applied to them)
+also for affected objects, the force decreases in proportion to distance of object from the center (how much distance is bigger,forces will be decreased) 
+
+** Assumption **  also applying force has a delay which increased/decreased based on distance
+    
+
+
+Unity
+addExplosionForce doesn't mean explode current rigidbody that affects around rigidbodies
+in this way we can't even filter around rigidbodies
+
+this method means if an explosion happen in world space and rigidbody is insideof explosion radius,how much and in which direction force will be apply on rigidbody because of explosion effect
+(Unity -> Applies a force to a rigidbody that simulates explosion effects.)
+in this way we can filter around game objects
+
+
+
+How To
+we first find all colliders in radius (OverlapCircle or Sphere) ** only colliders that can be affected by explosion must be selected not those that will not affected anyhow (not apply force to all scene colliders which will not be affected by explosion anyhow) 
+
+then call addExplosionForce on each collider rigidbody (if have) by passing explosion position,radius and explosionForce and ... which then this method calculate final force that must be applied to rigidbody 
+
+** so we only add explosion force to rigidbody of colliders inside of radius
+
+
+

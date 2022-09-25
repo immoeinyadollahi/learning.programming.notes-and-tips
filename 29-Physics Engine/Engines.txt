@@ -1,0 +1,79 @@
+physics engine are just for calculation and there is no visual rendering
+they just use data (gravity,force,...) to simulate physics world and then modify objects data (transform,...) in world in each simulation
+
+physic engine have global properties like gravity,boundries,... for simulation world
+
+engine simulation is not constantly and realtime and it must be explicitly instructed (engine is standalone module and doesn't have any internal loop (like game loop) for simulating ,must explicitly instruct to simulate )
+e.g. simulate method on nvidia physx on scene instance, advances physics world by amount of time (timestep)
+so its an explicit call to engine to advance the world by time (step)
+think of simluate as command to proceed or advance world by time (step)
+
+later on we can add objects to engine or add physics data to it like forces and changes properties or world and ... 
+
+objects or entities in physics engine called rigidbody (rigid object) or just bodies
+bodies in world can be any shape (rectacnge,circle,...)
+
+
+bodies are nothing just objects of data and physics properties which in every simulation may change
+collision detection happens because of bodies colliders
+world queries also detect colliders only
+
+
+in box2d we have world and bodies but in physx we have world comprising scenes containing actors (bodies)
+
+Concepts
+	collision detection
+	
+	Raycast
+				in physx is one type of scene queries
+	
+	bodies (rigidbodies)
+	
+	
+	connections or joints or springs
+	
+	
+	Simulation Timestep:
+								 the fixed amount of time by which the simulation advances (Amount of time to advance simulation by)
+								 Physics simulation gives you snapshots of simulated system on each step.
+								 Step" is a process of calculating system's next state. "Timestep" is the time interval for which simulation will progress during next "step". (means the time that world should advance to next state)
+								
+								from box2d: physics engines simulate the physics equations at discrete points of time
+								timestep shouldn't change much, A variable time step produces variable results,So don't tie the time step to your frame rate (make it independent of framerate)
+								
+								think of step as command to tell the world that is without any motion (stopped),go one step further but this step needs time to proceed which is timestep (or how much time, step takes). note that simulation is instantly and it doesn't mean simulation process takes period of time same as timestep but it means that how much time world must advance
+								
+								Variable Timestep:
+															  if you step the world in for example 0.02s timestep then in next simluation use different timestep,if elapsed time from preivous step is same as new timestep i don't know it makes any trouble,but if elapsed time is different that new timestep it will be unrealistic (but in unity in one frame if framerate is low,multiple simulation may happen (elapsed time from preivous simluation is different from specified timestep) but they are aggregated from previous cycle so it will be realistic however)
+
+
+	Simulation Loop
+								this loop will be executed based on fixed timestep within game loop but in reliable time 
+								in box2d to simulate and advance physic world we use world.step and pass timestep as parameter (to advance world (step) by amount of time)
+								in physx we use simulate on scene and pass elapsed time as timestep
+								
+								
+
+
+
+
+How Works
+first new instance of engine must be created with options and configurations (gravity,...)
+second is updating world by passing options like timestep to advance simluation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

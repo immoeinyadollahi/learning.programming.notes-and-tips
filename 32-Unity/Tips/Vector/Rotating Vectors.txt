@@ -1,0 +1,1 @@
+for rotating vectors we should use * op on quaternion (quaternion * vector)

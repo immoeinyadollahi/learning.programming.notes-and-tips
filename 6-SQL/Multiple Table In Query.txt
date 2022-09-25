@@ -1,0 +1,2 @@
+Rules
+1. if multiple table condition happens,we can't use columns directly if for main table and we should use with its table name `table.column`

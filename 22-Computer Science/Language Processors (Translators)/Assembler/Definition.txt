@@ -1,0 +1,3 @@
+assembler assemble (translate) assembly language source code to object code or directly to machine code (target code)
+
+assemble is like compile for compilers

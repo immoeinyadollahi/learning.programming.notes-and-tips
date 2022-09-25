@@ -1,0 +1,1 @@
+offset gets positions relative to document unlike position that get positions relative to offsetParent

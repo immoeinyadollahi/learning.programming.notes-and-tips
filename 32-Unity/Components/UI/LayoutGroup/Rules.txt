@@ -1,0 +1,1 @@
+game objcet only can have one layoutgroup components

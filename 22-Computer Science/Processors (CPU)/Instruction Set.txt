@@ -1,0 +1,2 @@
+each CPU has its own instruction set like x86(32 bit) or x64 (64 bit),therefore machine code for one CPU differs from another CPU with different instruction set or need specific machine code to operate on
+each CPU needs machine code according to its instruction set

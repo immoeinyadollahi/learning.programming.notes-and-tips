@@ -1,0 +1,1 @@
+we cann't use \d or \w to match non ascii characters (in php or javascirpt or python,but in .NET we can),but we can use unicode characters (literal characters equal to them) to match those charcters also we can use them as range in character class (characters order must be correct in range)

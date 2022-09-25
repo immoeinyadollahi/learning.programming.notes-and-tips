@@ -1,0 +1,22 @@
+** Very Very Very Important But Just Assumption** each game object transform has parent even root game object has parent which is global parent or world transform and becuase of that local transform and global transform of those game objects are the same because they are same parent (or world is their direct parent instead of upper ancestor (exclude direct parent itself))
+world is very root transform
+so every game object global transform is transform relative to first root parent which is world
+world may not be game object but its has transform like game objects
+and when saying parent is null,means parent is world transform
+
+game object itself doesn't have parent,parent is a transform which is property on transform component
+so when game object transform changes,unity goes up from game object transform until root parent and when check if parent is null it knows that it should get more information from world transform
+
+so relationship between game object is relationship between game objects transforms not game objects itselves
+and becuase of that all traverse methods attached to transform not game object
+because the only affect of parent-child relationship is on transform properties not other thing
+think of relationships as tree of transforms which in root of them is world transform and every game object localTransform is its transform relative to parent (can be world for root game object transform)
+and globalTransform is its transform directly relative to root transform which is world but for game objects without parent (not world) local transform is same as global transform because they are same thing and relative to worlds
+
+
+root game objects don't have parent transform which attached to a game object but it doesn't mean they don't have any parent transform,they have parent transform which is not attached to game object which is world transform
+so all transforms except world have parent
+
+so we have two relationship concepts:
+one for direct parenting (local)
+another for relative to world or root of all transforms (global)

@@ -1,0 +1,18 @@
+we have setSimulationFilterData and setQueryFilterData for each shape (collider)
+callbacks for both simluation and queries decide what action to perform based on filter data passed to callbacks
+for simulation callback, filter data of both shapes will be passed to callback
+for query callback, filter data that passed to query method along with filter data of hit shape will be passed to callback
+for all query types we set only one callback
+
+
+Main Definition
+we have two types of filters:
+
+1. simulation filter (collisions)
+when collsion between to shape happens filterdata for first and second shape (pair) passed to PxSimulationFilterCallback and PxSimulationFilterShader
+which it will decide what to do for collision with flags that they return
+
+2. query filter
+when hit happens.filterData passed to query method and filterdata of hit shape and other properties passed to PxQueryFilterCallback  which it will decide what to do for hit with flags that they return
+
+

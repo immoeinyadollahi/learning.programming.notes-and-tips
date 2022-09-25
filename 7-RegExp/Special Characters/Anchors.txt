@@ -1,0 +1,5 @@
+$ matches end of the string or line if multiline enabled
+if multiline is enabled and there is a line break it matches position before linebreak and not after linebreak
+therefore linebreak will not be included in match
+
+but if regex was ...\n$ it matches position after linebreak

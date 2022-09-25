@@ -1,0 +1,6 @@
+file path
+path should be relative because in future application may move to another server
+
+file url
+if  static or assets server are separate from main server then you should use absolute url with static server domain
+if same apps use same assets folder then url should be relative

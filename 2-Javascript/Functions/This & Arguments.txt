@@ -1,0 +1,12 @@
+this and arguments are variables like other user defined variables but with some special cases, if there is no such variables, is not defined error will be thrown
+this variables cannot be set and only get. even in arrow function that there is no such variables,you cant declare variables or ... with this names
+
+this variables are regular variable like let , const , var but created with special functionality unlike with let functionality با عملکرد خاص 
+
+
+
+this keyword priority:
+1- bind (only another bind can override this)
+2- call | apply
+3- caller (can be object or anything)
+4- window or undefined

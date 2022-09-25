@@ -1,0 +1,2 @@
+in destructuring we should pass variable (stack variable,object property (array or object))
+

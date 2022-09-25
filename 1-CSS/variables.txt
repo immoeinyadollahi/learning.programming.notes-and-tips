@@ -1,0 +1,7 @@
+variable declration order is not important,
+this means you can use variable in a selector before declare it (in bottom selector)
+
+variables works like js scopes,means only selected element and its descendants can use it in their selectors,
+children selectors variable declration override their ancestors selectors veriable declration if veriable name exists in ancestors selectors just like javascirpt
+
+its not based on selectors, instead its based on elements hirarchy in dom tree

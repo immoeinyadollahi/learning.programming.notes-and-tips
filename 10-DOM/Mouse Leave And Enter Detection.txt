@@ -1,0 +1,9 @@
+browser store a variable like currentHoverElement
+when mousemove if browser detect element (hovering element) other than currentHoverElement (new hovering element) it will first trigger currentHoverElement mouseleave event with relatedTarget of new hovering element and  trigger mouseenter event for new hovering element
+with relatedTarget of currentHoverElement, then set currentHoverElement to new hovering element, and this is how mouseenter and mouseleave (mouseover/mouseout) works
+
+
+
+
+so for these events we actually need only mousemove event and there is nothing special 
+because touch event doesn't have touch leave and enter events we can use this approach and with help of elementFromPoint to get same result like word game we just created

@@ -1,0 +1,11 @@
+there are two types of stop propagation:
+
+1-event itself does not propagate like mouseenter that does not bubble upward
+
+2-manual stopping propagation by user
+
+
+tips:
+
+Note that while formally there are 3 phases (capturing target bubbling), the 2nd phase (“target phase”: the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
+so while formally there are 3 phases but we only have two phase at all

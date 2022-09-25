@@ -1,0 +1,6 @@
+translate 2d (X,Y): 
+					with relative value for X axis it will translate relative to value of width of element and for Y axis it will translate relative to value of height of element (e.g. translateX(50%) will translate to positive X axis with value 50% of width of element)
+					X axis is is same as coordinates grid but positive Y axis is inverse (its placed downside instead of topside)(differs from coordinates grid)
+
+tranform-origin:
+						  for tranform-origin with rigth value for X axis, rotation 0deg is -180 deg in normal degree system, but with left value for X axis, 0deg is same as normal degree system

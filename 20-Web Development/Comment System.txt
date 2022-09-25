@@ -1,0 +1,6 @@
+we can have two types of comments:
+1. anonymous (guest) user comment 
+2. logged in user comment
+
+comment can have user name and email that are only for guest users or user_id column for logged in users
+optional column is_anonymous

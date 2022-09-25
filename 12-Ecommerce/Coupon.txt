@@ -1,0 +1,5 @@
+ways to use coupon codes:
+
+1. apply coupon code in last step of checkout and send coupon code or id when submiting form to complete order
+2. in cart page get coupon code and save it in cookie or session (session is recommended)
+3. logged-in user     if cart need logged-in user then assign coupon to user,or if only checkout page use coupon code assign coupon to logged-in user

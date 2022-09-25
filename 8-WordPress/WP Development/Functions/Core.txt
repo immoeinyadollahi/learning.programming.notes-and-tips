@@ -1,0 +1,2 @@
+$wp_scripts = wp_scripts(); getting all scripts
+$wp_styles = wp_styles(); getting all styles

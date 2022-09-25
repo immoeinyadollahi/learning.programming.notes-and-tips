@@ -1,0 +1,4 @@
+Preferences - General - script changes while playing   = stop playing and recompile
+Preferences - External Tools - external script editor     = vscode
+
+Project Settings - Quality - levels    = very low

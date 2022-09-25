@@ -1,0 +1,21 @@
+sorting layer has precedence over order in layer
+if a sorting layer is placed lower than other sorting layers,then it have more precedence for rendering
+and if sorting layers are equal,then order in layer will be applied
+more order in layer is, more precedence sprite have for rendering
+
+bottom sorting layers rendered on top of other sorting layers
+or simply say if index of sorting layer is bigger than other layers, it will be rendered on top of other layers
+
+if sorting layer is higher than others but order in layer is bigger,because they are in differnt sorting layer,higher sorting layer will be placed behind of lower layers
+but if sorting layer is the same,order in layer indicates which one has more precedence
+
+** order in layer is only for when sorting layer is the same
+
+** order in layer is for sorting in same sorting layers
+
+**** Assumption ****
+if both are equal (sorting layer and order in layer), component creation time (new instance created) will indicate which one should have precedence over another 
+
+
+
+** higher means lower index and lower means higher index

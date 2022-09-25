@@ -1,0 +1,1 @@
+Widgets: add content and features to posts and pages (public components)

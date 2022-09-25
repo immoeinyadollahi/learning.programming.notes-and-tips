@@ -1,0 +1,18 @@
+we have three types of scene queries
+1. raycast
+2. sweep (geometrically similar to a raycast() or geometric raycast (same for boxcast,capsulecast in unity))
+3. overlap (searches a region enclosed by a specified shape for any overlapping shapes in the scene)
+			return only shapes (collider)
+			
+			
+			
+			
+we have three Query modes which can be applied on each query
+1. closest hit
+2. any hit
+3. multiple hit
+
+for unity closest hit is for methods without `all` name (casts and overlap)
+cast methods with `all` name, change the mode of query based on that 
+
+** all overlap methods in 3d will get all results not first one

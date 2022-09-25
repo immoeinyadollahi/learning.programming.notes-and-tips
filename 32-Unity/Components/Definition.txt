@@ -1,0 +1,31 @@
+Definition
+components are functional pieces of every game object which each of them will add functionalities and behaviours to game objects
+
+
+components are just classes which new instance of components will be added to gameObject (like react class based components, new instance of component class will be instantiated and attached to dom)
+so when say attaching components to game object technically means attaching new instance of components to gameObject not component class itself (like react)
+we have two types of components:
+1. built-in components (transform,animator,mesh filter,...)
+2. scripts that each one acts as custom component (monobehaviour component)
+
+like react when we say we use X component here, means we use new instance of component here also for unity we say we use Transform component but technically we use new instance of Transform component class here and attach it to game object
+
+
+when attaching component to gameObject,new instance of that component class will be instantiated with proper constructor params like gameObject which points to game object component attaching to.
+
+Tips
+1. every component(instances of component) attached to a game object
+   we can't remove component from game object without destroing component,because every component must belongs to a game object
+   so components can't live without a game object
+   also we can't change component instance attached game object
+   we can only Destory component completely
+
+   simply put,a component instance have reference to its game object which can't be changed or removed
+   in start of component life,it will be attached to a game object until destroing component instance completely
+
+2. some of components can't be attached multiple times in gameobject like mesh filter,transform but components like boxCollider or scripts can be attach multiple times (same component)
+
+
+
+****************** Important Assumption ******************
+built in components like transform,audioSource,rigidbody,... don't extend from monobehaviour (but some of them do) but they have similar functionalities like monobehaviour components or even more or even separated execution flow or hidden from unity docs

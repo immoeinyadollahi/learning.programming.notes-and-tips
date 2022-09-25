@@ -1,0 +1,14 @@
+The alternation operator has the lowest precedence of all regex operators.
+That is, it tells the regex engine to match either everything to the left of the vertical bar, or everything to the right of the vertical bar. 
+If you want to limit the reach of the alternation, you need to use parentheses for grouping. 
+
+or 
+
+alternation operator has unlimited radius, to limit its radius use grouping (all valid grouping token,even non-captuing ones)
+
+
+
+
+the regex engine will study the entire regular expression before starting. 
+So it knows that this regular expression uses alternation, 
+and that the entire regex has not failed yet.

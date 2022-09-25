@@ -1,0 +1,11 @@
+
+
+
+
+After Simulation
+
+    Updating transforms and other properties
+    
+    transform and other rigidbodies properties get updated after each simulation
+    not once for multiple cycle updates because we need new physics information in each cycle in places like OnCollisionXXX or FixedUpdate,..,so they must be updated after each simulation
+

@@ -1,0 +1,60 @@
+lookup result is always array field
+
+lookup forms:
+
+        1  // Single Equality Join
+          {
+            $lookup: {
+              from: "appointments",
+              localField: "_id",
+              foreignField: "user",
+              as: "appointments",
+            },
+          },
+        2  // // Multiple Join Conditions and Correlated Subquery
+          {
+            $lookup: {
+              from: "appointments",
+              let: { user_id: "$_id" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: { $eq: ["$user", "$$user_id"] }, // to match field with variables you must use $eq aggregation operator along with $expr,regular field query syntax not working (<field>:"$$variable")
+                    doctor: ObjectId("6146139ea011e20a7828246c"),
+                  },
+                },
+              ],
+              as: "appointments",
+            },
+          },
+        3  // Concise Correlated Subquery  * Since Version 5.0  concise syntax removes the requirement for an equality match on the foreign and local fields inside of an $expr operator:
+          {
+            $lookup: {
+              from: "appointments",
+              localField: "_id",
+              foreignField: "user",
+              let: { user_id: "$_id" },
+              pipeline: [
+                {
+                  $match: {
+                      doctor: ObjectId("6146139ea011e20a7828246c"),
+                  },
+                },
+              ],
+              as: "appointments",
+            },
+          },
+        4  // Uncorrelated Subquery
+          {
+            $lookup: {
+              from: "appointments",
+              pipeline: [
+                {
+                  $match: {
+                    doctor: ObjectId("6146139ea011e20a7828246c"),
+                  },
+                },
+              ],
+              as: "appointments",
+            },
+          },

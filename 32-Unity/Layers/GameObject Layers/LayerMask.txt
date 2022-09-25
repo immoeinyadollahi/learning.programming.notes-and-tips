@@ -1,0 +1,24 @@
+layer mask should called layers bitmask or bitmask of layers means a mask that will be used for filtering layers
+layer mask will be used for including and excluding layers
+
+in contrast with layers,layer is human number like 0,1,2,3 which represets layer index but layer mask is an integer formatted as a bitmask
+
+layermask doesn't care about generated numbers (2,4,8,16),only cares about bits and their index which correspond to layers
+
+the computed number of bitmask layers is not important,the only pupose of bitmask is to specifiy which layers should be included and which should excluded
+we only need index of bits
+index of every bit will be used as layer index and value of bit will used whether or not layer should be included or excluded
+however,we don't access to bit string and only pass computed number to methods as layer mask but when needed in different places (physics query,camera culling mask),unity convert that number to indexes to know which layer to include and which one to exclude
+in general computed value doesn't make sense to use anywhere
+
+again we don't need to know real number created from layer mask we only need it for inclusion and exclusion
+
+** Important ** bitmask main use cases are not what we use in unity which we only get state of each layer and include or exclude based on that, so we don't actually mask bits
+
+
+Why Use
+why we use bitmask (layermask) for layers and not use options like include layers or exclude layers as parameter for api calls?,because its faster and we can represent both inclusion and exclusion of all layers using only one number with binrary format
+
+How To
+for creating bitmask for layers or layermask we may use bitwise operators to create custom bitmask and pass it to API calls
+

@@ -1,0 +1,19 @@
+proto:
+each object has hidden __proto__ property which points to another object or null (object can be prototype or any objects)
+objects use this mechanism to inherit properties and methods
+
+prototype:
+each function object has prototype property which instantiated object __proto__ property points to it 
+
+
+they are different because one function object have both of them, prototype used for instantiated object inheritance (from function) and proto used for inherit methods and properties from extended function (class) object
+
+therefore __proto__ used for inheritance so all objects can have it and prototype contains methods and properties and will be used for inheritance when instantiating new object from function object or call them without instantiating new object by binding this
+
+
+when we access property or method javascript first search through object own properties and if it can't find such property,then it will start looking for property in __proto__ chain until no property found and there is no __proto__ left  which is Object.prototype
+if so, returns undefined
+
+when extending a class, first drived class prototype object set extended class prototype as its __proto__ and also drived class itself set its __proto__ to extended class
+so this way when we call static method on class first search through class itself up to extended class and also drived class prototype inherit all methods and properties from extended class prototype
+this process happens when declaring classes not when instantiating new object 

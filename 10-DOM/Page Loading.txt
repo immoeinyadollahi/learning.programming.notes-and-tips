@@ -1,0 +1,33 @@
+DOMContentLoaded:
+
+1. scripts that don't block this event are async scripts and dynamically added * external (with src) * scripts (whether or not its async or defer or none of those)
+
+
+load:
+
+1. waits for all styles and images and other resources (iframe,video,audio,...), also always happens after domcontentloaded event (whether or not there is style or other resource element in page)
+
+
+
+beforeunload:
+
+1. there is no way to customize message from preventing this event in modern browsers
+2. to prevent this event with alert:
+
+														in onbeforeunload dom method we can return any value (not only false but any value) except undefind to prevent this
+														in addEventListener,e.preventDefault not working here,but set value to e.returnValue shows related alert (any value,just set value)
+														
+														
+document.readyState
+
+current loading state of document
+
+loading means document is loading (default state on page loading)
+interactive means DOMContentLoaded event
+complete means load event
+
+readyState will be changed before its related event then right after that such event will be fired (first readyState changes then its event will be fired)
+
+e.g document.readyState becomes interactive right before DOMContentLoaded. These two things actually mean the same (means document loaded).happens at about the same time as DOMContentLoaded, but before it.
+
+we can use readystatechange event when state changed instead of load and DOMContentLoaded events

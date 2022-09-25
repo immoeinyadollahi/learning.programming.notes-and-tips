@@ -1,0 +1,1 @@
+Physics/Physics2D class is a static interface which allows us to access helpers and physics engine world apis

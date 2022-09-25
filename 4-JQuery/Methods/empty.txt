@@ -1,0 +1,1 @@
+its same as  $(selector).html("") and both remove all data and event handlers from all decendants

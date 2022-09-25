@@ -1,0 +1,6 @@
+fixtures can be added to bodies
+fixtures have properties like:
+1. shape
+2. isSensor (for trigger colliders)
+3. material
+...

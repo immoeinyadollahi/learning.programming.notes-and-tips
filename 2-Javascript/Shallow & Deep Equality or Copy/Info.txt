@@ -1,0 +1,24 @@
+// Shallow Copy   only copy object or array itself and not their properties recursively
+
+// const x = { a: 2 };
+// const xCopy = { ...x }; // or Object.assign({},x)
+
+// Deep Copy   clone object itself and all of its properties recursively
+
+// const x = { a: 2 };
+// const xCopy = JSON.parse(JSON.stringify(x)); // lodash.cloneDeep(x)  
+
+// Shallow Equality
+
+// const x = { a: 2 };
+// const y = { a: 2 };
+// assert.equal(x, y);  or x==y
+// assert.strictEqual(x, y); or x===y
+
+// Deep Equality 
+// recursively,if value is function or primitive value,then it compare with == or === (deepEqual or deepStrictEqual),but if value is array or simple object,it compares its values and properties not object pointer itself
+// for array value order is important but in simple object is not
+
+// const x = { b: 3, a: 2 };
+// const y = { a: 2, b: 3 };
+// assert.deepStrictEqual(x, y);

@@ -1,0 +1,4 @@
+1. casting will be used to get hits in one direction start from origin point,and overlap will be used to get all colliders in specific area or point (searches for colliders in a region enclosed by specific shape)
+
+2. overlaping unlike casts,only returns overlaped colliders not contact points (collision points)
+		

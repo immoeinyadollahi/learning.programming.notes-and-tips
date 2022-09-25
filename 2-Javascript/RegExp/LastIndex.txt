@@ -1,0 +1,17 @@
+This property is set only if the regular expression instance used the g flag to indicate a global search, or the y flag to indicate a sticky search.
+ The following rules apply when test() and exec() are called on a given input:
+
+If lastIndex is greater than the length of the input (means that void after string also included as part of length of string), exec() or test() will not find a match, and lastIndex will be set to 0.
+If lastIndex is equal to or less than the length of the input, exec() or test() will attempt to match the input starting from lastIndex.:
+
+		If exec() or test() find a match, then lastIndex will be set to the position of the end of the matched string in the input. (lastIndex will be incremented by match length)
+		If exec() or test() do not find a match, then lastIndex will be set to 0.
+
+
+
+
+lastIndex is g flag or y flag complementary to achieve to this flags goal.
+g flag use lastIndex to start next match from this position until end 
+y flag use lastIndex to matches exact position of lastIndex
+
+lastIndex or general index equals to length of string means void after string

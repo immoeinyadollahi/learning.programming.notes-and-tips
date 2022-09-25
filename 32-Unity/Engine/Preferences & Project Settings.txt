@@ -1,0 +1,22 @@
+
+Preferences
+Unity Preferences is for customizing unity editor (not project)
+
+
+
+
+Project Settings
+project settings is for configuring current project which can be used in both runtime and editor
+
+when changing values of project settings thourgh editor,they are just default values (which will be serialized into yaml file formats and get overwritten whenever saving project) which will be loaded into memory when game starts (for each fields, cooresponding classes will be modified)
+(unity also have default values for all projects for settings which when restting settings or first time creating project,they will be applied and overwritten on current settings)
+all project settings configuration can also be modified through scripts in runtime just like how unity load default configuration in start and set into corresponding fields
+but they are not persistant and only in memory and because of that,unity load them from those file whenever starting the game
+
+these configuration are globaly accessible by specific classes as static fields and methods
+built in components or any script can access these configutions in both runtime and editor 
+
+e.g. physcis collision matrix in physic2d,can be modified any time by script Physic2D.IgnoreLayerCollision
+
+
+** some configurations are only for runtime and cann't be saved (by unity or manually saved) like Physic2D.IgnoreCollision which ignores collision for two collider instances and only persist when game is playing

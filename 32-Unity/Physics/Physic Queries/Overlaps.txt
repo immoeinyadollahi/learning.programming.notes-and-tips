@@ -1,0 +1,19 @@
+overlaping means select all colliders that currently (time when overlap will check) have contact with overlap object (sphere,box,point) or are inside of overlap object
+overlaping means select all colliders that overlap object is touching (have contact point) or inside of them
+or colliders that are inside of overlap object (except overlapPoint)
+	
+Best Definition	
+** return (select) all colliders that have touching or contact point with overlap object (may are not inside of overlap object and only have contact point) or are inside of overlap object or overlap object is inside of them (means same thing except for point which overlap object inside of colliders not vice versa)
+
+
+How Works
+Creates an invisible object (with specified shape) in specific point and return all colliders that have contact with that object (overlap)
+
+
+
+
+
+Methods
+
+2D OverlapArea
+	create rectangle from 2 points and return all colliders that currently have contact (are inside of rectangle or touching it) with this rectangle

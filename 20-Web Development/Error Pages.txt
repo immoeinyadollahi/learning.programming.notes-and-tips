@@ -1,0 +1,1 @@
+these is no error router like /404,/403 or /500.they are only pages and should be rendered according to specific http error and should not be like regular routes

@@ -1,0 +1,2 @@
+unity doesn't load all assets which are not necessary, it load assets on-demand
+e.g. when loading new scene,unity start from new scene serialized version and resolve references recursively which require loading assets from disk into memory

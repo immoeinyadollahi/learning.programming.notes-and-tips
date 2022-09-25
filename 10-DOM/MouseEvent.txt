@@ -1,0 +1,9 @@
+e.target: most nested element (only element node) that cause to event happen
+
+
+
+
+two ways to use mouse events in dom are:
+
+adding handler directly to event
+event delegation

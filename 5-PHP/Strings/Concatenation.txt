@@ -1,0 +1,3 @@
+if one operand if false then treated as "" (empty stirng)
+if one operand if true then treated as "1"
+if one operand if null then treated as "" (empty stirng)

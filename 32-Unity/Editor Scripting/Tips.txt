@@ -1,0 +1,6 @@
+any changes to assets,game object,configurations in scripts which run in editor is same as modifying in editor manually
+they don't get saved automatically just like when you do in editor but if you save the project manually in editor,those changes will be saved
+because manually modifying in editor and by scripts are same things
+
+
+e.g. prefab modifications in scripts work just like when you do it in editor

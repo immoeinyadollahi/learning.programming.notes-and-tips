@@ -1,0 +1,3 @@
+cant animate height 0 to auto there is only two way to animate height
+1-animate height from 0 to length(px or..)
+2-use max-height   max-height 0 to max-height length (px or ..)

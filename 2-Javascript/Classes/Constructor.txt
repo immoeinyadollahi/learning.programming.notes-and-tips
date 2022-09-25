@@ -1,0 +1,21 @@
+all classes are expression and there exp value are pure function that generated from constructor
+
+class with constructor
+
+if class extends a parent class,first should call super
+super is equal to parent.call(this,args)
+we dont need its result,just for modify this keyword
+
+class without constructor
+if class doesn't extend from parent class then constructor is a empty function or only public field setting
+otherwise constructor is something like this:
+constructor(){
+super.apply(this, arguments)
+
+public field settings
+
+}
+
+
+
+the generated constructor is if class exp value that is a function,therefore result is a function

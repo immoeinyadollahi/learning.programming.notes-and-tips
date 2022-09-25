@@ -1,0 +1,5 @@
+public - the property or method can be accessed from everywhere (ouside or inside of classes). This is default 
+protected - the property or method can be accessed within the class and by classes derived from that class also parent classes
+private - the property or method can ONLY be accessed within the class
+
+if not set,in PHP will be set to public as default modifier but in C# will be set to private

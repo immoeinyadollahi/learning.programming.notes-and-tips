@@ -1,0 +1,66 @@
+Example 
+realize car and its driver,when car moves,driver position relative to world will change but its position relative to car remains unchanges.
+
+** Best Example **
+think of transform parenting as a human with a child in hand
+when parent position changes,child position relative to parent remain unchanged but child world position changes
+when parent rotation changes,child will rotate and get new position relative to world but child rotation and position relative to parent remain unchanged
+when parent scales up/down,child will get new scale and also get new position relative to world,but child scale and position (based on parent scale factor) realtive to parent remain unchanged
+
+
+** global position of children calculated with parent scale,rotation,position factors
+** global rotation of children calculated with parent rotation factor
+** global scale of children calculated with parent scale factor
+
+Local position/rotation/scale, is transformation relative to its parent transform.
+Global is the computed transform of a gameobject transform with all of its parents, to the root of the hierarchy.(absolute transform)
+
+game objects without any parent in hierarchy view called root game objects
+all root game objects transform is relative to world space (world transform)
+game objects with parent has transform relative to their parents (local space)
+
+if game object has parent,local space of each game object will parent transform,if game object doesn't have any parent,local space will be same as global space
+so local transform of game object means game object transform relative to local space
+in inspector,transform component of game object always shows local transform of game objcet (like above if game objcet has parent,then it shows game object transform relative to parent (local space),otherwise relative to global space)
+local position,rotation,scale means game object position,rotation,scale relative to local space (parent transform)
+
+
+game object transform position,rotation,lossyScale properties return game object transform relative to global space (global position,global rotation,global scale of game object)
+think of position,rotation,lossyScale properties as globalPosition,globalRotaion,globalSclale of transform
+
+world has transform with origin (position) of 0,0,0 and rotation of 0,0,0 and scale of 1,1,1
+
+
+all game objects transforms are local to something (parent transform or global)
+
+game object transform doesn't have any parent means parent is world transform (game object transform doesn't have parent which belongs to a game object (world transform))
+
+Tips
+1. if game object has parent but parent global transform position is 0,0,0 and rotation is 0,0,0 and scale of 1,1,1 then local transform of children will be same as their global transform (relative to world space)
+because transform will be aggregated by some formula that results same values for local transform and global transform therefore local and global transform of gameobject will be the same 
+
+2. relative to parent transform means relative to global transform of parent
+
+
+Definition
+space means transform (differs from local transform) which includes global position,rotation,scale
+
+local word means belonging or relating to specific thing
+so local means local to what
+game object local space means space which game object belongs or related to
+which is parent transform or space
+
+global or world space means world transform
+
+
+so game object transform relative to local space or local transform of game object means game object transform relative to its parent
+same for world,gameobject transform relative to world means global transform (world transform) of game object
+
+*** local transform means relative to parent global transform
+    so local space doesn't mean only parent position,but also parent axes which may rotated by parent global rotation
+
+*** in some places local means parent and in other places means self
+
+
+*************** Important ***************
+imagine a transform in world space with own axes and some children which rotates and positioned relative to that axes

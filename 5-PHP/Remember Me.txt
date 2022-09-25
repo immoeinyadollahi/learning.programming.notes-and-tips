@@ -1,0 +1,4 @@
+you can change session cookie maxAge
+
+you can set remember cookie and session cookie expire should be session . meaning close browser delete cookie
+each time user comes in check its session for user property in that if that is not exists check for remember cookie and decode that for user

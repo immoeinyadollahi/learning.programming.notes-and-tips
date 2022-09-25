@@ -1,0 +1,5 @@
+Makes the collision detection system ignore all collisions between collider1 and collider2.
+Note that this is not persistent and only stored on memory
+
+
+collision also includes triggers

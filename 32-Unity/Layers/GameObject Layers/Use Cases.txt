@@ -1,0 +1,15 @@
+1. Layer-based camera rendering
+														Using the Camera culling mask with layers, we can render only the objects in a particular layer, or selection of layers
+														culling mask means layer based rendering of game object
+														
+														
+														
+2. Layer-based Physics collision detection and query
+
+														Query
+																	we use layermask and layer in query to include (select or hit) or exclude (ignore) collider within query based on their layers (filter which collider to select or hit)
+																	
+														Collision Detection
+																	we use layers collision matrix to determine which colliders should collide with other colliders based on their layers
+																	we can specify which colliders should not collide with other colliders (pass through)
+																	e.g. in default matrix configuration we specified that every collider with all layers can collide with other colliders

@@ -1,0 +1,4 @@
+> < >= <=:
+					if both operands are numeric string, then compare like alphabetical characters
+					if both operands are number, then perform regular comparison
+					if only one of them is string, first cast it to number, then perform regualr comparison

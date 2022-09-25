@@ -1,0 +1,1 @@
+ascii is for english characters but unicode is for any language

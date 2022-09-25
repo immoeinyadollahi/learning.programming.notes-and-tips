@@ -1,0 +1,32 @@
+physics engine are just for calculation
+real object movment and other visualization happens when render engine (can be unity or other render engines) draw (render) new frame which will get all information like transform (may be updated by physic engine because of force or gravity or ...) from all game objects
+
+after physic simluation unity gather each rigidbody info from corresponding game object in scene,then receive new transforms and other data (collisions,triggers,...) 
+from physic engine and update or overwrite new data (transforms of gameobjects,animations,...) and also calling collision events on game objects (if collision or trigger detected by physic engine) 
+and when rendering new frame time reached, game objects will be rendered and synced with current components data (like transform)
+
+
+physic engine doesn't return anything after simluation,unity get rigidbody (in physic engine) of each gameobject (which its reference attached to rigidbody component itself and no need to find in physic engine world or query for that) (or get each scene gameobject corresponding rigidbody from world by query again (not so correct))
+and get its data like positions and rotations and apply them to game object components
+(after unity simulate physic,it will get each game object (bodies) new transform properties and other data from game object attached rigidbody and modify actual game object components properties)
+
+unity doesn't need to add extra stuff when step simulation of physic engine,methods and properties for each rigidbodies are set before that and only timestep and other things will be passed to simulate method (step method for box2d)
+
+unity use 0.02 timestep to advance or simulate physic world
+
+`step` in physic world means update physic world
+
+
+calling methods like AddForce or set properties like velocity on gameobject rigidbody,cause corresponding physic engine world rigidbody to call those methods and setting those properties that make rigidbody updated with new data like forces,velocity,...
+and then when simulation time reached physic engine calculate or simulate world rigidbodies based on various factors and properties on each rigidbody
+some properties like impulce force is one time force, therefore after simulation will be deleted from rigidbodies and may cause to other forces and properties that will be used in next simulation
+
+e.g. when we addForce or set other physic properties in Update or fixed update,changes will be applied directly into engine world but not simualte, then after simulation time reached,simulation will be executed
+
+also when transform (which is not depends on physics) of game object changes in scene by set transform properties in code or in game object initialization,unity also set transform of rigidbody (points to physic engine body) of each game object to current values to sync between physic and rendering
+box2d uses setTransform and physx uses setGlobalPose
+
+
+
+*************** Important ***************
+physic engine simulation impact on unity world is just overriding transform position and rotation

@@ -1,0 +1,6 @@
+key concept is, its reverse, means when mouse goes up,camera goes down,same for other direction
+
+Why Start Last Position When MouseDown
+because we only want to get delta when mouse down happens
+although we can set it in end of Update and receive previous value in MouseButton and apply camera panning
+so only reducing calculations is important

@@ -1,0 +1,3 @@
+TextMeshPro is a replacement for unity existing text components (TextMeshProUGUI for UI.Text and TextMeshPro for legacy TextMesh)
+
+replacement for Unity's UI Text and the legacy Text Mesh

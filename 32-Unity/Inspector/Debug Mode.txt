@@ -1,0 +1,4 @@
+in debug mode non-serialized non-static private and protected fields can also be shown in inspector as readonly field
+
+however fields with HideInInspector attribute not show in debug mode
+

@@ -1,0 +1,3 @@
+two ways to add mixin to object:
+1. use Object.assign(constructor.prototype,mixinObject) for each constructor we want (just like traits in php but in other style) (like php traits we can use Object.assign({},mixinObject,constructor.prototype) to prevent mixin methods)
+2. create intermediate __proto__ which object points to that as __proto__ also that has __proto__ to original object prototype

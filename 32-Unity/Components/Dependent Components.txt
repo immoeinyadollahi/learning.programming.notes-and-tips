@@ -1,0 +1,2 @@
+if any game object components,depends to another component,that component can't be removed from game object, until you remove dependent component
+e.g. every ui component,depends on rect transform component,so you can't remove rect transform before removing dependent components

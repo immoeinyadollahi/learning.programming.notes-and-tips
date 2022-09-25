@@ -1,0 +1,3 @@
+i guess average velocity of two collided rigidbodies at collision moment but not sure
+
+Unity -> The relative linear velocity of the two colliding objects

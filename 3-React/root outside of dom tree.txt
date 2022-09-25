@@ -1,0 +1,3 @@
+react root can be outside of dom tree and even root render method works properly e.g. you can set state or other component related works,but it will not show up until root inserted into the dom therefore geometry property for element inside of component is null or 0
+so we can create react components outside of dom tree and whenever needed,insert corresponding root into the dom tree to become visible to client
+component hooks like useEffect get called after component mounted on root even if root is not inside of dom tree

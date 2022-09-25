@@ -1,0 +1,1 @@
+in regex we have operators with operands as well and all operators have precedence

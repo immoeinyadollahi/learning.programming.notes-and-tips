@@ -1,0 +1,7 @@
+first do query (only one query) and get all items without limit and skip and only ordering
+then get paginated items and limit them
+then populate extra info for each items
+
+sequelize:  use lazy loading after query and after limiting items and not eager loading
+
+mongodb: like sequelize use populate after limiting with populate method for each individual document

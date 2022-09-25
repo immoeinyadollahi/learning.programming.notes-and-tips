@@ -1,0 +1,2 @@
+What Is a Composite Key in SQL? A composite key in SQL can be defined as a combination of multiple columns, and these columns are used to identify all the rows that are involved uniquely. Even though a single column can't identify any row uniquely, a combination of over one column can uniquely identify any record
+this technique used instead of real primary key for join table but combining join columns together

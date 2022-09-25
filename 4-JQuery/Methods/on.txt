@@ -1,0 +1,8 @@
+event delegation:
+	 from e.target until delegated element find all elements that matches specific selector then call handlers for each of them
+	 e.target is same as originalEvent.target but e.currentTarget is matched element with selector that handler currently running on it
+	 this is jquery bubbling.calling handler from bottom to top with matched element
+	 
+	 
+
+

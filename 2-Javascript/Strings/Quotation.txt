@@ -1,0 +1,8 @@
+there are three type of string literals  double,single,backticks quote
+
+single and double are exactly the same in js
+
+if you want to use same quotation type in string there are two ways to do that:
+
+1-use different quotation mark
+2-use escape character

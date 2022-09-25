@@ -1,0 +1,1 @@
+we shouldn't upload any resource on submiting,we should upload each resource individually and get file id as response and only send this id on submit

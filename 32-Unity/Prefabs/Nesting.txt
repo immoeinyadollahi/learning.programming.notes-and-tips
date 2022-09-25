@@ -1,0 +1,2 @@
+Rules
+1. we can't nest two instance of one prefab and then apply changes to original prefab because cyclinic nesting will be thrown

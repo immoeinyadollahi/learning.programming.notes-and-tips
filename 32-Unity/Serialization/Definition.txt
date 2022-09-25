@@ -1,0 +1,20 @@
+Serialization is the automatic process of transforming data structures or GameObject states into a format (yaml) that Unity can store and reconstruct later.
+
+Serialization is the process of taking an object in ram (memory representation) (classes, fields, etc...) and making a disk representation of it
+
+unity serialization will be used to remember both editor and project saved states (objects,configurations,...) each time opening editor or starting actual game (runtime)
+
+
+
+
+
+unity uses built in generated unique ids to keep references between objects set in editor and will be used later in either in play mode or next time opening editor
+e.g. components that need references to other objects (gameobject,component,custom classes instances),serialized version of objects store those unique ids to use in future
+
+objects instances memory address can't be serialized,therefore unity store its own uid that will be used to link objects previously set in editor
+
+when unity reconstruct objects from their serialized version,their references to other objects as fields will be filled with reconstructed objects memory references that they referenced in editor 
+
+
+******* Important *********
+memory address for each object is different each time editor loads

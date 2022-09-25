@@ -1,0 +1,1 @@
+renderer is responsible for drawing objects in screen and physic engine is responsible for physics simluation which is all about calculations

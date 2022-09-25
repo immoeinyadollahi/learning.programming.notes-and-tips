@@ -1,0 +1,14 @@
+Sizing:
+
+content means visible content of element include scrollbars and not whole content size
+
+outerWidth,outerHeight:
+content  (with scrollbars),padding,border,optional margin
+
+innerWidth,innerHeight:
+content (with scrollbars),padding
+
+width,height:
+content (visible content without scrollbars)
+
+there is no method for full content height/width (scrollHeight/scrollWidth)

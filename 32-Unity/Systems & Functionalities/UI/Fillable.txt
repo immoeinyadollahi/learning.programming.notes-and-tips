@@ -1,0 +1,5 @@
+for making fillable things like health bar 
+we have 2 easy options:
+1. use filled image type for image components
+2. use sliders
+

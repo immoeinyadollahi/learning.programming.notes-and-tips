@@ -1,0 +1,6 @@
+seeding databsae means populate database with data (fake or real)
+
+we have ways to do seeding in laravel:
+1. DB and queryBuilder
+2. Eloquent Model
+3. factories (commonly used for fake data) 

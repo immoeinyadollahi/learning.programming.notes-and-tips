@@ -1,0 +1,3 @@
+if parent is pos fixed even with its contents with z-index 10000
+cant place higher than elements with z-index 1 to avoid this problem
+we should always specify z-index for fixed elements

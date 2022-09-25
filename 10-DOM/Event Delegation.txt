@@ -1,0 +1,22 @@
+a delegate element with handler instead of same event handler in each decendants
+
+if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
+
+In the handler we get event.target to see where the event actually happened and handle it.
+
+
+The delegation has its limitations of course (considirations):
+
+First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use event.stopPropagation().
+
+Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don’t take it into account.
+
+
+two approaches to use event delegation:
+
+		1. standard way ----- use e.target and get closest element that matches specific selector,then peform actions on that element
+		2. jquery way  -------  from e.target until delegated element find all elements that matches specific selector then call handlers for each of them
+		
+		we should use mouseout/mouseover instead of mouseleave/mouseenter because we need to event bubbles, but to prevent bubbling and from/to decendant transition:
+					jquery use its own technique (mouseleave/mouseenter in jquery folder)
+					for standard way we can store variable to prevent bubble and from/to decendant transition like javascript.info

@@ -1,0 +1,16 @@
+for both FOV (prespective projection) and orthographicSize (orthographic projection) smaller value means zoom in and bigger value means zoom out
+
+we use scroll up to zoom in and scroll down to zoom out
+
+for camera zoom we say targetZoom -= Input.mouseScrolLDelta
+because its reverse in most cases,when scroll goes up,camera FOV or orthographic must be decreased and when scroll goes down,they must be increased (zoom in and out)
+
+if we want to zoom inverse we should use targetZoom += Input.mouseScrolLDelta
+
+
+
+Smooth Zoom
+key point is, we specify a target zoom, and we should reach that target zoom smoothly over time and frame by frame not immediately
+so we store a target zoom outside of Update method because we should get same value between frames
+
+*** when scrolling in order to zoom in/out, target zoom will be determined immediately not overtime and frame by frame

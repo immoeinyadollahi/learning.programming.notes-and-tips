@@ -1,0 +1,2 @@
+if left operand is reference then check with isset,if it returns true return that value otherwise return right operand
+if left operand is not reference then compare it with null,if its is null then retrurn right operand else return that value

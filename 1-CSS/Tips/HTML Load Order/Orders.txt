@@ -1,0 +1,7 @@
+1-head scripts without defer or type module
+2-dom
+3-scripts without type module
+4 vs 5-defers are same as scripts with type module in order
+6-DOMContentLoaded event after all dom and scripts
+7-img,styles
+8-load event

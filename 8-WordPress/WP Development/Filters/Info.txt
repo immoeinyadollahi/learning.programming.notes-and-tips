@@ -1,0 +1,1 @@
+loop through all handlers pass inital argument to first handler and then pass previous handler return value to next handler until end,and get final value and return from apply_filter()

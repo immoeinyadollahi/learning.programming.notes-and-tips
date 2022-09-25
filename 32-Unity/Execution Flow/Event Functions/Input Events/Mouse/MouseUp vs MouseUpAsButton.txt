@@ -1,0 +1,10 @@
+OnMouseUp
+sent to corresponding onmousedown collider game object any where mouse released
+
+OnMouseUpAsButton
+same as OnMouseUp but mouse must released on same onmousedown collider
+
+
+
+
+** if mouse released on same onmousedown collider, both messages will be sent

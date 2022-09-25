@@ -1,0 +1,15 @@
+if(con){}
+else{
+ if(con){}
+ else{}
+}
+
+is same as:
+
+if(con){}
+else if(con){}
+else{}
+
+
+there are three ways to eval only one block of code for conditions
+

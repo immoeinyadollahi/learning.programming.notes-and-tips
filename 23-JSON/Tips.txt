@@ -1,0 +1,1 @@
+json in top level only accepts javascript object (pure object or array) and can't be null or other values,but object properties can be other types

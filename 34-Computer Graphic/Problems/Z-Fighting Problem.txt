@@ -1,0 +1,1 @@
+z-fighting problems happens when 3d renderer renders two surfaces in exact same coordinates

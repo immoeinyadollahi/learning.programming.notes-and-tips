@@ -1,0 +1,12 @@
+react:
+
+for guest user store temp cart id in cookie and send it in each request
+
+dont store cart in localstorage because cart need some calculations that cant be done in client
+dont store cart in session because user session will expires only for cart expires date and other info will be removed on expires date as well
+ 
+ 
+ cart items
+ 
+for delete or update cart items if all items are unique you can use both product_id or item_id to do so
+if items aren't unique you can use only item id for deleting or updating

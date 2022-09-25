@@ -1,0 +1,3 @@
+in dom we have two types of inheritance:
+1. nodes
+2. events

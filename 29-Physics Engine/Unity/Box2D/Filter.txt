@@ -1,0 +1,10 @@
+for filtering we have category bits and mask bits
+category says what am i
+mask says which fixtures i collide with
+
+we can use filters in both collision and query
+
+Raycast
+for each hit, a report callback will be called which should return status
+if status is 1 means continue the ray
+if status is -1 means filter this fixure

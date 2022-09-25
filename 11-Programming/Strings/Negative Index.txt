@@ -1,0 +1,13 @@
+indexes are always zero or positive integers.
+
+negative indexes available in :
+
+1-php string index
+2-substr,slice (array or string)
+
+
+this are tricks.there is no negative indexes at all
+
+"asads"[-2] ->>>>  str[str.length-2] --->>> subtraction of length with abs of negative index  or  sum of length with negative index
+
+substr,slice convert negative values to positive value with above trick

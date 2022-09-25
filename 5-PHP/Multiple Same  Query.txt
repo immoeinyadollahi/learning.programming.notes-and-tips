@@ -1,0 +1,5 @@
+use foreach and each time prepare or exec
+
+or
+
+use prepare with bindParam and then loop and in each loop change variable value and execute 

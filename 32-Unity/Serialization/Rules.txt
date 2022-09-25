@@ -1,0 +1,14 @@
+Main
+1. public non-static fields will be automatically serialized
+2. private and protected non-static fields will not serialized automatically and must use SerializeField or HideInInspacetor attribute in order to tell unity to serialize that field
+3. properties not serialized normally except in the some situations
+4. constants,readonly and static fields, don't get serialized at all
+
+
+***** simply put, non-static fields (also not constant and readonly) get serialized
+
+Type
+in addition to access modifiers or static/member fields,Serializable types are also imporatnt
+
+1. Dictionaries can't be serialzied at all
+

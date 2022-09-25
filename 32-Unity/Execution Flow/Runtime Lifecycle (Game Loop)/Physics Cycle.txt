@@ -1,0 +1,47 @@
+physics cycle execution is frame independent means if frame is slower or faster it will be called in fixed timestep independently of framerate and if execution flow doesn't executed in regular timestemp (like 0.02) then fixed update maybe called less or more than what expected
+
+physics cycle may happend multiple times or once per frame or even nothing
+
+How Works
+physics cycle will be executed in fixed timestep (default to 0.02 in settings) which means in playing game execution flow (lifecycle) in each frame and before update event function, it will check if time elapsed from time of previous execution of cycle is :
+1. less than timestep -> do nothing (even don't reset elapsed time)
+2. equals to timestep -> call once then set call time to current time
+3. greater than timestep -> execute cycle by integer times of `elapsed / 0.02` and set previous execution time to current time plus remaining of division (if any)
+
+0.02 means 50fps by default
+
+if game fps is greater than 50fps we may loss physics cycle in current frame (several Update calls may happen between each cycle execution)
+if game fps is less than 50fps we may get multiple execution of cycle per frame (before update function) (Several cycle execution may happen between each Update)
+if game fps is equal to 50fps (maybe impossible), cycle will be executed just like update once per frame regularly
+
+
+
+when we say if game fps in greater that physics cycle execution it doesn't mean more frame rendered so physics speed must be faster
+or in opposite if game fps is less that physic cycle execution it doesn't mean physics simulations speed is faster and it must be slower that game speed
+physic cycle with fixed timestep is reliable and ensures that game with much faster or very slower speed still has same proper interaction with physics  
+
+
+both fixed update call and physics calculation are part of physics cycle in execution flow
+physics calculation will be performed in physics cycle after fixed update calls and other animation stuff
+
+physics cycle is start of each frame rendering cycle (except first frame of every monobehaviour component)
+
+cycle will be executed if current time compared to previous cycle execution (not previous iteration but previous cycle execution)
+
+fixed timestep: if we want physic be realistic and somehow real world time,we should use timestep to simulate (because physic engine is not continusely updating so we should say step world in given times) even if we are not simulate continusely and there is interval between simulation but we should step physic world in fixed timestep but if elapsed time is bigger that fixed timestep we shoud calculate how many timestep value passed before preivous cycle execution and for each them simulate separatly (not at once because timestep is fixed and not variable and we should always for example step physic world by 0.02s)
+
+step means simulation happens step by step and manually and each time engine gives us a snapshot from world after simulation (advance physic world for one step,think of step as very laggy game which each time instead of smooth game we only see images (snapshot))
+cycle execution happens in fixed timestep doesn't mean it always happens after fixed timestep,because when every new frame going to be rendered,physic cycle will check for timesteps and for every timestep elapsed from preivous cycle execution it will simulate physics and also call fixedUpdate functions (its framerate independent but a game loop must iterate again in order to check for fixed timestep and if elapsed time is reached to specific time,it will simluate physics)
+
+physic cycle despite simulate discrete but time will pass stable and seemlessly (just like real world time) (elapsed time and bodies movement are in sync) means simulation is like real world despite its discrete
+
+
+
+
+discrete means there is interval between each simulation
+so cycle is discrete but the timestep and how many times should simluate physics makes physics stable and like real world
+
+in all computer fields there is no concept of realtime (real world time).all calculations and computer operations are discrete and not realtime unlike real world because computer is not as fast as real world time
+so every operation may have a delay (how small it is,but there is delay however)
+for this reason computer fields like physics engines need a timestep to somehow ** relief or compensate ** this discretion (noun for discrete)
+e.g. unity store elapsed tim between each cycle and add proper timestemp to physics engine to make simulation realistic as world

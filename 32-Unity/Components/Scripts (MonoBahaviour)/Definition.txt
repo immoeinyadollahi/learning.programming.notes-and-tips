@@ -1,0 +1,42 @@
+script itself is not a component
+class inside of script that inherit from monobehaviour 
+so script component means class inside of script (if drive from monobehaviour)
+
+its better to call script components,monobehaviour components because every components inside scripts that want to be component must be subcass of monobehaviour class
+
+
+monobehaviour components are just like other built in components which written by programmer and called custom component
+
+monobehaviour components act as custom components and must drive from MonoBehaviour
+
+monobehaviour components can hook into lifecycle functions and add custom behaviours to gameobjects
+
+
+Rules
+if classes inside scripts want to be component:
+					they must (neccessary) drive from monobehaviour 
+			
+
+** extending from monobehaviour can be directly or indirect by extending a subclass of monobehaviour
+	in general class must be a subclass of monobehaviour
+
+
+Tips
+ 1. monobehaviour components don't have to be exclusive for attached game object
+    it may be empty game object which doesn't do anything at all
+    component just receive event messages and may control other game objects and interact with other components
+    game objects are just a living place for components
+
+
+Adding MonoBehaviour Component To GameObjects
+
+adding monobehaviour component in editor requires file name match with classname when dragging into game object or searhing for script in inspector 
+but it is only for editor
+and in scripts we can however use AddComponent<> and add component with different file name and classname match
+because in compiled code file name is not important
+
+when dragging a script as component to game object, unity first check for class name (which is subclass of monobehaviour) and file name to match,then use AddComponent
+
+
+
+

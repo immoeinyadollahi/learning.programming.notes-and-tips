@@ -1,0 +1,40 @@
+unlike other regex expression like \w \d \s that match characters in strings,zero length assertion means only assert positions or "" and doesn't consume any character
+
+multiple zero-length assertion next to each other, will match only one position but all of them should return true, otherwise pattern will not match
+
+zero length assertions happends in three positions:
+1-end of string or line if multiline was active
+2-start of string or line if multilie was active
+3-between two character
+
+
+/*
+
+    ^ , $ , \b named anchors that are zero length assertion
+
+    (?=) (?!) (?<=) (?<!) collectively named lookaround that are zero length assertion like anchors
+
+
+    Desc
+
+    ^ ----->  if cursor position is on zero index (first character that can be void after string in empty string as well) then this anchor match this position (index) with length of zero then report to engine to push it to history of tokens matches
+
+    $ ------> if cursor position is on void after string then this anchor match this position with length zero then report to engine
+
+       ------->  if cursor position is on zero index and this character is a word character then report index of zero as match position plus length of zero as match length
+    \b ------->  if cursor position is on void after string then it stepsback to previous character to check if that was a word character and if it was then report void after string index for match position and length zero as match length to engine
+       ------->  Between two characters in the string, where one is a word character and the other is not a word character. in this case this anchor stepsback to previous character to check for word or non word character if it matches then report current cursor position as match position and length zero as match length to enigne
+       -
+       -
+       -> in other word this anchor only stepsback to prevous character to check for match.but in start of string because there is no previous character ,it checks for current cursor position character to check if it is word character or not
+
+    
+    lookarounds actually match characters but discard the match and report to engine match position and length of zero so engine cann't move cursor position to next character
+
+    positive lookahead report cursor position index and length zero as result only if given argument matches. start from current cursor position
+
+    positive lookbehind report cursor position index and length zero as result only if given argument is behind of current cursor position .in this case engine stepsbackward to check for possible match
+
+    negative lookarounds act like NOT operator or ! operator in js and only reverse the result of match.success if failed and failure if successfull.it only returns success if there is no match in backward (only if value is falsy then return true)
+
+*/

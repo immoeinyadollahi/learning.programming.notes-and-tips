@@ -1,0 +1,7 @@
+unity only set X and Y fields for position of rigidbodies not Z (rb.position is vector2)
+and after simulation unity get each rigidbody positions which are vector2
+and updates only X and Y fields of transform.position and leave Z as previous value
+
+
+so 2 colliders in unity world with different Z values still will collide with each other because physic engine is 2d, only X and Y passed to physic engine which makes collision happens
+but unity only update X and Y after collision and doesn't change Z value

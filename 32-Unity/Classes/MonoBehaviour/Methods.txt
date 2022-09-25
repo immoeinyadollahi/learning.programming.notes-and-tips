@@ -1,0 +1,7 @@
+Invoke vs Coroutine
+1. invoke can not get params
+2. can't store any reference to invoke and later remove only that reference,must cancel those method or cancel all
+3. can't be paused and continue sequencely (must be nested in order to achieve this like callback hell)
+4. method can only be passed as string and not lambda
+
+better to use coroutine at all an use invoke for very small things

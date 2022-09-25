@@ -1,0 +1,6 @@
+transform component is default component attached to every new game object
+this component can't be removed or reattached
+only exception is rect transform which if exists,transform component will be removed
+
+transform is part of unity not physics but will be synced in physic engine world as well
+

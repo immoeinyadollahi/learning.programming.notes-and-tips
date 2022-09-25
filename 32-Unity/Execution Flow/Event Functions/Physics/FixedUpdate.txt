@@ -1,0 +1,38 @@
+
+fixed update is part of physics cycle before physics calculations
+
+
+Tips
+we don't use Input in fixed update because:
+																		if we have call loss for fixed update (part of physics cycle) we can't get correct input state (losing input) for instant (one-off) inputs like getKeyDown,getKeyUp,...
+																		if we have multiple fixed update calls per frame (means execution of physics cycle), for some instant inputs like getKeyDown or getKeyUp it will be resolve to true for multiple calls 
+																		inputs that are not instant like GetKey, GetButton and GetAxis inputs may be used directly in fixed update (but don't use them there until getting full information)
+
+Best Practices
+we should check for inputs in update and somehow like using variables (maybe bool), perform actions like physics in fixedUpdate based on that variables
+
+Physics
+all physics code should be placed in FixedUpdate. As Update can run faster or slower than the physics system (physics cycle) in your game, placing physics-based calls in it can have unexpected results. (it will be framerate dependenent)
+because when for example add force in update method  and framerate is very high, then more and more force will be added and stored, and when calculations time (physics cycle) reached applied or aggregated forces will be huge and cause to unexpected results
+it also means if we added more and more forces in update when physic cycle reaches, its one time huge force but if we add forces in fixedUpdate after each force addition, immediately (after some animation works) physic calculations or simulation happens and it will be even more realistic
+
+1. therefore if we use physics in Update if framerate is verylow or veryhigh its not so realistic (frame dependenent) but if we use in FixedUpdate update even in verylow or veryhigh framerate physics simulation is reliable and realistic. 
+2. in high framerate, game is very smooth and is very laggy in low framerate but add physic in fixedUpdate makes sure physic simulation is accurate and reliable
+3. even if framerate is very low and game is laggy, physic simulation is accurate and reliable
+4. despite its laggy but it takes same time to e.g. move objects in same distance as it takes in higher framerate
+
+same for time.dataTime,if framerate is verylow or veryhigh the distance a game object moves in world is still the same and have same speed (takes same time to move in same distance)
+
+means it takes same period of time to move objects in same distance (or move object in same distance takes same period of time)
+e.g. we have two objects which one of them is in high framerate and another is in low framerate. in period of for example 2s the distance they moved are the same even if one of them is laggy and another is smooth
+
+and actually it doesn't take longer or shorter to do things in the worlds its just matter of frame rendering
+
+the only difference here is that we render more or less frame than usual but game speed and physic simulation speed is still stable
+
+this because we are doing such actions, independent of framerate (fixedUpdate and Time.deltatime)
+
+predictable and stable are two good term for fixed update and time.dataTime
+
+low or high framerate doesn't make physic (fixedUpdate) and movement (time.dataTime) faster or slower (longer or shorter)
+

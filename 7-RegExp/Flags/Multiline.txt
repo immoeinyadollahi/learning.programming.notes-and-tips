@@ -1,0 +1,2 @@
+^ matches start of string as well as start of each line (after \n)
+$ matches end of string as well as end of each line (before \n)

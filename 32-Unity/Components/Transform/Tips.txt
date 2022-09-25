@@ -1,0 +1,4 @@
+1. scenes can only have game objects, particles,audios,... are components attached to game objects
+   and because they need position in the world, they must be attached to a game object which has transform component
+   everythings need position or other transforms, need to be component attached to a game object
+

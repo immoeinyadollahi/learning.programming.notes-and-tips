@@ -1,0 +1,5 @@
+collision detection works by checking coordinates, if two object has cross point or coordinates, they actually collided with each other
+
+collisions will be detected when two colliders collided with each other
+even if three or more colliders collide with each other at same time, they will be treated (divided) as pairs
+so collision works on pair colliders and events dispatched for every pair

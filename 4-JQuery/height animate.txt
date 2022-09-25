@@ -1,0 +1,1 @@
+change height to auto or from auto will not animated

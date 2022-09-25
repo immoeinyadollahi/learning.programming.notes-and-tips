@@ -1,0 +1,9 @@
+Type of relationships
+1. M:N many-to-many
+2. 1:N one-to-many
+3. 1:1 one-to-one
+
+relationships define how we should query, they don't effect on database 
+we can have different relationships on one column 
+
+if we can implement both M:N and 1:N, just use whatever needed or even both

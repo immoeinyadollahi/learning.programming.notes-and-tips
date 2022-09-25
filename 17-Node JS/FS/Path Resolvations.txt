@@ -1,0 +1,8 @@
+if path is absolute it will find that path properly
+
+in require:
+if path is relative it joins the path with file dirname
+in fs methods:
+if path is relative it will uses path.resolve to make absolute path
+
+all fs methods convert all directory separator to its correct type (to correct platform directory separator)

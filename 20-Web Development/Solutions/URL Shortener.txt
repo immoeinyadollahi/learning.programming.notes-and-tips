@@ -1,0 +1,13 @@
+1. URL Schema
+create url schame with two fields:
+1. original_url
+2. short_id or short_code
+then create route with short_code parameter,then find corresponding url document,then redirect to its original_url
+
+2. shortid for each document
+1. create shortid for specific schema like course or product
+2. create specific routes for each schema with short_id parameter or create one route and use switch to find related schema
+3. then find corresponding document and redirect to its url
+
+tips:
+1. always redirect to original_url

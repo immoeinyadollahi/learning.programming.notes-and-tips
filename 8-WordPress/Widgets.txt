@@ -1,0 +1,7 @@
+Some WordPress Widgets offer customization and options such as forms to fill out, includes or excludes of data and information, optional images, and other customization features. (custom properties and atributes)
+
+two ways to see widgets:
+
+1. Block-based Widgets Editor  (pages and posts (only blocks not classic)) (only blocks supported themes)
+
+2. Appearance Widgets Screen (use the various Widgets in the Classic experience)

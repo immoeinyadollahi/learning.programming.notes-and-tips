@@ -1,0 +1,1 @@
+for every query sequelize automatically add an `AND` to query `where` object to ignore soft-deleted record, for override this behaviour you should set paranoid:false in query in order to return all records

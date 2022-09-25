@@ -1,0 +1,2 @@
+Laravel provides two optional packages to assist you in managing API tokens and authenticating requests made with API tokens: 
+Passport and Sanctum. 

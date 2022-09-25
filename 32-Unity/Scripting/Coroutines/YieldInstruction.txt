@@ -1,0 +1,11 @@
+WaitForSeconds
+    Suspends the coroutine execution for the given amount of seconds using scaled time (Time.time).
+                
+
+
+WaitForSecondsRealtime
+Suspends the coroutine execution for the given amount of seconds using unscaled time (Time.unscaledTime).
+
+
+WaitForFixedUpdate
+Suspends the coroutine execution until end of next (ahead) physic update cycle

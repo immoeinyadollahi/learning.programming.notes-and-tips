@@ -1,0 +1,7 @@
+each database can have multiple users and each user can be inside of multiple databases
+
+	each user can have global privileges
+
+	each user can have database specific privileges . for example user X in database Y can have privileges.and in other database (if database contains user) user X can have different privilages. and ...
+
+	each user can have table specific privileges

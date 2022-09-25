@@ -1,0 +1,1 @@
+properties like cursor, change cursor image if mouse hovered on specific element or effected by cursor cascade property by one of its ancestors (mouse hovered inside of an element and element apply cursor cascade property) e.g. document with cursor property

@@ -1,0 +1,5 @@
+1. joint rigidbodies don't collide with each other by default (their colliders don't collide with each other)
+   with enable collisiton set to true, they will collide
+   
+2. joints without connected rigidbody, are joints which connect joint component game object rigidbody to a world space point
+   which will be configured by connected anchor

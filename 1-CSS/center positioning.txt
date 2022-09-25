@@ -1,0 +1,7 @@
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+this style cause element to be center in every dom render
+if width or height changes,it seems width and height grows from both side but its not,when width and height changes,dom calculate element position to center element again,it shows us growing from both side but its not
+its very fast in render but its like grow from both side

@@ -1,0 +1,3 @@
+load:
+only media tags (img,audio,video) with src will be loaded (download) even before inserting into the dom tree
+links and scripts must be inserted into dom tree to initialize resource request

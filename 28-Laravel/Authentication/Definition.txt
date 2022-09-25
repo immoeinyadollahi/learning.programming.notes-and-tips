@@ -1,0 +1,3 @@
+Laravel's authentication facilities are made up of "guards" and "providers".
+
+Guards and providers should not be confused with "roles" and "permissions" because they blongs to authorization process

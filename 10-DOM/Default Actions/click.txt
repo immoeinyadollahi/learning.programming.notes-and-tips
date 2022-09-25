@@ -1,0 +1,3 @@
+browser for each click in page, checks the e.target closest element that can be matched for specific element such as anchor.
+
+if closest element is anchor, then if event default doesn't prevented, then do its default action

@@ -1,0 +1,13 @@
+Lexical analysis is the first phase of a compiler. 
+It takes modified source code from language preprocessors that are written in the form of sentences.
+The lexical analyzer breaks these syntaxes into a series of tokens, by removing any whitespace or comments in the source code  (tokenize)
+
+Tokenization is the act of breaking up a sequence of strings into pieces such as words, keywords, phrases,identifier,operator,literal,separator, symbols and other elements called tokens.
+Tokens can be individual words, phrases or even whole sentences. ... Tokenization is used in computer science, where it plays a large part in the process of lexical analysis.
+
+In computer science, lexical analysis, lexing or tokenization is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning)
+this token just simplified further translation process and can't understand by machine now
+
+A lexical token or simply token is a string with an assigned and thus identified meaning (token = entity)
+
+lexical analysis, lexing or tokenization all are the same (don't confuse with different terms)

@@ -1,0 +1,2 @@
+single and double quotation string are exactly the same but there is one difference that in double quote string we can use interpolation and dynamic values but
+single quote strings are raw strings.but escape process are same as they was;

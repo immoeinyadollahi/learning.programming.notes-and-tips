@@ -1,0 +1,8 @@
+for doing actions but independent of framerate:
+
+1. for physics stuff (force,...) we should use FixedUpdate
+										When applying for example movement calculations inside FixedUpdate, you do not need to multiply your values by Time.deltaTime. This is because FixedUpdate is called on a reliable timer, independent of the frame rate.
+
+
+
+2. for changing properties like transform we should use Time.deltaTime (multiply transform by Time.deltaTime) to modify values independent of framerate

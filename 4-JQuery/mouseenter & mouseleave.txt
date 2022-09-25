@@ -1,0 +1,9 @@
+instead of these two events jquery use mouseout & mouseover because delegation can't work with these events
+jquery use their bubbling ability internally only for delegation and you cant use it for either bubbling or to-child & from-child counting (its like regular mouseenter/mouseleave for you)
+with `!related (for leave/enter the window) || ( related !== currentTarget && !jQuery.contains( currentTarget, related ) )`  jquery prevent  to-child & from-child counting also bubbling like regular mouseout or mouseover behaviour
+
+these events will be fixed with there value but only for delegation and not become same as there fixed
+mouseenter: "mouseover",
+mouseleave: "mouseout",
+pointerenter: "pointerover",
+pointerleave: "pointerout"

@@ -1,0 +1,15 @@
+we have 3 situation:
+
+1. edit existing resource :
+										first upload resource and insert into database  (if using option two from below we need to use tmp column `<resource-name>-<id>` as well)
+										now we have two options:
+																							1. return back item id and in client send that id when submiting and in server handle that and remove it tmp column value * recommended solution,we can both remove and sort items (maybe update)
+																							
+																							2. without sending any data about items,just submit like regular and in server find that item and change its columns, 
+																							this method requires clear all tmp items when loading same page (like product edit page) to prevent bugs,this method not recommended because for we cant remove specific item and also we cant sort them without id
+3. auto-draft resource with id : same like number 1 or because it is auto draft ,we can save resource for it and also send back its id for remove or sort (this way we can also validate number of resources)
+2. new resource without any id: 
+												first upload resource and insert into database and just get it id
+												return its id and then in client when data submited,send it id and in server save that
+												* this method we validate on client side and also after submiting to server
+												or for validate we can use unique identifier in client and send it for each upload item and check for count of those item

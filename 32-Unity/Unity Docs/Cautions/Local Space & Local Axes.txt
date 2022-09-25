@@ -1,0 +1,3 @@
+if unity docs uses local space or local rotation for axes it can be misleading with local (self) axes 
+so be careful because local axes is game object own axes which same as global axes but considiring transform global rotation
+but local space or local rotation refer to rotation relative to local space which is parent

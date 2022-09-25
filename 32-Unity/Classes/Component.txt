@@ -1,0 +1,3 @@
+component class when instantiated,needs gameobject as constructor param then set properties like gameObject,transform (points to gameObject.transform) also tag(points to gameObject.tag) and override object name and set it to gameObject.name instead of component name, also added most (not all) of GameObject instance methods for just convenience (instead of calling directly in gameobject) 
+
+like GetComponent which maybe written like `return this.gameObject.GetComponent` in method body

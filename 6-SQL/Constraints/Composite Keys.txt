@@ -1,0 +1,9 @@
+by default when create primary key or unique key they will includes one column
+for primary key means that column must be unique and not null between all record
+for unique key means that column must be unique between all record
+
+but when specifying multiple column for one key (key includes multiple column) we that key as composite key which includes multiple column
+
+for primary key means combination of those columns must be unique between record
+also for unique key means combination of those columns must be unique between record
+ 

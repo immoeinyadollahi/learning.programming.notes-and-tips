@@ -1,0 +1,10 @@
+** velocity property is shorthand for linearVelocity
+
+
+
+AddForce -> adds linear velocity
+
+AddForceAtPosiiton -> adds linear and angular velocity
+
+AddTorque -> adds angular velocity
+

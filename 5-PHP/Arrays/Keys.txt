@@ -1,0 +1,1 @@
+array key in numbered index arrays, is always integer (get from array_keys or in foreach) unlike javascript which are numeric string

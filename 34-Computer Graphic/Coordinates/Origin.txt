@@ -1,0 +1,23 @@
+all coordinates systems works by defining origin coordinates and all objects will be positioned from there origin relative to base origin
+in dom origin of coordinates systems is left-top corner (window/document/parent element)
+in rendering softwares and game engines in 3d, origin is Vector3(0,0,0) and in 2d Vector2(0,0)
+
+also all objects and elements have origin and position of each object or element calculated from origin of each of them relative to base origin (world of window or document)
+
+in dom we have two base origin one in left-top and another in right-bottom of window/document/relative element (or maybe there is only one (it is actually) origin for base and one origin for elements and other positions like right-bottom will be calculated based on top-left)
+
+so coordinates of object works by two point, one for base origin and another for origin of objects
+
+
+
+in coordinates system every object has coordinates relative to base origin (root)
+objects that are relative to another object still calculated relative to base origin but based on parent or relative game object
+like dom nested element are relative to parent element but there position are always relative to base origin (absolute) but its based on result of its position relative to its parents
+simply if an object has position of 1 on x axis and its relative to its parent with position of 2 on x axis,object position is always absolute relative to world (1+2=3)
+so everything on screen are positioned absolute and every relative value must be converted to absolute (like css relative values will end up with computed values which is final value that will be shown on screen)
+so in end of the day only absolute and fixed value will be resolved and painted on screen
+
+same for unity, every game object is relative to base world origin even for game object with parent,despite their transform shows local transform relative to parent but final resolved transform is absolute and relative to base origin
+
+
+absolute means relative to base origin (root)

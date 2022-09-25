@@ -1,0 +1,4 @@
+php is synchronous and all required files will be evaluated when request received. in this case we can modify files anytime and it will effect in next request
+
+node js is async and server or app will start with node command and waiting for specific event to trigger to pass request to corresponding callbacks
+if we modify files while server is running we need to restart the server because currenty all application located in memory and changing file doesn't effect any changes in whole app unless some filesystem operations

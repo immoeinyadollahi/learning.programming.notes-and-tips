@@ -1,0 +1,13 @@
+audio source is where a sound originated from or source of sound
+
+** audio source can have reference to audio clip instance and a audio mixer
+
+
+
+** all audio source components will be played from their game object origin position and this can't be changed
+
+** Assumption ** like reality sources are actually game objects themselves and audio source components are just different sounds that sources can play
+   so each audio source component should be treated as sounds that their game objects (source) can emit
+   because of this audio source component will be played from its game object origin position and cann't be change because real source is game object and audio source component acts as sounds that source can play
+
+   simply put,audio source component is just sound controller,real source is game object which has coordinates

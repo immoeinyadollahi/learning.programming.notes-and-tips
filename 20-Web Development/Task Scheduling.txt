@@ -1,0 +1,18 @@
+we have two types of scheduling
+
+1. whole website app scheduling
+2. each resource scheduling (like product discount)
+
+
+for website scheduling :
+
+												1. we should use cron jobs because they are limited and server can handle them easily
+												2. like wordpress we can check for scheduling in each page load (for each user)
+
+for each resource scheduling:
+
+												1. we should check for there scheduling in each page load  (like wp cron for each user) (not so recommended like below)
+												2. check in particular pages that user see them only(not so recommended because user can perform actions even after scheduling reached to its target date like order cart with expired product discount)
+												3. check in particular pages that user see them and also check when performing related actions
+												4. use cron jobs but when showing them to user we can check for scheduling and hide that feature from user until cron job in daily cycle update that feature
+												5. use cron job for each resource

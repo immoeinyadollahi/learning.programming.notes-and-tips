@@ -1,0 +1,29 @@
+
+
+Static Type
+There are two ways to mark a Rigidbody 2D as Static (two ways to make a game object a static body in physics engine):
+
+1. For the GameObject without a Rigidbody 2D component at all. (only way in 3D)
+
+2. For the GameObject that have a Rigidbody 2D and its body type set to Static.
+
+Method 1 is a shorthand for making Static Collider 2Ds. When creating large numbers of Static Collider 2Ds, it is easier not to have to add a Rigidbody 2D for each GameObject with a Collider 2D.
+
+Method 2 exists for performance reasons. If a Static Collider 2D needs to be moved or reconfigured at run time, it is faster to do so when it has its own Rigidbody 2D. If a group of 0
+
+
+
+***** if we attach a rigidbody with type of static or don't attach at all,for each game object a static body will be created in physics world
+      they only key point is with rigidbody compoent, we have access to physics engine body reference (not directly) as api and can manipulate its properties
+      but without rigidbody component we don't
+      so only difference is reference to physics engine body or accessing api
+
+
+
+
+
+Kinematic Type
+rigidbody 2D component has both isKinematic proeprty and type of Kinematic
+both work the same
+when setting isKinematic to true,type will be Kinematic for body
+isKinematic for rigidbody 2d is just for convenience between 3d and 2d

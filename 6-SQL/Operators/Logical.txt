@@ -1,0 +1,65 @@
+ALL	
+TRUE if all of the subquery values meet the condition	
+
+AND	
+TRUE if all the conditions separated by AND is TRUE	
+
+ANY	
+TRUE if any of the subquery values meet the condition
+	
+BETWEEN	
+TRUE if the operand is within the range of comparisons
+its same as   value >= MIN && value <= MAX  inclusive
+only AND keyword can be use between to values and && not allowed here
+	
+EXISTS	
+TRUE if the subquery returns one or more records
+	
+IN	
+TRUE if the operand is equal to one of a list of expressions
+	
+LIKE	
+TRUE if the operand matches a pattern	
+
+NOT	
+Displays a record if the condition(s) is NOT TRUE
+	
+OR	
+TRUE if any of the conditions separated by OR is TRUE	
+
+SOME	
+TRUE if any of the subquery values meet the condition
+
+
+
+all logical operators returns 1 or 0 (true and false)
+
+
+also we have some extra operators for some of these operators that are aliases for these operators :
+
+NOT BETWEEN
+
+NOT EXISTS
+
+NOT IN
+
+NOT LIKE
+
+for example --- id NOT IN (1,2,...) --- is equivalent to    NOT (id IN (1,2,...))
+another example is --- 1 != 2 --- that is equivalent to     !(1=2)
+
+
+
+
+
+
+SOME,EXISTS,ANY,ALL only accept subquery but IN accept both subquery and regular list
+
+
+
+
+
+
+
+
+

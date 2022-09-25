@@ -1,0 +1,7 @@
+for Polymorphic many-to-many association use unique:false in all `through` object, only for many to many not other Polymorphic associations
+
+for Polymorphic many-to-many association use constraint:false for all sides of relation even for table with user_id column like User.belongsToMany(Project, { through: { model: Bookmark, unique: false }, foreignKey: "user_id", constraints: false, as: "bookmarked_projects" });  (doesn't make sense but follow this rule)
+
+except for join tables,sequelize will add id column to all tables automaticaly,for join table you should add it manually
+
+when associate one model with another model multiple times for different purpose to identify the correct association you must use the 'as' keyword to specify the alias of the association you want to include.

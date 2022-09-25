@@ -1,0 +1,4 @@
+1. Can be more than one unique key in one table
+2. Unique key can have NULL values
+3. multiple rows can have NULL values and therefore may not be considered "unique"
+4. column must be unique between all record if its value is not null (column can have any value but if is not null,its must be unique between records)

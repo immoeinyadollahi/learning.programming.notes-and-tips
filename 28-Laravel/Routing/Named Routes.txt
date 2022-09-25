@@ -1,0 +1,5 @@
+use cases for named route:
+
+1. url generation with extra parameters and query
+2. redirect generation
+3. matching with current route

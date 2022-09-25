@@ -1,0 +1,5 @@
+. means current file directory
+.. means directory or current file directory
+
+so . and .. points to current file directory not file itself
+each .. in path removes one directory from end of path string

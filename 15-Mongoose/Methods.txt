@@ -1,0 +1,1 @@
+mongoose aggregate and mapReduce don't return mongoose documents (don't have document methods)

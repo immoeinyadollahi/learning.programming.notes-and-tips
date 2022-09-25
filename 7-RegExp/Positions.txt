@@ -1,0 +1,1 @@
+positions are always behind a character even for void character after string

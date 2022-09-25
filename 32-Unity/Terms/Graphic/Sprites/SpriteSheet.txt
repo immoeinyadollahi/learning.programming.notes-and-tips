@@ -1,0 +1,7 @@
+a way of packing images together as one image, which is then used to create animations and sprite graphics as it will use low memory and increase the performance of games
+
+it uses low memory because instead of loading multiple images into memory,just slice multiple sprites from one image and create sprite from each of them
+
+collection of images in one image called sprite sheet
+for tile based sprites called tileset
+

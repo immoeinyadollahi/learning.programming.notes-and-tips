@@ -1,0 +1,6 @@
+for every file imported into project (from editor or filesystem) new object will be created
+object can be Object instance directly or subclasses of Object (Texture2D,Sprite,...) based on file format
+
+assets are objects outside of any scene (not every objects outside of scene are asset)
+in scene only game objects with their components can be placed
+e.g. prefabs are assets which don't exist in any scene

@@ -1,0 +1,17 @@
+when content get bigger than element,overflow happens on element
+
+overflow like background starts from start of padding
+
+
+an element with overflow property must have fixed-length width\height otherwise not working
+
+
+overflow has two steps:
+
+overflow-x initialization starts from end of left-padding (right-padding in ltr) and its applyment starts from start of that padding
+ 
+overflow-y initialization starts from end of bottom-padding and its applyment starts from start of that padding 
+
+
+
+if one of overflow (x or y) set to hidden, another one will be hidden as well

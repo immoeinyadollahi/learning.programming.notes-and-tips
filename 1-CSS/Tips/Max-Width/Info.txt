@@ -1,0 +1,7 @@
+for example if width set to 400px and then max-width to 100% its like max-width
+400px and width 100%
+-------------------------------------
+if max-width set to 400px and element display set to block its width will be 400px
+and will scale down with screen
+-------------------------------------
+never use % with max-width and max-height

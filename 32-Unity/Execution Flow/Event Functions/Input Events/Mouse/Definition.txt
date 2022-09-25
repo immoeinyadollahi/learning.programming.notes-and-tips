@@ -1,0 +1,45 @@
+onMouseXXXX messages will be called if corresponding event happens on at least one of game object colliders
+in unity all mouseevents methods only get called if event happens on colliders not game object,
+because unity iternally use raycast and will find specific collider on mouse position for all mouseevents (if you use ignore raycast,we see that mouse events don't work on colliders,so unity use raycast and physic and colliders for mouseevent)
+and because raycasts default layermask is DefaultRaycastLayers, unity use raycast that hit all colliders except ignore raycast layer,so if game object layer set on ignore raycast (set all colliders layer), mouse events can detect that game object colliders
+
+so if you see in forum they use raycast for emulating these events,becuase ray cast is only solution i guess unlike dom
+so if game objects want to detected by these types of events,they should have colliders
+
+after event happens on collider unity get collider gameobject and call proper message method for each monobehaviour component that attach to that game object
+mouse events only get first hit collider and doesn't use raycastAll methods to get all colliders at mouse position
+
+
+if mouseenter happens on one collider then move mouse to another collider without exiting gameobject (all colliders) mouseEnter method will not be called again (mouseenter for every game object only happens when entring its first collider)
+like dom at anytime mouse only can be on one collider (element) so like dom store that in variable and in each frames check if new hovering collider (if any) is for game object that previous collider game object is same,if so do nothing, otherwise (unity may store game object itself not its collider i don't know)
+set previous variable to new game object collider or game object itself or null (if there is no collider at all) and call mouseexit for previous one and also call mouseenter on new one if any
+just like dom
+the only difference is variable value always a collider and in every frame don't check for collider but game object of collider if game object changes between colliders then call proper events
+if colliders change but game object is the same, nothing happens
+or maybe store only game object
+
+
+Rules
+
+1. OnMouseXXX (with buttons) events are only for left mouse button
+
+2. Scripts of the parent or child objects do not receive this event. (unlike dom bubbling)
+
+3. OnMouseXXX doesn't hit UI element unless has collider,so these events only check for colliders with raycast and doesn't care about UI elements
+   because raycast is for physics so UI doesn't exists in physcis worlds, only colliders
+
+
+Difference between unity mouseevents and dom
+
+mouseup differs from dom mouseup,in dom mouse up will dispatched on elements that mouse button released while mouse position is on element
+in unity it only call mouseup on game object that previous mousedown happens on it
+so unity store another variable for currently mousedown collider or game object
+not only mouseup but for mousedrag,in every frame unity call onMouseDrag message methods for stored previously mousedown game object (if any) in variable
+
+** because mouse drag get called on every frame for stored previously mousedown game object we can do same thing by storing variable for mouse down and do drag stuff in Update
+
+** for every mousedrag or mouseup, there must be mousedown state so these methods get called on same game object
+
+** mouseup and drag doesn't require raycast so we can even change game object layer to ignore raycast if needed
+
+

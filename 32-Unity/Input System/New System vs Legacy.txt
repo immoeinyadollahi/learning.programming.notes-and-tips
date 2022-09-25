@@ -1,0 +1,8 @@
+legacy input system is like what browser actually do behind the scene (checking inputs in each rendering frame and reset the previous state and ...) (but instead of directly perform actions, it will send events)
+on other hand new input system is event-driven just like javascript layer of browser window (addEventListener api and event subscription)
+
+new input system is like a wrapper around legacy version but it is more abstract that lagacy one
+
+so difference is executing functions (actions) directly or sending events and running listeners
+
+we should have good reason to use new input system like using multiple devices, it is better to use legacy version for most cases

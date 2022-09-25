@@ -1,0 +1,3 @@
+two ways to get dynamic parameter
+1. specify parameters like usual and check for parameters type and dynamicaly determine each parameter (in this way parameters can be replaced with each other maybe doesn't meaning at all)
+2. use ...args or arguments (func_get_args) and determine each needed parameter manually

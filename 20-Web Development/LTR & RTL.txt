@@ -1,0 +1,6 @@
+first change html dir and lang
+
+to make website style from ltr to rtl,we have two ways:
+
+1. use html[dir=rtl] and other selectors to override styles in rtl mode
+2. use rtl.css file only if page is in rtl mode 

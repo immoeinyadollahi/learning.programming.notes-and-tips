@@ -1,0 +1,12 @@
+we have two types of projections:
+orthographic
+prespective
+
+** for changing projection we only have one property which orthographic boolean field
+   if set to true means orthographic projection, otherwise means prespective
+
+** we usually use prespective for 3d view and orthographic for 2d
+
+
+
+camera viewing volume defined by FOV for prespective projection and size (orthographic size) for orthographic projection

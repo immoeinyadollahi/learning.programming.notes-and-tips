@@ -1,0 +1,14 @@
+The Game view is rendered from the Camera(s) in your application. It represents your final, published application (not really published). You need to use one or more Cameras
+to control what the player sees when they are using your application.
+
+The Scene view is your interactive view into the world you are creating (From Unity)
+The Scene view will be used to visually adjust current scene game objects
+
+scene view and game view are just view and don't affect other parts or windows of editor
+
+scene view is interactive view however game view is game rendered from camera(s) in current scene
+
+
+Play Mode
+in play mode for game view, we only can see actuall played game but in scene view we can also manipulate game objects in realtime and use interactive gizmos while in playing the game
+play mode features described in separate file

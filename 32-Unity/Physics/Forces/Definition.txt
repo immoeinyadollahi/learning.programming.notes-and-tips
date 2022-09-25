@@ -1,0 +1,1 @@
+all forces must be applied on bodies in physic world

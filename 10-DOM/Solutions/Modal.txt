@@ -1,0 +1,13 @@
+modal with fade effect or any animation can be implemented in two ways:
+
+mount or unmount from dom tree or display none or visible
+
+in each way we have two options:
+
+1. transition
+
+2. animation
+
+
+
+another option is visibility and opacity change (not recommended)

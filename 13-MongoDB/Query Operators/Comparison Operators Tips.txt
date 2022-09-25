@@ -1,0 +1,5 @@
+$ne: with use of array field, if parameter is non-array value then it only match if none of elements in array field equals to that value,but if parameter is array,then only match if deep equality of two array fails
+
+$nin: with use of array field, means all array elements must not be inside parameter array ($all but reverse)
+
+$in: with use of array field, means atleast one array element must be inside of array parameter

@@ -1,0 +1,23 @@
+input state only get updated when game lifecycle executing (before every fixedUpdate check or before update calls i don't know)
+
+
+
+
+Tips
+1. we shouldn't use input interface when working with Editor or EditorWindow scripts because changes like keyDown (keyboard and mouse) only get updated if keydown happens when focusing on game view otherwise it doesn't get updated in editor windows or other parts
+	but if game is playing and we lose focus on game view
+	only some of input data get updated after that like mousePosition,holding keys or releasing keys that previously pressed (keydown) in  game view
+
+2. in same frame which Input.getKeydown/GetMouseButtonDown are true Input.getKey/GetMouseButton are true as well for those input keys/buttons
+
+
+
+Rules
+		where to use:
+							legacy Input system isn't event based (like javascirpt or some parts of unity). It gets updated at the top of every frame before any MonoBehaviour logic is performed. 
+							if FixedUpdate is executed twice in a single frame then it will use the same Input state. This doesn't happen with Update because Update will only ever run once in a frame. (this)
+
+
+we should get inputs only in Update method because Update only called once in each frame so this ensures that it runs once and in next frame input get updated 
+inputs that are not instant like GetKey, GetButton and GetAxis inputs may be used directly in fixed update (but don't use them there until getting full information)
+

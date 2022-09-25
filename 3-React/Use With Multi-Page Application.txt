@@ -1,0 +1,3 @@
+two ways to inject react components into different dom element:
+1. use dependency system and data-component, and only load that dependencies and inject there components into corresponding roots
+2. use only data-component which each data-component points to a react component, which can be distinguished by namespace or other ways and prevent conflict between pages and layouts

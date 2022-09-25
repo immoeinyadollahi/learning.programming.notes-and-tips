@@ -1,0 +1,7 @@
+delimter can be any character except alphanumeric (number and alphabetic character) or backslash characters
+
+delimiters must be the same
+
+if you want to use delimiter character as literal character inside of regex you should escape it otherwise throw error
+but if you use characters that aren't delimiter, its valid
+for sure use if you don't know pattern exactly or using variable, use @ or ~ because they are less likely exists in pattern itself 

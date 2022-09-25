@@ -1,0 +1,57 @@
+element size & scroll properties: geometry properties
+
+
+element.clientTop = not width of the top border of  element but rather relative coordinates of the inner side from the outer side in pixels (read-only & integer) (only width of border-top) 
+
+element.clientLeft = not width of the left border of  element but rather relative coordinates of the inner side from the outer side in pixels (read-only & integer) (width of border-left plus scrollbar in rtl)
+
+element.clientWidth ,element.clientHeight= pure visible content plus paddings without scrollbars,borders,margins
+
+element.offsetWidth,element.offsetHeight = visible content (include scrollbar),padding,border without margin (same as jqurey outerWidth but without margin)
+
+element.scrollWidth ,element.scrollHeight= pure full content plus padding without border,margin,scrollbars
+
+element.scrollLeft = number of pixels that an element's content is scrolled from its left edge. (horizontaly)
+
+element.scrollTop = number of pixels that an element's content is scrolled from its top. (verticaly)
+
+element.offsetTop =distance (pixel) of the outer (start of) border of the current element (border-top) relative to the inner (end of) border of the top (border-top) of the offsetParent
+
+element.offsetLeft =distance (pixel) of the outer (start of) border of the current element (border-left) relative to the inner (end of) border of the left (border-left) of the offsetParent
+
+
+element size & scroll properties: geometry methods
+
+element.scrollIntoView(top) – scroll the page to make elem visible (align with the top/bottom of the window).
+
+element.scrollTo(pageX,pageY) – absolute coordinates (scroll position)
+
+element.scrollBy(x,y) – scroll relative the current place of scroll
+
+
+
+
+window size & scroll properties: geometry properties
+
+window.innerWidth = width of current window include scrollbars
+
+window.innerHeight= height of current window include scrollbars
+
+window.pageXOffset    is an alias of    window.scrollX    both equals to   documentElement.scrollLeft,body.scrollLeft
+window.pageYOffset    is an alias of    window.scrollY    both equals to   documentElement.scrollTop,body.scrollTop
+
+window size & scroll properties: geometry methods
+
+
+Change the current scroll:
+
+window.scrollTo(pageX,pageY) – absolute coordinates (scroll position),
+window.scrollBy(x,y) – scroll relative the current place of scroll,
+
+
+
+
+
+
+
+

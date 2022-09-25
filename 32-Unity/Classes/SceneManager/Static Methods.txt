@@ -1,0 +1,25 @@
+LoadScene:
+            if give scene name,find first matched scene in build settings and load it
+            or give scene path (relative to Assets)
+
+            ** both without .unity extension
+
+            Unity
+            The given sceneName can either be the Scene name only in the BuildSettings list, without the .unity extension, or the path as shown in the BuildSettings window still without the .unity extension. 
+            If only the Scene name is given, this will load the first Scene in the list that matches (BuildSettings). If you have multiple Scenes with the same name but different paths, you should use the full path.
+
+
+            Using Path
+            path must be same name as is in build setting (without leading /)
+
+            generally either scene name or path must be exist in BuildSettings
+
+            **************** Important ****************
+            ** error ** a scene may not be loaded because it has not been added to the build settings or the AssetBundle has not been loaded.
+            when entring play mode in editor or start game in build version if we want to load scene (by name or relative path), given scene must be included in build settings in order to load them
+            except for entring play mode in editor for scene which is currently open in edit mode which doesn't need to added to build settings even if change current scene and load it again, no error will be thrown
+
+           
+
+
+

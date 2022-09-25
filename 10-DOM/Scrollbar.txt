@@ -1,0 +1,5 @@
+scrollbars width included with element content width and height and because of that
+they included in element total width and height even without box-sizing
+
+but scrollbars placed between border and padding
+

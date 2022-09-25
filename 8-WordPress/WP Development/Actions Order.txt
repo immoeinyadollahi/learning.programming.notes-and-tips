@@ -1,0 +1,20 @@
+summary:
+
+frontend:
+
+head:
+
+1. plugins,child functions.php and then parent functions.php then core
+2. wp_enqueue_scripts
+3. enqueued scripts and styles
+4-wp_head
+
+footer:
+
+1-wp_enqueue_scripts in_footer
+2-wp_footer
+
+
+
+admin:
+same as frontend except that hooks name are different,for example wp_head is admin_head ,... in admin area

@@ -1,0 +1,4 @@
+it will rotate vector and return new rotated vector
+
+* op is only for doing specific action
+it will not really multiply vector and quaternion

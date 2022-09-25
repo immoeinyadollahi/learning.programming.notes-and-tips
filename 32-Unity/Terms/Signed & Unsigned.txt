@@ -1,0 +1,2 @@
+Unsigned is only 0 or positive (non-negative)
+while signed is negative,0 or positive

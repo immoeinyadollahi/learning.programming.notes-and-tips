@@ -1,0 +1,2 @@
+transitionend:         for an element transitionend event triggers for each individual transition property reaches end of its transition ,means for each property event will be fired (dispatched) for element with event.propertyName in there duration order
+								if properties have same transition duration or using transition shorthand for all properties,then for each property event will be fired in non-particular order

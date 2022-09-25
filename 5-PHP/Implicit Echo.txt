@@ -1,0 +1,4 @@
+situations we use implicit echo:
+
+1. in function body we can add php code (or nothing) then close php tag,then insert html code,finaly close function body and extra blocks or parentheses with new php tag like ( <?php }); )
+2. in loops we can do same as above,but at this time ,html inside of block will be echoed multiple times based on iterations

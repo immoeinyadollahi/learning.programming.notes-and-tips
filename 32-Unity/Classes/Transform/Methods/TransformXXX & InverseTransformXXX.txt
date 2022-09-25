@@ -1,0 +1,88 @@
+these methods don't related to local space concept
+they are just about self (local) axes and world axes
+so parenting or local space doesn't matter,only self and world axes are important
+
+*** important concept here is global rotation of transform
+
+
+** Review **
+self axes is same as global axes but with global rotation of transform
+self axes up direction is same as global axes up but rotated,same for other directions
+self or local axes can be calucalted by multipling global axes by transform global rotation
+
+
+*** Unity may use local or worlds space instead of local and world axes, but they means same thing here
+
+
+
+Inverse vs Non-Inverse
+
+Inverse methods convert direction or position from world axes to local axes
+also they rotate vectors (position or direction) in inverse direction unlike non-inverse methods using Quaternion.Inverse
+
+so local to global            rotation * vector
+global to local                  Quaternion.inverse(rotation) * vector
+
+
+*************** Methods ***************
+
+1. TransformDirection
+    Transforms direction from local space to world space.
+
+    if vector is position vector rather than direction vector, use TransformPoint
+
+2. TransformVector
+    Transforms vector from local space to world space.
+
+
+
+3. TransformPoint
+    
+    How Works
+    first convert point (position) vector from local axes to world axes by applied rotation of transform on it,then add it to transform.posiiton
+
+    Tips
+    position of transform is important
+    the returned position is affected by scale
+
+
+
+4. InverseTransformPoint
+
+    How Works
+    this method is a bit tricky compared to InverseTransformDirection/Vector because here position of transform will be used too
+    first reduce given world position vector by current transform.posititon, then convert new vector point to local axes (by rotating new vector point)
+    result is vector point relative to local axes
+
+
+
+
+
+
+TransformDirection and TransformVector
+    these methods operations are the same,which position doesn't affect them and return only direction
+    but TransformVector operation affected by scale which means each vector component scales with transform.scale by corresponding XYZ component.
+    TransformDirection not affected by scale
+
+    for these methods only direction matters not positions so they return direction vector (not normalized)
+    position of transform will be ignored
+
+    these methods just multiply given direction by transform global rotation which produce global axes direction
+    also for TransformVector, produced direction will be scaled with transform scale (global scale)
+
+
+    Tips
+       despite this fact that only direction matter for these methods, these methods don't return normalized vector, The returned vector has the same length (magnitude) as given vector parameter
+
+
+
+
+****************** Simplicity *************
+think of a transform placed somewhere in space that has its own axes
+
+e.g. TransformPoint
+point from own axes must be converted to world (TransformPoint)
+inverse,point in world axes must be covnerted to own axes (InverseTransformPoint)
+
+
+              
