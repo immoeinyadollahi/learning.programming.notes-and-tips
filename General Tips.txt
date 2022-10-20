@@ -44,7 +44,6 @@
 7. for problem solving remove available ways one by one until finding best solution
 
 
-
 GMTK unity mark brown steps `How I learned Unity without following tutorials`
 1. learn absolute basics, nothing more
 2. get familier with basics through repetition and simple projects
